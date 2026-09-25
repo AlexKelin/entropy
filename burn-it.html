@@ -53,15 +53,14 @@
     /* ========================================
        KEYFRAMES
        ======================================== */
-    @keyframes fadeIn { 0%{opacity:0} 100%{opacity:1} }
-    @keyframes fadeInUp { 0%{opacity:0;transform:translateY(24px)} 100%{opacity:1;transform:translateY(0)} }
-    @keyframes grain {
-      0%,100%{transform:translate(0,0)} 10%{transform:translate(-5%,-10%)}
+    100%{opacity:1} }
+    100%{opacity:1;transform:none} }
+    10%{transform:translate(-5%,-10%)}
       30%{transform:translate(3%,-15%)} 50%{transform:translate(12%,9%)}
       70%{transform:translate(9%,4%)} 90%{transform:translate(-1%,7%)}
     }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
-    @keyframes glowPulse { 0%,100%{opacity:.4} 50%{opacity:.7} }
+    50%{opacity:.5} }
+    50%{opacity:.7} }
 
     /* ========================================
        LAYOUT
@@ -70,19 +69,12 @@
     @media(min-width:640px) { .container { padding:0 2.5rem; } }
     @media(min-width:1024px) { .container { padding:0 4rem; } }
 
-    /* ========================================
-       GRAIN OVERLAY
-       ======================================== */
-    .grain-overlay {
-      position:fixed; inset:-50%; width:200%; height:200%;
-      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events:none; z-index:9999; opacity:.4;
-    }
+    
 
     /* ========================================
        REVEAL
        ======================================== */
-    .reveal { opacity:0; transform:translateY(32px); transition:opacity .7s ease-out, transform .7s ease-out; }
+    .reveal { transform:translateY(32px);  }
     .reveal.visible { opacity:1; transform:translateY(0); }
 
     /* ========================================
@@ -92,7 +84,7 @@
     .dot-grid { background-image:radial-gradient(circle,rgba(249,115,22,.04) 1px,transparent 1px); background-size:28px 28px; }
     .marker-dot { width:6px; height:6px; border-radius:50%; background:rgba(249,115,22,.6); box-shadow:0 0 12px rgba(249,115,22,.3); }
     .text-ember-gradient { background:linear-gradient(135deg,#fdba74,#f97316,#ea580c); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-    .logo-glow { filter:drop-shadow(0 0 40px rgba(249,115,22,.25)) drop-shadow(0 0 80px rgba(249,115,22,.1)); }
+    .logo-glow { }
     .hidden-sm { display:none; }
     @media(min-width:640px) { .hidden-sm { display:block; } }
     .font-brand { font-family:'Cinzel',serif; }
@@ -132,30 +124,28 @@
     .hero__vline { position:absolute; top:0; bottom:0; width:1px; background:linear-gradient(180deg,transparent,rgba(249,115,22,.04) 30%,rgba(249,115,22,.04) 70%,transparent); display:none; }
     @media(min-width:1024px) { .hero__vline { display:block; } }
     .hero__vline--1 { left:16.67%; } .hero__vline--2 { left:50%; } .hero__vline--3 { left:83.33%; }
-    .hero__glow { position:absolute; top:33%; left:50%; transform:translate(-50%,-50%); width:800px; height:800px; border-radius:50%; filter:blur(200px); pointer-events:none; background:radial-gradient(circle,rgba(249,115,22,.08) 0%,rgba(234,88,12,.04) 40%,transparent 70%); animation:glowPulse 3s ease-in-out 2; }
-    .hero__glow2 { position:absolute; top:50%; left:50%; transform:translate(-50%,-33%); width:500px; height:500px; border-radius:50%; filter:blur(140px); pointer-events:none; background:radial-gradient(circle,rgba(194,65,12,.06) 0%,transparent 60%); }
     .hero__content { position:relative; z-index:10; text-align:center; padding:0 1.5rem; max-width:56rem; margin:0 auto; }
 
-    .hero__back { position:absolute; top:0; left:1.5rem; animation:fadeIn .8s ease-out forwards; animation-delay:.1s; opacity:0; }
+    .hero__back { position:absolute; top:0; left:1.5rem; }
     @media(min-width:640px) { .hero__back { left:0; } }
     .back-arrow { display:inline-flex; align-items:center; gap:.5rem; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--noir-500); transition:transform .3s, color .3s; }
     .back-arrow:hover { transform:translateX(-4px); color:var(--ember-400); }
     .back-arrow svg { width:1rem; height:1rem; }
 
-    .hero__eyebrow { display:flex; align-items:center; justify-content:center; gap:.75rem; margin-bottom:2rem; animation:fadeIn .8s ease-out forwards; animation-delay:.2s; opacity:0; }
+    .hero__eyebrow { display:flex; align-items:center; justify-content:center; gap:.75rem; margin-bottom:2rem; }
     .hero__eyebrow-line { display:block; width:2rem; height:1px; background:rgba(249,115,22,.3); }
     .hero__eyebrow-text { font-size:10px; letter-spacing:.4em; text-transform:uppercase; font-weight:500; font-family:'JetBrains Mono',monospace; color:rgba(249,115,22,.7); }
 
-    .hero__logo { margin-bottom:2rem; animation:fadeInUp .8s ease-out forwards; animation-delay:.4s; opacity:0; }
+    .hero__logo { margin-bottom:2rem; }
     .hero__logo img { width:16rem; margin:0 auto; aspect-ratio:800/517; }
     @media(min-width:640px) { .hero__logo img { width:20rem; } }
     @media(min-width:1024px) { .hero__logo img { width:24rem; } }
 
-    .hero__tagline { margin-top:.5rem; font-size:1.125rem; color:var(--noir-300); font-weight:300; letter-spacing:.05em; max-width:42rem; margin-left:auto; margin-right:auto; animation:fadeInUp .8s ease-out forwards; animation-delay:.7s; opacity:0; }
+    .hero__tagline { margin-top:.5rem; font-size:1.125rem; color:var(--noir-300); font-weight:300; letter-spacing:.05em; max-width:42rem; margin-left:auto; margin-right:auto; }
     @media(min-width:640px) { .hero__tagline { font-size:1.25rem; } }
     @media(min-width:1024px) { .hero__tagline { font-size:1.5rem; } }
 
-    .hero__stats { margin-top:3rem; display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:1.5rem; animation:fadeInUp .8s ease-out forwards; animation-delay:1s; opacity:0; }
+    .hero__stats { margin-top:3rem; display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:1.5rem; }
     @media(min-width:640px) { .hero__stats { gap:2.5rem; } }
     .hero__stat { text-align:center; }
     .hero__stat-value { font-size:1.5rem; font-weight:700; font-family:'JetBrains Mono',monospace; }
@@ -163,15 +153,15 @@
     .hero__stat-label { margin-top:.25rem; font-size:9px; letter-spacing:.3em; text-transform:uppercase; color:var(--noir-500); }
     .hero__stat-divider { width:1px; height:2.5rem; background:var(--noir-800); }
 
-    .hero__cta-wrap { margin-top:3rem; animation:fadeInUp .8s ease-out forwards; animation-delay:1.2s; opacity:0; }
+    .hero__cta-wrap { margin-top:3rem; }
     .btn--ember-outline { display:inline-flex; align-items:center; gap:.5rem; padding:.75rem 1.75rem; border:1px solid rgba(249,115,22,.3); border-radius:.25rem; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:rgba(253,186,116,.9); transition:all .3s; }
     .btn--ember-outline:hover { border-color:rgba(249,115,22,.5); box-shadow:0 0 30px -10px rgba(249,115,22,.2); }
     .btn--ember-outline svg { width:.875rem; height:.875rem; transition:transform .3s; }
     .btn--ember-outline:hover svg { transform:translateY(4px); }
 
-    .hero__scroll { position:absolute; bottom:2.5rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:.5rem; animation:fadeIn .8s ease-out forwards; animation-delay:1.5s; opacity:0; }
+    .hero__scroll { position:absolute; bottom:2.5rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:.5rem; }
     .hero__scroll-text { font-size:9px; letter-spacing:.3em; text-transform:uppercase; font-family:'JetBrains Mono',monospace; color:rgba(249,115,22,.3); }
-    .hero__scroll-line { width:1px; height:2rem; background:linear-gradient(180deg,rgba(249,115,22,.4),transparent); animation:pulse 4s ease-in-out 2; }
+    .hero__scroll-line { width:1px; height:2rem; background:linear-gradient(180deg,rgba(249,115,22,.4),transparent); }
 
     /* ========================================
        SECTIONS
@@ -195,7 +185,7 @@
     .pillar-card { position:relative; background:linear-gradient(165deg,rgba(28,28,33,.6) 0%,rgba(14,14,17,.8) 100%); border:1px solid rgba(249,115,22,.08); backdrop-filter:blur(12px); border-radius:.75rem; padding:2rem; transition:border-color .4s, transform .4s, box-shadow .4s; }
     @media(min-width:640px) { .pillar-card { padding:2.5rem; } }
     .pillar-card:hover { border-color:rgba(249,115,22,.2); transform:translateY(-4px); box-shadow:0 16px 48px -12px rgba(249,115,22,.12); }
-    .pillar-card::before { content:''; position:absolute; inset:0; border-radius:inherit; background:radial-gradient(600px circle at var(--mouse-x,50%) var(--mouse-y,50%),rgba(249,115,22,.06),transparent 40%); pointer-events:none; opacity:0; transition:opacity .4s; }
+    .pillar-card::before { content:''; position:absolute; inset:0; border-radius:inherit; background:radial-gradient(600px circle at var(--mouse-x,50%) var(--mouse-y,50%),rgba(249,115,22,.06),transparent 40%); pointer-events:none; transition:opacity .4s; }
     .pillar-card:hover::before { opacity:1; }
     .pillar-card::after { content:''; position:absolute; top:0; left:24px; right:24px; height:1px; background:linear-gradient(90deg,transparent,rgba(249,115,22,.15),transparent); }
 
@@ -315,7 +305,7 @@
 <body>
 
   <!-- Film-Grain Overlay -->
-  <div class="grain-overlay" aria-hidden="true"></div>
+  
 
   <!-- ======================== NAVIGATION ======================== -->
   <nav id="navbar" class="navbar">
@@ -353,8 +343,8 @@
     <div class="hero__vline hero__vline--1" aria-hidden="true"></div>
     <div class="hero__vline hero__vline--2" aria-hidden="true"></div>
     <div class="hero__vline hero__vline--3" aria-hidden="true"></div>
-    <div class="hero__glow" aria-hidden="true"></div>
-    <div class="hero__glow2" aria-hidden="true"></div>
+    
+    
 
     <div class="hero__content">
       <!-- Back Link -->
@@ -484,7 +474,7 @@
         <!-- Right: Table Layout Image -->
         <div class="reveal" style="transition-delay:.3s;">
           <div class="table-image-container">
-            <picture><source srcset="logos/felt_with_cards_chips_transparent.webp" type="image/webp"><img src="logos/felt_with_cards_chips_transparent.png" alt="Burn It Table Layout" loading="lazy" width="1200" height="776" /></picture>
+            <picture><source srcset="logos/felt_with_cards_chips_transparent.webp" type="image/webp"><img src="logos/felt_with_cards_chips_transparent.png" alt="Burn It Table Layout" loading="lazy" width="724" height="468" /></picture>
           </div>
           <p class="caption">Table Layout Concept — <span class="font-brand">Burn It</span>™</p>
         </div>

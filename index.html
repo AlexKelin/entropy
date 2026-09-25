@@ -12,91 +12,12 @@
 
 
   <style>
-    /* ========================================
-       SELF-HOSTED FONTS (no external requests)
-       ======================================== */
-    @font-face { font-family:'Inter'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/inter-400.woff2') format('woff2'); }
-    @font-face { font-family:'Inter'; font-style:normal; font-weight:700; font-display:swap; src:url('fonts/inter-700.woff2') format('woff2'); }
-    @font-face { font-family:'Cinzel'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/cinzel-400.woff2') format('woff2'); }
-    @font-face { font-family:'Cinzel'; font-style:normal; font-weight:700; font-display:swap; src:url('fonts/cinzel-700.woff2') format('woff2'); }
-    @font-face { font-family:'JetBrains Mono'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/jetbrains-400.woff2') format('woff2'); }
-    @font-face { font-family:'Orbitron'; font-style:normal; font-weight:800; font-display:swap; src:url('fonts/orbitron-800.woff2') format('woff2'); }
-
-    /* ========================================
-       DESIGN TOKENS
-       ======================================== */
-    :root {
-      --noir-50: #f7f7f8;
-      --noir-100: #ededf0;
-      --noir-200: #d4d4d9;
-      --noir-300: #a8a8b3;
-      --noir-400: #71717f;
-      --noir-500: #53535f;
-      --noir-600: #3f3f47;
-      --noir-700: #2c2c32;
-      --noir-800: #1c1c21;
-      --noir-850: #151519;
-      --noir-900: #0e0e11;
-      --noir-950: #08080a;
-      --accent: #c8c8d0;
-      --accent-muted: #6b6b78;
-    }
-
-    /* ========================================
-       RESET & BASE
-       ======================================== */
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { font-family: 'Inter', system-ui, -apple-system, sans-serif; scroll-behavior: smooth; }
-    body { background: var(--noir-950); color: var(--noir-100); overflow-x: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-    a { text-decoration: none; color: inherit; }
-    img { display: block; max-width: 100%; }
-    button { background: none; border: none; cursor: pointer; font: inherit; }
-    address { font-style: normal; }
-
-    ::selection { background: rgba(200,200,208,0.2); color: #fff; }
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--noir-950); }
-    ::-webkit-scrollbar-thumb { background: var(--noir-700); border-radius: 3px; }
-
-    /* ========================================
-       KEYFRAMES
-       ======================================== */
-    @keyframes fadeIn { 0% { opacity:0; } 100% { opacity:1; } }
-    @keyframes fadeInUp { 0% { opacity:0; transform:translateY(24px); } 100% { opacity:1; transform:translateY(0); } }
-    @keyframes grain {
-      0%,100% { transform:translate(0,0); }
-      10% { transform:translate(-5%,-10%); }
-      30% { transform:translate(3%,-15%); }
-      50% { transform:translate(12%,9%); }
-      70% { transform:translate(9%,4%); }
-      90% { transform:translate(-1%,7%); }
-    }
-    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:.5; } }
-
-    /* ========================================
-       LAYOUT UTILITIES
-       ======================================== */
-    .container { max-width: 80rem; margin: 0 auto; padding: 0 1.5rem; }
-    @media(min-width:640px) { .container { padding: 0 2.5rem; } }
-    @media(min-width:1024px) { .container { padding: 0 4rem; } }
-    .container--sm { max-width: 48rem; margin: 0 auto; padding: 0 1.5rem; }
-    @media(min-width:640px) { .container--sm { padding: 0 2.5rem; } }
-
-    /* ========================================
-       FILM-GRAIN OVERLAY
-       ======================================== */
-    .grain-overlay {
-      position: fixed; inset: -50%; width: 200%; height: 200%;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none; z-index: 9999; opacity: 0.4;
-      opacity: .4;
-    }
 
     /* ========================================
        REVEAL ANIMATION
        ======================================== */
-    .reveal { opacity: 0; transform: translateY(32px); transition: opacity .7s ease-out, transform .7s ease-out; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal { transform: translateY(32px);  }
+    .reveal.visible { opacity: 1; transform: none; }
 
     /* ========================================
        HORIZONTAL RULE GLOW
@@ -151,26 +72,24 @@
     .hero__vline--2 { left: 50%; }
     .hero__vline--3 { left: 83.33%; }
 
-    .hero__glow { position: absolute; top: 33%; left: 50%; transform: translate(-50%,-50%); width: 700px; height: 700px; background: rgba(44,44,50,.1); border-radius: 50%; filter: blur(160px); pointer-events: none; }
-
     .hero__content { position: relative; z-index: 10; text-align: center; padding: 0 1.5rem; max-width: 56rem; margin: 0 auto; }
 
-    .hero__eyebrow { display: flex; align-items: center; justify-content: center; margin-bottom: 2rem; animation: fadeIn .8s ease-out forwards; animation-delay: .2s; opacity: 0; }
+    .hero__eyebrow { display: flex; align-items: center; justify-content: center; margin-bottom: 2rem; }
     .hero__eyebrow img { width: 16rem; opacity: .7; aspect-ratio: 1/1; }
     @media(min-width:640px) { .hero__eyebrow img { width: 20rem; } }
     @media(min-width:1024px) { .hero__eyebrow img { width: 24rem; } }
 
-    .hero__title { font-family: 'Orbitron', sans-serif; font-size: 3rem; font-weight: 800; letter-spacing: -.025em; line-height: .9; color: var(--noir-50); animation: fadeInUp .8s ease-out forwards; animation-delay: .4s; opacity: 0; }
+    .hero__title { font-family: 'Orbitron', sans-serif; font-size: 3rem; font-weight: 800; letter-spacing: -.025em; line-height: .9; color: var(--noir-50); }
     @media(min-width:640px) { .hero__title { font-size: 4.5rem; } }
     @media(min-width:1024px) { .hero__title { font-size: 6rem; } }
     .hero__title span { color: var(--noir-500); font-weight: 300; margin-left: .5rem; }
     @media(min-width:640px) { .hero__title span { margin-left: 1rem; } }
 
-    .hero__sub { margin-top: 1.5rem; font-size: 1rem; color: var(--noir-400); font-weight: 300; letter-spacing: .05em; max-width: 36rem; margin-left: auto; margin-right: auto; animation: fadeInUp .8s ease-out forwards; animation-delay: .7s; opacity: 0; }
+    .hero__sub { margin-top: 1.5rem; font-size: 1rem; color: var(--noir-400); font-weight: 300; letter-spacing: .05em; max-width: 36rem; margin-left: auto; margin-right: auto; }
     @media(min-width:640px) { .hero__sub { margin-top: 2rem; font-size: 1.125rem; } }
     @media(min-width:1024px) { .hero__sub { font-size: 1.25rem; } }
 
-    .hero__cta { margin-top: 2.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; animation: fadeInUp .8s ease-out forwards; animation-delay: 1s; opacity: 0; }
+    .hero__cta { margin-top: 2.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; }
     @media(min-width:640px) { .hero__cta { margin-top: 3.5rem; flex-direction: row; } }
 
     .btn { display: inline-flex; align-items: center; gap: .5rem; font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; border-radius: .25rem; transition: all .3s; }
@@ -181,9 +100,9 @@
     .btn--ghost { color: var(--noir-500); }
     .btn--ghost:hover { color: var(--noir-300); }
 
-    .hero__scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: .5rem; animation: fadeIn .8s ease-out forwards; animation-delay: 1.4s; opacity: 0; }
+    .hero__scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: .5rem; }
     .hero__scroll-text { font-size: 9px; letter-spacing: .3em; text-transform: uppercase; color: var(--noir-600); font-family: 'JetBrains Mono', monospace; }
-    .hero__scroll-line { width: 1px; height: 2rem; background: linear-gradient(180deg, var(--noir-600), transparent); animation: pulse 4s ease-in-out 2; }
+    .hero__scroll-line { width: 1px; height: 2rem; background: linear-gradient(180deg, var(--noir-600), transparent); }
 
     /* ========================================
        SECTIONS
@@ -222,7 +141,7 @@
     @media(min-width:640px) { .pillar-card { padding: 2.5rem; } }
     @media(min-width:1024px) { .pillar-card--lg { padding: 3rem; } }
     .pillar-card:hover { border-color: rgba(200,200,208,.15); transform: translateY(-4px); box-shadow: 0 16px 48px -12px rgba(0,0,0,.5); }
-    .pillar-card::before { content:''; position:absolute; inset:0; border-radius:inherit; background:radial-gradient(600px circle at var(--mouse-x,50%) var(--mouse-y,50%), rgba(200,200,208,.04), transparent 40%); pointer-events:none; opacity:0; transition:opacity .4s; }
+    .pillar-card::before { content:''; position:absolute; inset:0; border-radius:inherit; background:radial-gradient(600px circle at var(--mouse-x,50%) var(--mouse-y,50%), rgba(200,200,208,.04), transparent 40%); pointer-events:none; transition:opacity .4s; }
     .pillar-card:hover::before { opacity: 1; }
     .pillar-card::after { content:''; position:absolute; top:0; left:24px; right:24px; height:1px; background:linear-gradient(90deg, transparent, rgba(200,200,208,.12), transparent); }
 
@@ -317,7 +236,7 @@
 <body>
 
   <!-- Film-Grain Overlay -->
-  <div class="grain-overlay" aria-hidden="true"></div>
+  
 
   <!-- ======================== NAVIGATION ======================== -->
   <nav id="navbar" class="navbar">
@@ -365,7 +284,7 @@
     <div class="hero__vline hero__vline--3" aria-hidden="true"></div>
 
     <!-- Ambient glow -->
-    <div class="hero__glow" aria-hidden="true"></div>
+    
 
     <div class="hero__content">
       <!-- Eyebrow -->
