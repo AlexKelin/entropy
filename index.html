@@ -10,12 +10,17 @@
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://entropyconcepts.com" />
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts (non-render-blocking) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400&family=Orbitron:wght@700;800&display=swap" />
   <link
     href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400&family=Orbitron:wght@700;800&display=swap"
-    rel="stylesheet" />
+    rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400&family=Orbitron:wght@700;800&display=swap"
+    rel="stylesheet" /></noscript>
 
   <style>
     /* ========================================
@@ -321,7 +326,7 @@
       <div class="navbar__inner">
         <!-- Logo -->
         <a href="#" class="navbar__logo" aria-label="ENTROPY LLC Home">
-          <img src="logos/banner_entropy_transparent_back.png" alt="Entropy" class="navbar__logo-img" />
+          <img src="logos/banner_entropy_transparent_back.png" alt="Entropy" class="navbar__logo-img" width="800" height="800" />
           <span class="navbar__logo-text">ENTROPY</span>
         </a>
 
@@ -351,6 +356,8 @@
     </div>
   </nav>
 
+  <main>
+
   <!-- ======================== HERO SECTION ======================== -->
   <section id="hero" class="hero dot-grid">
     <!-- Vertical structural lines -->
@@ -364,7 +371,7 @@
     <div class="hero__content">
       <!-- Eyebrow -->
       <div class="hero__eyebrow">
-        <img src="logos/banner_entropy_transparent_back.png" alt="Entropy" />
+        <img src="logos/banner_entropy_transparent_back.png" alt="Entropy" width="800" height="800" />
       </div>
 
       <!-- Headline -->
@@ -523,7 +530,7 @@
           <div class="pillar-card reveal" style="transition-delay: 0.1s;">
             <div class="card__header">
               <div class="card__icon">
-                <img src="logos/burn.png" alt="Burn It" loading="lazy" />
+                <img src="logos/burn.png" alt="Burn It" loading="lazy" width="103" height="160" />
               </div>
               <span class="card__label">Casino Game</span>
             </div>
@@ -549,7 +556,7 @@
         <div class="pillar-card reveal" style="transition-delay: 0.2s;">
           <div class="card__header">
             <div class="card__icon">
-              <img src="logos/SR_icon_1024_1024.png" alt="Shift Runner" loading="lazy" />
+              <img src="logos/SR_icon_1024_1024.png" alt="Shift Runner" loading="lazy" width="160" height="159" />
             </div>
             <div style="display:flex; align-items:center; gap:.75rem;">
               <span class="card__label">Mobile App</span>
@@ -571,7 +578,7 @@
         <div class="pillar-card reveal" style="transition-delay: 0.3s;">
           <div class="card__header">
             <div class="card__icon">
-              <img src="logos/FR_icon_1024_1024.png" alt="Felt Runner" loading="lazy" />
+              <img src="logos/FR_icon_1024_1024.png" alt="Felt Runner" loading="lazy" width="160" height="160" />
             </div>
             <div style="display:flex; align-items:center; gap:.75rem;">
               <span class="card__label">Training App</span>
@@ -633,6 +640,8 @@
 
   <hr class="rule-glow" aria-hidden="true" />
 
+  </main>
+
   <!-- ======================== FOOTER ======================== -->
   <footer id="footer" class="footer">
     <div class="container">
@@ -641,7 +650,7 @@
         <!-- Brand -->
         <div>
           <div class="footer__brand">
-            <img src="logos/banner_entropy_transparent_back.png" alt="Entropy" loading="lazy" />
+            <img src="logos/banner_entropy_transparent_back.png" alt="Entropy" loading="lazy" width="800" height="800" />
             <span>ENTROPY LLC</span>
           </div>
           <p class="footer__desc">

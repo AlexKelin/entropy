@@ -10,12 +10,17 @@
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://entropyconcepts.com/burn-it" />
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts (non-render-blocking) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400&display=swap" />
   <link
     href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400&display=swap"
-    rel="stylesheet" />
+    rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400&display=swap"
+    rel="stylesheet" /></noscript>
 
   <style>
     /* ========================================
@@ -319,7 +324,7 @@
     <div class="container">
       <div class="navbar__inner">
         <a href="index.html" class="navbar__logo" aria-label="ENTROPY LLC Home">
-          <img src="logos/banner_entropy_transparent_back.png" alt="Entropy" class="navbar__logo-img" />
+          <img src="logos/banner_entropy_transparent_back.png" alt="Entropy" class="navbar__logo-img" width="800" height="800" />
           <span class="navbar__logo-text">ENTROPY</span>
         </a>
         <div class="navbar__links">
@@ -342,6 +347,8 @@
       </div>
     </div>
   </nav>
+
+  <main>
 
   <!-- ======================== HERO SECTION ======================== -->
   <section id="hero" class="hero">
@@ -371,7 +378,7 @@
 
       <!-- Logo -->
       <div class="hero__logo">
-        <img src="logos/burn_it_banner_transparent_background.png" alt="Burn It Logo" class="logo-glow" />
+        <img src="logos/burn_it_banner_transparent_background.png" alt="Burn It Logo" class="logo-glow" width="800" height="517" />
       </div>
 
       <!-- Tagline -->
@@ -479,7 +486,7 @@
         <!-- Right: Table Layout Image -->
         <div class="reveal" style="transition-delay:.3s;">
           <div class="table-image-container">
-            <img src="logos/felt_with_cards_chips_transparent.png" alt="Burn It Table Layout" loading="lazy" />
+            <img src="logos/felt_with_cards_chips_transparent.png" alt="Burn It Table Layout" loading="lazy" width="1200" height="776" />
           </div>
           <p class="caption">Table Layout Concept — <span class="font-brand">Burn It</span>™</p>
         </div>
@@ -814,13 +821,15 @@
 
   <hr class="rule-glow" aria-hidden="true" />
 
+  </main>
+
   <!-- ======================== FOOTER ======================== -->
   <footer id="footer" class="footer">
     <div class="container">
       <div class="footer__grid">
         <div>
           <div class="footer__brand">
-            <img src="logos/banner_entropy_transparent_back.png" alt="Entropy" loading="lazy" />
+            <img src="logos/banner_entropy_transparent_back.png" alt="Entropy" loading="lazy" width="800" height="800" />
             <span>ENTROPY LLC</span>
           </div>
           <p class="footer__desc">A disciplined incubator developing proprietary digital products and probability-driven systems.</p>
