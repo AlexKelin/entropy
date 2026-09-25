@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Burn It™ — A New Casino Table Game | ENTROPY LLC</title>
+  <meta name="description"
+    content="Burn It™ is an original casino table game by ENTROPY LLC — a fast-paced, multi-phase high-card shoe game that gives players the power to manipulate the dealer's hand." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://entropyconcepts.com/burn-it" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            noir: {
+              50: '#f7f7f8',
+              100: '#ededf0',
+              200: '#d4d4d9',
+              300: '#a8a8b3',
+              400: '#71717f',
+              500: '#53535f',
+              600: '#3f3f47',
+              700: '#2c2c32',
+              800: '#1c1c21',
+              850: '#151519',
+              900: '#0e0e11',
+              950: '#08080a',
+            },
+            accent: {
+              DEFAULT: '#c8c8d0',
+              muted: '#6b6b78',
+            },
+            ember: {
+              50: '#fff8ed',
+              100: '#ffedd5',
+              200: '#fed7aa',
+              300: '#fdba74',
+              400: '#fb923c',
+              500: '#f97316',
+              600: '#ea580c',
+              700: '#c2410c',
+              800: '#9a3412',
+              900: '#7c2d12',
+            }
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.8s ease-out forwards',
+            'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+            'slide-in-left': 'slideInLeft 0.8s ease-out forwards',
+            'pulse-slow': 'pulse 4s ease-in-out infinite',
+            'grain': 'grain 8s steps(10) infinite',
+            'glow-pulse': 'glowPulse 3s ease-in-out infinite',
+            'ember-float': 'emberFloat 6s ease-in-out infinite',
+            'flame-flicker': 'flameFlicker 2s ease-in-out infinite',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            slideInLeft: {
+              '0%': { opacity: '0', transform: 'translateX(-24px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' },
+            },
+            grain: {
+              '0%, 100%': { transform: 'translate(0, 0)' },
+              '10%': { transform: 'translate(-5%, -10%)' },
+              '30%': { transform: 'translate(3%, -15%)' },
+              '50%': { transform: 'translate(12%, 9%)' },
+              '70%': { transform: 'translate(9%, 4%)' },
+              '90%': { transform: 'translate(-1%, 7%)' },
+            },
+            glowPulse: {
+              '0%, 100%': { opacity: '0.4' },
+              '50%': { opacity: '0.7' },
+            },
+            emberFloat: {
+              '0%, 100%': { transform: 'translateY(0) scale(1)', opacity: '0.3' },
+              '50%': { transform: 'translateY(-20px) scale(1.1)', opacity: '0.6' },
+            },
+            flameFlicker: {
+              '0%, 100%': { opacity: '0.8', transform: 'scaleY(1)' },
+              '25%': { opacity: '1', transform: 'scaleY(1.04)' },
+              '50%': { opacity: '0.9', transform: 'scaleY(0.98)' },
+              '75%': { opacity: '1', transform: 'scaleY(1.02)' },
+            },
+            emberDrift1: {
+              '0%': { transform: 'translate(0, 0) scale(1)', opacity: '0' },
+              '10%': { opacity: '0.7' },
+              '50%': { transform: 'translate(60px, -120px) scale(0.6)', opacity: '0.5' },
+              '90%': { opacity: '0.2' },
+              '100%': { transform: 'translate(90px, -220px) scale(0.3)', opacity: '0' },
+            },
+            emberDrift2: {
+              '0%': { transform: 'translate(0, 0) scale(1)', opacity: '0' },
+              '10%': { opacity: '0.6' },
+              '50%': { transform: 'translate(-50px, -140px) scale(0.5)', opacity: '0.4' },
+              '90%': { opacity: '0.15' },
+              '100%': { transform: 'translate(-80px, -250px) scale(0.2)', opacity: '0' },
+            },
+            emberDrift3: {
+              '0%': { transform: 'translate(0, 0) scale(0.8)', opacity: '0' },
+              '10%': { opacity: '0.5' },
+              '50%': { transform: 'translate(30px, -100px) scale(0.4)', opacity: '0.35' },
+              '90%': { opacity: '0.1' },
+              '100%': { transform: 'translate(50px, -180px) scale(0.2)', opacity: '0' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    /* --- Global & Scrollbar --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+
+    body {
+      background: #08080a;
+      color: #ededf0;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: rgba(249, 115, 22, 0.25);
+      color: #fff;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #08080a;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #2c2c32;
+      border-radius: 3px;
+    }
+
+    /* --- Film-Grain Overlay --- */
+    .grain-overlay {
+      position: fixed;
+      inset: -50%;
+      width: 200%;
+      height: 200%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.4;
+      animation: grain 8s steps(10) infinite;
+    }
+
+    /* --- Intersection-Observer Reveal --- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* --- Horizontal Rule Glow --- */
+    .rule-glow {
+      height: 1px;
+      border: none;
+      background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.12) 30%, rgba(249, 115, 22, 0.2) 50%, rgba(249, 115, 22, 0.12) 70%, transparent);
+    }
+
+    /* --- Grid Dot Background --- */
+    .dot-grid {
+      background-image: radial-gradient(circle, rgba(249, 115, 22, 0.04) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    /* --- Pillar Card --- */
+    .pillar-card {
+      position: relative;
+      background: linear-gradient(165deg, rgba(28, 28, 33, 0.6) 0%, rgba(14, 14, 17, 0.8) 100%);
+      border: 1px solid rgba(249, 115, 22, 0.08);
+      backdrop-filter: blur(12px);
+      transition: border-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .pillar-card:hover {
+      border-color: rgba(249, 115, 22, 0.2);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px -12px rgba(249, 115, 22, 0.12);
+    }
+
+    .pillar-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(249, 115, 22, 0.06), transparent 40%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .pillar-card:hover::before {
+      opacity: 1;
+    }
+
+    /* --- Glowing Border Line on Pillar Top --- */
+    .pillar-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 24px;
+      right: 24px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.15), transparent);
+    }
+
+    /* --- Nav Link Underline --- */
+    .nav-link {
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0;
+      height: 1px;
+      background: #c8c8d0;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* --- Marker Dot (ember-colored) --- */
+    .marker-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(249, 115, 22, 0.6);
+      box-shadow: 0 0 12px rgba(249, 115, 22, 0.3);
+    }
+
+    /* --- Hero Vertical Lines --- */
+    .v-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, rgba(249, 115, 22, 0.04) 30%, rgba(249, 115, 22, 0.04) 70%, transparent);
+    }
+
+    /* --- Ember Accent Text --- */
+    .text-ember-gradient {
+      background: linear-gradient(135deg, #fdba74, #f97316, #ea580c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* --- Hero Logo Glow --- */
+    .logo-glow {
+      filter: drop-shadow(0 0 40px rgba(249, 115, 22, 0.25)) drop-shadow(0 0 80px rgba(249, 115, 22, 0.1));
+    }
+
+    /* --- Feature Icon Container --- */
+    .feature-icon {
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(234, 88, 12, 0.05));
+      border: 1px solid rgba(249, 115, 22, 0.12);
+    }
+
+    /* --- Phase Steps --- */
+    .phase-connector {
+      position: absolute;
+      left: 50%;
+      top: 100%;
+      width: 1px;
+      height: 32px;
+      background: linear-gradient(180deg, rgba(249, 115, 22, 0.3), rgba(249, 115, 22, 0.05));
+    }
+
+    /* --- Table Layout Image Container --- */
+    .table-image-container {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(249, 115, 22, 0.1);
+    }
+
+    .table-image-container::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(8, 8, 10, 0.3) 0%, transparent 30%, transparent 70%, rgba(8, 8, 10, 0.6) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* --- Stat card glow --- */
+    .stat-card {
+      position: relative;
+      background: linear-gradient(165deg, rgba(28, 28, 33, 0.5) 0%, rgba(14, 14, 17, 0.7) 100%);
+      border: 1px solid rgba(249, 115, 22, 0.08);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .stat-card:hover {
+      border-color: rgba(249, 115, 22, 0.2);
+      box-shadow: 0 0 30px -10px rgba(249, 115, 22, 0.15);
+    }
+
+    /* --- Back arrow hover --- */
+    .back-arrow {
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .back-arrow:hover {
+      transform: translateX(-4px);
+    }
+
+    /* --- Ember particle decorations --- */
+    .ember-particle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      will-change: transform, opacity;
+    }
+
+    .ember-particle--sm {
+      width: 3px;
+      height: 3px;
+      background: rgba(253, 186, 116, 0.6);
+      box-shadow: 0 0 6px 1px rgba(249, 115, 22, 0.35);
+    }
+
+    .ember-particle--md {
+      width: 4px;
+      height: 4px;
+      background: rgba(251, 146, 60, 0.5);
+      box-shadow: 0 0 8px 2px rgba(249, 115, 22, 0.3);
+    }
+
+    .ember-particle--lg {
+      width: 5px;
+      height: 5px;
+      background: rgba(249, 115, 22, 0.4);
+      box-shadow: 0 0 10px 3px rgba(234, 88, 12, 0.25);
+    }
+
+    .ember-drift-1 { animation: emberDrift1 7s ease-in-out infinite; }
+    .ember-drift-2 { animation: emberDrift2 9s ease-in-out infinite; }
+    .ember-drift-3 { animation: emberDrift3 8s ease-in-out infinite; }
+    .ember-drift-1b { animation: emberDrift1 11s ease-in-out infinite; }
+    .ember-drift-2b { animation: emberDrift2 6s ease-in-out infinite; }
+    .ember-drift-3b { animation: emberDrift3 10s ease-in-out infinite; }
+  </style>
+</head>
+
+<body class="antialiased">
+
+  <!-- Film-Grain Overlay -->
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- ======================== NAVIGATION ======================== -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-3 group" aria-label="ENTROPY LLC Home">
+          <img src="logos/banner_entropy_transparent_back.png" alt="Entropy" class="w-8 h-8 object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300" />
+          <span class="text-sm font-semibold tracking-[0.25em] text-noir-100">ENTROPY</span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <div class="hidden md:flex items-center gap-10">
+          <a href="index.html#about"
+            class="nav-link text-xs tracking-[0.2em] uppercase text-noir-300 hover:text-noir-100 transition-colors duration-300">Divisions</a>
+          <a href="index.html#projects"
+            class="nav-link text-xs tracking-[0.2em] uppercase text-noir-300 hover:text-noir-100 transition-colors duration-300">Projects</a>
+          <a href="index.html#contact"
+            class="nav-link text-xs tracking-[0.2em] uppercase text-noir-300 hover:text-noir-100 transition-colors duration-300">Contact</a>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-toggle" class="md:hidden p-2 text-noir-300 hover:text-noir-100 transition-colors"
+          aria-label="Toggle menu">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" d="M4 8h16M4 16h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden hidden border-t border-noir-800/60 bg-noir-950/95 backdrop-blur-xl">
+      <div class="px-6 py-6 flex flex-col gap-4">
+        <a href="index.html#about"
+          class="text-xs tracking-[0.2em] uppercase text-noir-300 hover:text-noir-100 transition-colors">Divisions</a>
+        <a href="index.html#projects"
+          class="text-xs tracking-[0.2em] uppercase text-noir-300 hover:text-noir-100 transition-colors">Projects</a>
+        <a href="index.html#contact"
+          class="text-xs tracking-[0.2em] uppercase text-noir-300 hover:text-noir-100 transition-colors">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ======================== HERO SECTION ======================== -->
+  <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <!-- Vertical structural lines -->
+    <div class="v-line left-[16.67%] hidden lg:block" aria-hidden="true"></div>
+    <div class="v-line left-[50%] hidden lg:block" aria-hidden="true"></div>
+    <div class="v-line left-[83.33%] hidden lg:block" aria-hidden="true"></div>
+
+    <!-- Amber ambient glow -->
+    <div
+      class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full blur-[200px] pointer-events-none animate-glow-pulse"
+      style="background: radial-gradient(circle, rgba(249, 115, 22, 0.08) 0%, rgba(234, 88, 12, 0.04) 40%, transparent 70%);"
+      aria-hidden="true"></div>
+
+    <!-- Secondary deeper glow -->
+    <div
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/3 w-[500px] h-[500px] rounded-full blur-[140px] pointer-events-none"
+      style="background: radial-gradient(circle, rgba(194, 65, 12, 0.06) 0%, transparent 60%);"
+      aria-hidden="true"></div>
+
+    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+      <!-- Back Link -->
+      <div class="absolute top-0 left-6 sm:left-0 animate-fade-in" style="animation-delay: 0.1s;">
+        <a href="index.html#projects"
+          class="back-arrow inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-noir-500 hover:text-ember-400 transition-colors duration-300">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+          </svg>
+          Back to Projects
+        </a>
+      </div>
+
+      <!-- Eyebrow -->
+      <div class="flex items-center justify-center gap-3 mb-8 animate-fade-in" style="animation-delay: 0.2s;">
+        <span class="block w-8 h-px" style="background: rgba(249, 115, 22, 0.3);"></span>
+        <span class="text-[10px] tracking-[0.4em] uppercase font-medium font-mono"
+          style="color: rgba(249, 115, 22, 0.7);">Casino Table Game</span>
+        <span class="block w-8 h-px" style="background: rgba(249, 115, 22, 0.3);"></span>
+      </div>
+
+      <!-- Logo -->
+      <div class="mb-8 animate-fade-in-up" style="animation-delay: 0.4s;">
+        <img src="logos/burn_it_banner_transparent_background.png" alt="Burn It Logo"
+          class="w-64 sm:w-80 lg:w-96 mx-auto logo-glow" />
+      </div>
+
+      <!-- Tagline -->
+      <p
+        class="mt-2 text-lg sm:text-xl lg:text-2xl text-noir-300 font-light tracking-wide max-w-2xl mx-auto animate-fade-in-up"
+        style="animation-delay: 0.7s;">
+        A fast-paced, multi-phase high-card shoe game where <br class="hidden sm:block" />
+        <span class="text-ember-gradient font-medium">players control the action</span>.
+      </p>
+
+      <!-- Quick Stats Row -->
+      <div class="mt-12 flex flex-wrap items-center justify-center gap-6 sm:gap-10 animate-fade-in-up"
+        style="animation-delay: 1s;">
+        <div class="text-center">
+          <div class="text-2xl sm:text-3xl font-bold font-mono text-ember-gradient">6–8</div>
+          <div class="mt-1 text-[9px] tracking-[0.3em] uppercase text-noir-500">Deck Shoe</div>
+        </div>
+        <div class="w-px h-10 bg-noir-800"></div>
+        <div class="text-center">
+          <div class="text-2xl sm:text-3xl font-bold font-mono text-ember-gradient">1–6</div>
+          <div class="mt-1 text-[9px] tracking-[0.3em] uppercase text-noir-500">Players</div>
+        </div>
+        <div class="w-px h-10 bg-noir-800"></div>
+        <div class="text-center">
+          <div class="text-2xl sm:text-3xl font-bold font-mono text-ember-gradient">1:1</div>
+          <div class="mt-1 text-[9px] tracking-[0.3em] uppercase text-noir-500">Main Payout</div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="mt-12 animate-fade-in-up" style="animation-delay: 1.2s;">
+        <a href="#overview"
+          class="group inline-flex items-center gap-2 px-7 py-3 border rounded text-xs tracking-[0.2em] uppercase transition-all duration-300 hover:shadow-lg"
+          style="border-color: rgba(249, 115, 22, 0.3); color: rgba(253, 186, 116, 0.9);"
+          onmouseover="this.style.borderColor='rgba(249, 115, 22, 0.5)'; this.style.boxShadow='0 0 30px -10px rgba(249, 115, 22, 0.2)';"
+          onmouseout="this.style.borderColor='rgba(249, 115, 22, 0.3)'; this.style.boxShadow='none';">
+          Learn More
+          <svg class="w-3.5 h-3.5 group-hover:translate-y-1 transition-transform duration-300" fill="none"
+            stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fade-in"
+        style="animation-delay: 1.5s;">
+        <span class="text-[9px] tracking-[0.3em] uppercase font-mono" style="color: rgba(249, 115, 22, 0.3);">Scroll</span>
+        <div class="w-px h-8 animate-pulse-slow"
+          style="background: linear-gradient(180deg, rgba(249, 115, 22, 0.4), transparent);"></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule-glow" aria-hidden="true" />
+
+  <!-- ======================== GAME OVERVIEW ======================== -->
+  <section id="overview" class="relative py-24 sm:py-32 lg:py-40">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+
+      <!-- Section Header -->
+      <div class="max-w-2xl mb-16 sm:mb-20 reveal">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="marker-dot"></div>
+          <span class="text-[10px] tracking-[0.35em] uppercase text-noir-500 font-mono">01 — Overview</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-noir-100 leading-tight">
+          The game<br class="hidden sm:block" /> <span class="text-ember-gradient">redefined</span>.
+        </h2>
+        <p class="mt-4 text-noir-400 text-sm sm:text-base leading-relaxed max-w-lg">
+          Burn It™ is an original casino table game that combines the speed and simplicity of high-card mechanics with
+          layered strategic decisions — creating a gaming experience unlike anything currently on the casino floor.
+        </p>
+      </div>
+
+      <!-- Two-Column: Description + Image -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+        <!-- Left: Description -->
+        <div class="space-y-8 reveal" style="transition-delay: 0.1s;">
+          <div class="space-y-6">
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-10 h-10 rounded-lg feature-icon flex items-center justify-center mt-1">
+                <svg class="w-5 h-5" style="color: rgba(253, 186, 116, 0.8);" fill="none" stroke="currentColor"
+                  stroke-width="1.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-noir-100 mb-2">Fast-Paced Shoe Game</h3>
+                <p class="text-noir-400 text-sm leading-relaxed">
+                  Played from a standard 6 or 8 deck shoe with no cards removed. Each round is quick but packed with
+                  decision points that keep both players and spectators engaged.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-10 h-10 rounded-lg feature-icon flex items-center justify-center mt-1">
+                <svg class="w-5 h-5" style="color: rgba(253, 186, 116, 0.8);" fill="none" stroke="currentColor"
+                  stroke-width="1.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-noir-100 mb-2">Multi-Phase Decision Making</h3>
+                <p class="text-noir-400 text-sm leading-relaxed">
+                  Players face meaningful choices across multiple phases of play — including options to Stand, Burn, or
+                  Outburn — giving them genuine agency over the outcome of every hand.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-10 h-10 rounded-lg feature-icon flex items-center justify-center mt-1">
+                <svg class="w-5 h-5" style="color: rgba(253, 186, 116, 0.8);" fill="none" stroke="currentColor"
+                  stroke-width="1.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z" />
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1.001A3.75 3.75 0 0012 18z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-noir-100 mb-2">Manipulate the Dealer's Hand</h3>
+                <p class="text-noir-400 text-sm leading-relaxed">
+                  Unlike traditional table games, Burn It™ introduces a mechanic where strategic player actions
+                  directly influence how the dealer's hand is resolved — a first-of-its-kind feature in casino gaming.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-10 h-10 rounded-lg feature-icon flex items-center justify-center mt-1">
+                <svg class="w-5 h-5" style="color: rgba(253, 186, 116, 0.8);" fill="none" stroke="currentColor"
+                  stroke-width="1.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-noir-100 mb-2">Multiple Wagering Options</h3>
+                <p class="text-noir-400 text-sm leading-relaxed">
+                  The game features a main wager with optional side bets that add depth without complexity — including
+                  opportunities to increase stakes mid-hand for aggressive players.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Table Layout Image -->
+        <div class="reveal" style="transition-delay: 0.3s;">
+          <div class="table-image-container">
+            <img src="logos/felt_with_cards_chips_transparent.png" alt="Burn It Table Layout"
+              class="w-full h-auto rounded-2xl" style="background: linear-gradient(135deg, #1a0f08, #0e0e11);" />
+          </div>
+          <p class="mt-4 text-center text-[10px] tracking-[0.3em] uppercase text-noir-600 font-mono">
+            Table Layout Concept — Burn It™
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule-glow" aria-hidden="true" />
+
+  <!-- ======================== HOW IT WORKS (High Level) ======================== -->
+  <section id="how-it-works" class="relative py-24 sm:py-32 lg:py-40 dot-grid">
+    <div class="absolute inset-0 bg-gradient-to-b from-noir-950 via-transparent to-noir-950 pointer-events-none"
+      aria-hidden="true"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+
+      <!-- Section Header -->
+      <div class="max-w-2xl mb-16 sm:mb-20 reveal">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="marker-dot"></div>
+          <span class="text-[10px] tracking-[0.35em] uppercase text-noir-500 font-mono">02 — How It Works</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-noir-100 leading-tight">
+          Simple to learn.<br class="hidden sm:block" /> <span class="text-ember-gradient">Deep to master</span>.
+        </h2>
+        <p class="mt-4 text-noir-400 text-sm sm:text-base leading-relaxed max-w-lg">
+          Burn It™ is built on a straightforward high-card comparison — but layers of strategic choice transform
+          every hand into a dynamic experience.
+        </p>
+      </div>
+
+      <!-- Game Flow Steps -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+
+        <!-- Step 1 -->
+        <div class="pillar-card rounded-xl p-8 reveal text-center" style="transition-delay: 0.1s;">
+          <div class="w-14 h-14 mx-auto rounded-full feature-icon flex items-center justify-center mb-5">
+            <span class="text-xl font-bold font-mono text-ember-gradient">01</span>
+          </div>
+          <h3 class="text-base font-semibold text-noir-100 tracking-tight mb-3">Place Your Wager</h3>
+          <p class="text-noir-400 text-xs sm:text-sm leading-relaxed">
+            Each player places a main wager before any cards are dealt. Optional side bets are available at this time.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="pillar-card rounded-xl p-8 reveal text-center" style="transition-delay: 0.2s;">
+          <div class="w-14 h-14 mx-auto rounded-full feature-icon flex items-center justify-center mb-5">
+            <span class="text-xl font-bold font-mono text-ember-gradient">02</span>
+          </div>
+          <h3 class="text-base font-semibold text-noir-100 tracking-tight mb-3">Receive Your Cards</h3>
+          <p class="text-noir-400 text-xs sm:text-sm leading-relaxed">
+            The dealer gives each player one face-up card and one face-down card. The dealer also receives two cards.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="pillar-card rounded-xl p-8 reveal text-center" style="transition-delay: 0.3s;">
+          <div class="w-14 h-14 mx-auto rounded-full feature-icon flex items-center justify-center mb-5">
+            <span class="text-xl font-bold font-mono text-ember-gradient">03</span>
+          </div>
+          <h3 class="text-base font-semibold text-noir-100 tracking-tight mb-3">Make Your Move</h3>
+          <p class="text-noir-400 text-xs sm:text-sm leading-relaxed">
+            Choose to Stand, Burn, or Outburn — each option carrying different strategic implications for your hand.
+          </p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="pillar-card rounded-xl p-8 reveal text-center" style="transition-delay: 0.4s;">
+          <div class="w-14 h-14 mx-auto rounded-full feature-icon flex items-center justify-center mb-5">
+            <span class="text-xl font-bold font-mono text-ember-gradient">04</span>
+          </div>
+          <h3 class="text-base font-semibold text-noir-100 tracking-tight mb-3">Beat the Dealer</h3>
+          <p class="text-noir-400 text-xs sm:text-sm leading-relaxed">
+            The dealer reveals their cards and resolves the hand. Highest card wins — simple, exciting, and rewarding.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule-glow" aria-hidden="true" />
+
+  <!-- ======================== KEY FEATURES ======================== -->
+  <section id="features" class="relative py-24 sm:py-32 lg:py-40">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+
+      <!-- Section Header -->
+      <div class="max-w-2xl mb-16 sm:mb-20 reveal">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="marker-dot"></div>
+          <span class="text-[10px] tracking-[0.35em] uppercase text-noir-500 font-mono">03 — Key Features</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-noir-100 leading-tight">
+          Engineered for<br class="hidden sm:block" /> <span class="text-ember-gradient">the floor</span>.
+        </h2>
+        <p class="mt-4 text-noir-400 text-sm sm:text-base leading-relaxed max-w-lg">
+          Every element of Burn It™ is designed to maximize player engagement while maintaining operational efficiency
+          for the house.
+        </p>
+      </div>
+
+      <!-- Features Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+
+        <div class="pillar-card rounded-xl p-8 reveal" style="transition-delay: 0.1s;">
+          <div class="w-10 h-10 rounded-lg feature-icon flex items-center justify-center mb-5">
+            <svg class="w-5 h-5" style="color: rgba(253, 186, 116, 0.8);" fill="none" stroke="currentColor"
+              stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-base font-semibold text-noir-100 tracking-tight mb-2">Rapid Game Pace</h3>
+          <p class="text-noir-400 text-xs sm:text-sm leading-relaxed">
+            High hands-per-hour throughput keeps the energy on the floor while maintaining an exciting player
+            experience.
+          </p>
+        </div>
+
+        <div class="pillar-card rounded-xl p-8 reveal" style="transition-delay: 0.15s;">
+          <div class="w-10 h-10 rounded-lg feature-icon flex items-center justify-center mb-5">
+            <svg class="w-5 h-5" style="color: rgba(253, 186, 116, 0.8);" fill="none" stroke="currentColor"
+              stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+            </svg>
+          </div>
+          <h3 class="text-base font-semibold text-noir-100 tracking-tight mb-2">Up to 6 Players</h3>
+          <p class="text-noir-400 text-xs sm:text-sm leading-relaxed">
+            Designed for a full table of up to six players, creating a social and competitive atmosphere at every seat.
+          </p>
+        </div>
+
+        <div class="pillar-card rounded-xl p-8 reveal" style="transition-delay: 0.2s;">
+          <div class="w-10 h-10 rounded-lg feature-icon flex items-center justify-center mb-5">
+            <svg class="w-5 h-5" style="color: rgba(253, 186, 116, 0.8);" fill="none" stroke="currentColor"
+              stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+            </svg>
+          </div>
+          <h3 class="text-base font-semibold text-noir-100 tracking-tight mb-2">Mathematically Certified</h3>
+          <p class="text-noir-400 text-xs sm:text-sm leading-relaxed">
+            All probability models and return-to-player calculations have been rigorously analyzed and independently
+            verified.
+          </p>
+        </div>
+
+        <div class="pillar-card rounded-xl p-8 reveal" style="transition-delay: 0.25s;">
+          <div class="w-10 h-10 rounded-lg feature-icon flex items-center justify-center mb-5">
+            <svg class="w-5 h-5" style="color: rgba(253, 186, 116, 0.8);" fill="none" stroke="currentColor"
+              stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </div>
+          <h3 class="text-base font-semibold text-noir-100 tracking-tight mb-2">Easy Dealer Procedures</h3>
+          <p class="text-noir-400 text-xs sm:text-sm leading-relaxed">
+            Streamlined dealing procedures minimize training requirements while keeping the game flowing at an optimal
+            pace.
+          </p>
+        </div>
+
+        <div class="pillar-card rounded-xl p-8 reveal" style="transition-delay: 0.3s;">
+          <div class="w-10 h-10 rounded-lg feature-icon flex items-center justify-center mb-5">
+            <svg class="w-5 h-5" style="color: rgba(253, 186, 116, 0.8);" fill="none" stroke="currentColor"
+              stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+            </svg>
+          </div>
+          <h3 class="text-base font-semibold text-noir-100 tracking-tight mb-2">Standard Equipment</h3>
+          <p class="text-noir-400 text-xs sm:text-sm leading-relaxed">
+            Uses standard 52-card decks dealt from a shoe — no proprietary equipment required for deployment.
+          </p>
+        </div>
+
+        <div class="pillar-card rounded-xl p-8 reveal" style="transition-delay: 0.35s;">
+          <div class="w-10 h-10 rounded-lg feature-icon flex items-center justify-center mb-5">
+            <svg class="w-5 h-5" style="color: rgba(253, 186, 116, 0.8);" fill="none" stroke="currentColor"
+              stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
+            </svg>
+          </div>
+          <h3 class="text-base font-semibold text-noir-100 tracking-tight mb-2">Competitive House Edge</h3>
+          <p class="text-noir-400 text-xs sm:text-sm leading-relaxed">
+            A balanced RTP keeps players engaged longer while generating sustainable table revenue for operators.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule-glow" aria-hidden="true" />
+
+  <!-- ======================== GAME SPECIFICATIONS ======================== -->
+  <section id="specs" class="relative py-24 sm:py-32 lg:py-40">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+
+      <!-- Section Header -->
+      <div class="max-w-2xl mb-16 sm:mb-20 reveal">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="marker-dot"></div>
+          <span class="text-[10px] tracking-[0.35em] uppercase text-noir-500 font-mono">04 — Specifications</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-noir-100 leading-tight">
+          Built on<br class="hidden sm:block" /> <span class="text-ember-gradient">precision math</span>.
+        </h2>
+        <p class="mt-4 text-noir-400 text-sm sm:text-base leading-relaxed max-w-lg">
+          Every probability has been computed, every edge case accounted for. Burn It™ is backed by rigorous
+          mathematical analysis across both 6-deck and 8-deck configurations.
+        </p>
+      </div>
+
+      <!-- Specs Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+
+        <!-- Spec Card: Deck Configurations -->
+        <div class="stat-card rounded-xl p-8 reveal" style="transition-delay: 0.1s;">
+          <div class="text-[10px] tracking-[0.3em] uppercase text-noir-500 font-mono mb-4">Deck Options</div>
+          <div class="flex items-baseline gap-2">
+            <span class="text-4xl font-bold font-mono text-ember-gradient">6</span>
+            <span class="text-noir-500 text-sm">or</span>
+            <span class="text-4xl font-bold font-mono text-ember-gradient">8</span>
+          </div>
+          <p class="mt-3 text-noir-500 text-xs leading-relaxed">Standard 52-card decks per shoe. No cards removed.</p>
+        </div>
+
+        <!-- Spec Card: Players -->
+        <div class="stat-card rounded-xl p-8 reveal" style="transition-delay: 0.15s;">
+          <div class="text-[10px] tracking-[0.3em] uppercase text-noir-500 font-mono mb-4">Max Players</div>
+          <div class="flex items-baseline gap-1">
+            <span class="text-4xl font-bold font-mono text-ember-gradient">6</span>
+            <span class="text-noir-500 text-sm ml-2">per table</span>
+          </div>
+          <p class="mt-3 text-noir-500 text-xs leading-relaxed">Full table capacity for maximum floor revenue.</p>
+        </div>
+
+        <!-- Spec Card: Card Ranking -->
+        <div class="stat-card rounded-xl p-8 reveal" style="transition-delay: 0.2s;">
+          <div class="text-[10px] tracking-[0.3em] uppercase text-noir-500 font-mono mb-4">Card Ranking</div>
+          <div class="flex items-baseline gap-1">
+            <span class="text-4xl font-bold font-mono text-ember-gradient">A</span>
+            <span class="text-noir-500 text-lg mx-1">→</span>
+            <span class="text-4xl font-bold font-mono text-ember-gradient">2</span>
+          </div>
+          <p class="mt-3 text-noir-500 text-xs leading-relaxed">Ace high through deuce. Standard ranking, instant
+            familiarity.</p>
+        </div>
+
+        <!-- Spec Card: Main Payout -->
+        <div class="stat-card rounded-xl p-8 reveal" style="transition-delay: 0.25s;">
+          <div class="text-[10px] tracking-[0.3em] uppercase text-noir-500 font-mono mb-4">Main Payout</div>
+          <div class="flex items-baseline gap-1">
+            <span class="text-4xl font-bold font-mono text-ember-gradient">1:1</span>
+          </div>
+          <p class="mt-3 text-noir-500 text-xs leading-relaxed">Even money on the main wager. Clean and
+            straightforward.</p>
+        </div>
+
+        <!-- Spec Card: Player Actions -->
+        <div class="stat-card rounded-xl p-8 reveal" style="transition-delay: 0.3s;">
+          <div class="text-[10px] tracking-[0.3em] uppercase text-noir-500 font-mono mb-4">Player Actions</div>
+          <div class="flex items-baseline gap-1">
+            <span class="text-4xl font-bold font-mono text-ember-gradient">3</span>
+            <span class="text-noir-500 text-sm ml-2">core choices</span>
+          </div>
+          <p class="mt-3 text-noir-500 text-xs leading-relaxed">Stand, Burn, or Outburn — each a distinct strategic
+            path.</p>
+        </div>
+
+        <!-- Spec Card: Wager Types -->
+        <div class="stat-card rounded-xl p-8 reveal" style="transition-delay: 0.35s;">
+          <div class="text-[10px] tracking-[0.3em] uppercase text-noir-500 font-mono mb-4">Wager Types</div>
+          <div class="flex items-baseline gap-1">
+            <span class="text-4xl font-bold font-mono text-ember-gradient">3+</span>
+          </div>
+          <p class="mt-3 text-noir-500 text-xs leading-relaxed">Main wager, conditional Strike, Outburn double-down,
+            and Match the Dealer side bet.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule-glow" aria-hidden="true" />
+
+  <!-- ======================== CONTACT CTA ======================== -->
+  <section id="contact" class="relative py-24 sm:py-32 dot-grid">
+    <div class="absolute inset-0 bg-gradient-to-b from-noir-950 via-transparent to-noir-950 pointer-events-none"
+      aria-hidden="true"></div>
+    <div class="relative z-10 max-w-3xl mx-auto px-6 sm:px-10 text-center reveal">
+      <div class="flex items-center justify-center gap-3 mb-4">
+        <div class="marker-dot"></div>
+        <span class="text-[10px] tracking-[0.35em] uppercase text-noir-500 font-mono">05 — Inquiries</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-noir-100 leading-tight">
+        Interested in<br /> <span class="text-ember-gradient">Burn It™</span>?
+      </h2>
+      <p class="mt-4 text-noir-400 text-sm sm:text-base leading-relaxed max-w-lg mx-auto">
+        For licensing inquiries, partnership opportunities, or detailed game documentation — connect with ENTROPY LLC.
+        Full game rules and mathematical certifications are available upon request.
+      </p>
+      <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="mailto:info@entropyconcepts.com"
+          class="inline-flex items-center gap-2 px-8 py-3.5 rounded text-xs tracking-[0.15em] uppercase font-semibold transition-all duration-300 hover:shadow-lg w-full sm:w-auto justify-center"
+          style="background: linear-gradient(135deg, #f97316, #ea580c); color: #fff; box-shadow: 0 4px 20px -4px rgba(249, 115, 22, 0.3);"
+          onmouseover="this.style.boxShadow='0 8px 30px -4px rgba(249, 115, 22, 0.5)';"
+          onmouseout="this.style.boxShadow='0 4px 20px -4px rgba(249, 115, 22, 0.3)';">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+          </svg>
+          Contact for Licensing
+        </a>
+        <a href="index.html#projects"
+          class="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase transition-colors duration-300"
+          style="color: rgba(249, 115, 22, 0.5);"
+          onmouseover="this.style.color='rgba(253, 186, 116, 0.8)';"
+          onmouseout="this.style.color='rgba(249, 115, 22, 0.5)';">
+          ← Back to All Projects
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule-glow" aria-hidden="true" />
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer id="footer" class="py-16 sm:py-20 border-t border-noir-800/40">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
+
+        <!-- Brand -->
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <img src="logos/banner_entropy_transparent_back.png" alt="Entropy" class="w-7 h-7 object-contain opacity-60" />
+            <span class="text-sm font-semibold tracking-[0.25em] text-noir-200">ENTROPY LLC</span>
+          </div>
+          <p class="text-noir-500 text-xs leading-relaxed max-w-xs">
+            A disciplined incubator developing proprietary digital products and probability-driven systems.
+          </p>
+        </div>
+
+        <!-- Address & Contact -->
+        <div>
+          <h4 class="text-[10px] tracking-[0.3em] uppercase text-noir-500 font-mono mb-4">Headquarters</h4>
+          <address class="not-italic text-noir-400 text-sm leading-relaxed space-y-1">
+            <p>221 Main St Ste R</p>
+            <p>Nashua, NH 03060, USA</p>
+          </address>
+          <div class="mt-4 space-y-2 text-sm">
+            <div>
+              <span class="text-[9px] tracking-[0.2em] uppercase text-noir-600 font-mono">Partnerships</span>
+              <p>
+                <a href="mailto:info@entropyconcepts.com"
+                  class="text-noir-400 hover:text-noir-200 transition-colors duration-300">info@entropyconcepts.com</a>
+              </p>
+            </div>
+            <div>
+              <span class="text-[9px] tracking-[0.2em] uppercase text-noir-600 font-mono">General Inquiries</span>
+              <p>
+                <a href="mailto:contact@entropyconcepts.com"
+                  class="text-noir-400 hover:text-noir-200 transition-colors duration-300">contact@entropyconcepts.com</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <div>
+          <h4 class="text-[10px] tracking-[0.3em] uppercase text-noir-500 font-mono mb-4">Navigation</h4>
+          <nav class="flex flex-col gap-2 text-sm" aria-label="Footer navigation">
+            <a href="index.html" class="text-noir-400 hover:text-noir-200 transition-colors duration-300">Home</a>
+            <a href="#overview" class="text-noir-400 hover:text-noir-200 transition-colors duration-300">Overview</a>
+            <a href="#how-it-works" class="text-noir-400 hover:text-noir-200 transition-colors duration-300">How It
+              Works</a>
+            <a href="#features" class="text-noir-400 hover:text-noir-200 transition-colors duration-300">Features</a>
+            <a href="#specs" class="text-noir-400 hover:text-noir-200 transition-colors duration-300">Specifications</a>
+            <a href="#contact" class="text-noir-400 hover:text-noir-200 transition-colors duration-300">Contact</a>
+          </nav>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="mt-14 pt-8 border-t border-noir-800/30 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-noir-600 text-xs tracking-wide">
+          &copy; 2026 ENTROPY LLC. All rights reserved. Burn It™ is a trademark of ENTROPY LLC.
+        </p>
+        <div class="flex items-center gap-6">
+          <a href="#" class="text-noir-600 hover:text-noir-400 text-xs transition-colors duration-300">Privacy
+            Policy</a>
+          <a href="#" class="text-noir-600 hover:text-noir-400 text-xs transition-colors duration-300">Terms of
+            Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================== SCRIPTS ======================== -->
+  <script>
+    /* --- Navbar Background on Scroll --- */
+    const navbar = document.getElementById('navbar');
+    const onScroll = () => {
+      if (window.scrollY > 40) {
+        navbar.classList.add('bg-noir-950/80', 'backdrop-blur-xl', 'border-b', 'border-noir-800/40');
+      } else {
+        navbar.classList.remove('bg-noir-950/80', 'backdrop-blur-xl', 'border-b', 'border-noir-800/40');
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    /* --- Mobile Menu Toggle --- */
+    const toggle = document.getElementById('mobile-toggle');
+    const menu = document.getElementById('mobile-menu');
+    toggle.addEventListener('click', () => menu.classList.toggle('hidden'));
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.add('hidden')));
+
+    /* --- Intersection Observer for Reveal Animations --- */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    /* --- Card Mouse-Follow Glow --- */
+    document.querySelectorAll('.pillar-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
+        card.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
+      });
+    });
+  </script>
+
+</body>
+
+</html>
