@@ -12,11 +12,65 @@
 
 
   <style>
+    /* ========================================
+       SELF-HOSTED FONTS
+       ======================================== */
+    @font-face { font-family:'Inter'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/inter-400.woff2') format('woff2'); }
+    @font-face { font-family:'Inter'; font-style:normal; font-weight:700; font-display:swap; src:url('fonts/inter-700.woff2') format('woff2'); }
+    @font-face { font-family:'Cinzel'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/cinzel-400.woff2') format('woff2'); }
+    @font-face { font-family:'Cinzel'; font-style:normal; font-weight:700; font-display:swap; src:url('fonts/cinzel-700.woff2') format('woff2'); }
+    @font-face { font-family:'JetBrains Mono'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/jetbrains-400.woff2') format('woff2'); }
+    @font-face { font-family:'Orbitron'; font-style:normal; font-weight:800; font-display:swap; src:url('fonts/orbitron-800.woff2') format('woff2'); }
+
+    /* ========================================
+       DESIGN TOKENS
+       ======================================== */
+    :root {
+      --noir-50: #f7f7f8;
+      --noir-100: #ededf0;
+      --noir-200: #d4d4d9;
+      --noir-300: #a8a8b3;
+      --noir-400: #71717f;
+      --noir-500: #53535f;
+      --noir-600: #3f3f47;
+      --noir-700: #2c2c32;
+      --noir-800: #1c1c21;
+      --noir-850: #151519;
+      --noir-900: #0e0e11;
+      --noir-950: #08080a;
+      --accent: #c8c8d0;
+      --accent-muted: #6b6b78;
+    }
+
+    /* ========================================
+       RESET & BASE
+       ======================================== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-family: 'Inter', system-ui, -apple-system, sans-serif; scroll-behavior: smooth; }
+    body { background: var(--noir-950); color: var(--noir-100); overflow-x: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+    button { background: none; border: none; cursor: pointer; font: inherit; }
+    address { font-style: normal; }
+
+    ::selection { background: rgba(200,200,208,0.2); color: #fff; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--noir-950); }
+    ::-webkit-scrollbar-thumb { background: var(--noir-700); border-radius: 3px; }
+
+    /* ========================================
+       LAYOUT UTILITIES
+       ======================================== */
+    .container { max-width: 80rem; margin: 0 auto; padding: 0 1.5rem; }
+    @media(min-width:640px) { .container { padding: 0 2.5rem; } }
+    @media(min-width:1024px) { .container { padding: 0 4rem; } }
+    .container--sm { max-width: 48rem; margin: 0 auto; padding: 0 1.5rem; }
+    @media(min-width:640px) { .container--sm { padding: 0 2.5rem; } }
 
     /* ========================================
        REVEAL ANIMATION
        ======================================== */
-    .reveal { transform: translateY(32px);  }
+    .reveal { opacity: 1; transform: none; }
     .reveal.visible { opacity: 1; transform: none; }
 
     /* ========================================
