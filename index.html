@@ -117,7 +117,7 @@
     @media(min-width:640px) { .navbar__inner { height: 5rem; } }
 
     .navbar__logo { display: flex; align-items: center; gap: .75rem; }
-    .navbar__logo-img { width: 2rem; height: 2rem; object-fit: contain; opacity: .7; transition: opacity .3s; }
+    .navbar__logo-img { width: 2rem; height: 2rem; object-fit: contain; opacity: .7; transition: opacity .3s; aspect-ratio: 1/1; }
     .navbar__logo:hover .navbar__logo-img { opacity: 1; }
     .navbar__logo-text { font-size: .875rem; font-weight: 600; letter-spacing: .25em; color: var(--noir-100); }
 
@@ -156,7 +156,7 @@
     .hero__content { position: relative; z-index: 10; text-align: center; padding: 0 1.5rem; max-width: 56rem; margin: 0 auto; }
 
     .hero__eyebrow { display: flex; align-items: center; justify-content: center; margin-bottom: 2rem; animation: fadeIn .8s ease-out forwards; animation-delay: .2s; opacity: 0; }
-    .hero__eyebrow img { width: 16rem; opacity: .7; }
+    .hero__eyebrow img { width: 16rem; opacity: .7; aspect-ratio: 1/1; }
     @media(min-width:640px) { .hero__eyebrow img { width: 20rem; } }
     @media(min-width:1024px) { .hero__eyebrow img { width: 24rem; } }
 
@@ -282,7 +282,7 @@
     @media(min-width:768px) { .footer__grid { grid-template-columns: repeat(3, 1fr); gap: 4rem; } }
 
     .footer__brand { display: flex; align-items: center; gap: .75rem; margin-bottom: 1rem; }
-    .footer__brand img { width: 1.75rem; height: 1.75rem; object-fit: contain; opacity: .6; }
+    .footer__brand img { width: 1.75rem; height: 1.75rem; object-fit: contain; opacity: .6; aspect-ratio: 1/1; }
     .footer__brand span { font-size: .875rem; font-weight: 600; letter-spacing: .25em; color: var(--noir-200); }
     .footer__desc { color: var(--noir-500); font-size: .75rem; line-height: 1.7; max-width: 20rem; }
 
