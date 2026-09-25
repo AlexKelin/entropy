@@ -89,7 +89,7 @@
       position: fixed; inset: -50%; width: 200%; height: 200%;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
       pointer-events: none; z-index: 9999; opacity: 0.4;
-      animation: grain 8s steps(10) infinite;
+      opacity: .4;
     }
 
     /* ========================================
@@ -183,7 +183,7 @@
 
     .hero__scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: .5rem; animation: fadeIn .8s ease-out forwards; animation-delay: 1.4s; opacity: 0; }
     .hero__scroll-text { font-size: 9px; letter-spacing: .3em; text-transform: uppercase; color: var(--noir-600); font-family: 'JetBrains Mono', monospace; }
-    .hero__scroll-line { width: 1px; height: 2rem; background: linear-gradient(180deg, var(--noir-600), transparent); animation: pulse 4s ease-in-out infinite; }
+    .hero__scroll-line { width: 1px; height: 2rem; background: linear-gradient(180deg, var(--noir-600), transparent); animation: pulse 4s ease-in-out 2; }
 
     /* ========================================
        SECTIONS
