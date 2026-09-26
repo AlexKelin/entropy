@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Play Burn It™ — Step-by-Step Examples | ENTROPY LLC</title>
+  <meta name="description"
+    content="Learn how to play Burn It™ with detailed hand examples. See how Royal Instant Wins, Burns, Outburns, Strikes, and Community Draws work in real scenarios." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://entropyconcepts.com/burn-it-how-to-play" />
+
+  <style>
+    /* ========================================
+       SELF-HOSTED FONTS
+       ======================================== */
+    @font-face { font-family:'Inter'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/inter-400.woff2') format('woff2'); }
+    @font-face { font-family:'Inter'; font-style:normal; font-weight:700; font-display:swap; src:url('fonts/inter-700.woff2') format('woff2'); }
+    @font-face { font-family:'Cinzel'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/cinzel-400.woff2') format('woff2'); }
+    @font-face { font-family:'Cinzel'; font-style:normal; font-weight:700; font-display:swap; src:url('fonts/cinzel-700.woff2') format('woff2'); }
+    @font-face { font-family:'JetBrains Mono'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/jetbrains-400.woff2') format('woff2'); }
+
+    /* ========================================
+       DESIGN TOKENS
+       ======================================== */
+    :root {
+      --noir-50: #f7f7f8; --noir-100: #ededf0; --noir-200: #d4d4d9;
+      --noir-300: #a8a8b3; --noir-400: #71717f; --noir-500: #53535f;
+      --noir-600: #3f3f47; --noir-700: #2c2c32; --noir-800: #1c1c21;
+      --noir-850: #151519; --noir-900: #0e0e11; --noir-950: #08080a;
+      --ember-50: #fff8ed; --ember-100: #ffedd5; --ember-200: #fed7aa;
+      --ember-300: #fdba74; --ember-400: #fb923c; --ember-500: #f97316;
+      --ember-600: #ea580c; --ember-700: #c2410c; --ember-800: #9a3412;
+      --card-red: #dc2626; --card-black: #1c1c21;
+      --win-green: #22c55e; --push-blue: #3b82f6; --loss-red: #ef4444;
+    }
+
+    /* ========================================
+       RESET & BASE
+       ======================================== */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { font-family:'Inter',system-ui,-apple-system,sans-serif; scroll-behavior:smooth; }
+    body { background:var(--noir-950); color:var(--noir-100); overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+    a { text-decoration:none; color:inherit; }
+    img { display:block; max-width:100%; }
+    button { background:none; border:none; cursor:pointer; font:inherit; }
+    address { font-style:normal; }
+
+    ::selection { background:rgba(249,115,22,.25); color:#fff; }
+    ::-webkit-scrollbar { width:6px; }
+    ::-webkit-scrollbar-track { background:var(--noir-950); }
+    ::-webkit-scrollbar-thumb { background:var(--noir-700); border-radius:3px; }
+
+    /* ========================================
+       LAYOUT
+       ======================================== */
+    .container { max-width:80rem; margin:0 auto; padding:0 1.5rem; }
+    @media(min-width:640px) { .container { padding:0 2.5rem; } }
+    @media(min-width:1024px) { .container { padding:0 4rem; } }
+
+    /* ========================================
+       ANIMATIONS
+       ======================================== */
+    @keyframes fadeInUp { 0% { opacity:0; transform:translateY(24px); } 100% { opacity:1; transform:translateY(0); } }
+    @keyframes dealCard { 0% { opacity:0; transform:translateY(-40px) rotateY(90deg) scale(.7); } 60% { transform:translateY(4px) rotateY(0deg) scale(1.02); } 100% { opacity:1; transform:translateY(0) rotateY(0deg) scale(1); } }
+    @keyframes flipCard { 0% { transform:rotateY(0deg); } 50% { transform:rotateY(90deg); } 100% { transform:rotateY(0deg); } }
+    @keyframes burnDiscard { 0% { opacity:1; transform:translateX(0) rotate(0); } 100% { opacity:0; transform:translateX(-60px) rotate(-15deg) scale(.8); } }
+    @keyframes slideIn { 0% { opacity:0; transform:translateX(40px); } 100% { opacity:1; transform:translateX(0); } }
+    @keyframes pulseGlow { 0%,100% { box-shadow:0 0 20px rgba(249,115,22,.15); } 50% { box-shadow:0 0 40px rgba(249,115,22,.35); } }
+    @keyframes shimmer { 0% { background-position:-200% 0; } 100% { background-position:200% 0; } }
+    @keyframes winFlash { 0%,100% { box-shadow:0 0 0 0 rgba(34,197,94,.4); } 50% { box-shadow:0 0 30px 8px rgba(34,197,94,.3); } }
+
+    .reveal { opacity:0; transform:translateY(32px); transition:opacity .7s ease-out, transform .7s ease-out; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    .phoenix-logo { margin:2rem auto 0; width:80vw; }
+    @media(min-width:640px) { .phoenix-logo { width:35vw; } }
+    @media(min-width:1280px) { .phoenix-logo { width:30rem; } }
+
+    /* ========================================
+       COMMON COMPONENTS
+       ======================================== */
+    .rule-glow { height:1px; border:none; background:linear-gradient(90deg,transparent,rgba(249,115,22,.12) 30%,rgba(249,115,22,.2) 50%,rgba(249,115,22,.12) 70%,transparent); }
+    .dot-grid { background-image:radial-gradient(circle,rgba(249,115,22,.04) 1px,transparent 1px); background-size:28px 28px; }
+    .marker-dot { width:6px; height:6px; border-radius:50%; background:rgba(249,115,22,.6); box-shadow:0 0 12px rgba(249,115,22,.3); }
+    .text-ember-gradient { background:linear-gradient(135deg,#fdba74,#f97316,#ea580c); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .hidden-sm { display:none; }
+    @media(min-width:640px) { .hidden-sm { display:block; } }
+    .font-brand { font-family:'Cinzel',serif; }
+
+    /* ========================================
+       NAVIGATION
+       ======================================== */
+    .navbar { position:fixed; top:0; left:0; right:0; z-index:50; transition:all .5s; }
+    .navbar--scrolled { background:rgba(8,8,10,.8); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); border-bottom:1px solid rgba(28,28,33,.4); }
+    .navbar__inner { display:flex; align-items:center; justify-content:space-between; height:4rem; }
+    @media(min-width:640px) { .navbar__inner { height:5rem; } }
+    .navbar__logo { display:flex; align-items:center; gap:.75rem; }
+    .navbar__logo-img { width:2rem; height:2rem; object-fit:contain; opacity:.7; transition:opacity .3s; aspect-ratio:1/1; }
+    .navbar__logo:hover .navbar__logo-img { opacity:1; }
+    .navbar__logo-text { font-size:.875rem; font-weight:600; letter-spacing:.25em; color:var(--noir-100); }
+    .navbar__links { display:none; align-items:center; gap:2.5rem; }
+    @media(min-width:768px) { .navbar__links { display:flex; } }
+    .nav-link { position:relative; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--noir-300); transition:color .3s; }
+    .nav-link:hover { color:var(--noir-100); }
+    .nav-link::after { content:''; position:absolute; left:0; bottom:-2px; width:0; height:1px; background:#c8c8d0; transition:width .3s; }
+    .nav-link:hover::after { width:100%; }
+    .navbar__toggle { display:block; padding:.5rem; color:var(--noir-300); transition:color .3s; }
+    .navbar__toggle:hover { color:var(--noir-100); }
+    .navbar__toggle svg { width:1.25rem; height:1.25rem; }
+    @media(min-width:768px) { .navbar__toggle { display:none; } }
+    .mobile-menu { display:none; border-top:1px solid rgba(28,28,33,.6); background:rgba(8,8,10,.95); backdrop-filter:blur(24px); }
+    .mobile-menu.open { display:block; }
+    @media(min-width:768px) { .mobile-menu { display:none !important; } }
+    .mobile-menu__inner { padding:1.5rem; display:flex; flex-direction:column; gap:1rem; }
+    .mobile-menu__inner a { font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--noir-300); transition:color .3s; }
+    .mobile-menu__inner a:hover { color:var(--noir-100); }
+
+    /* ========================================
+       HERO (How to Play)
+       ======================================== */
+    .hero-htp { position:relative; min-height:60vh; display:flex; align-items:center; justify-content:center; overflow:hidden; padding:8rem 1.5rem 4rem; }
+    .hero-htp__bg { position:absolute; inset:0; background:radial-gradient(ellipse at 50% 20%,rgba(249,115,22,.06) 0%,transparent 60%); pointer-events:none; }
+    .hero-htp__content { position:relative; z-index:10; text-align:center; max-width:56rem; margin:0 auto; }
+
+    .hero__back { position:absolute; top:6rem; left:1.5rem; z-index:20; }
+    @media(min-width:640px) { .hero__back { left:2.5rem; } }
+    @media(min-width:1024px) { .hero__back { left:4rem; } }
+    .back-arrow { display:inline-flex; align-items:center; gap:.5rem; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--noir-500); transition:transform .3s, color .3s; }
+    .back-arrow:hover { transform:translateX(-4px); color:var(--ember-400); }
+    .back-arrow svg { width:1rem; height:1rem; }
+
+    .hero-htp__eyebrow { display:flex; align-items:center; justify-content:center; gap:.75rem; margin-bottom:1.5rem; }
+    .hero-htp__eyebrow-line { display:block; width:2rem; height:1px; background:rgba(249,115,22,.3); }
+    .hero-htp__eyebrow-text { font-size:10px; letter-spacing:.4em; text-transform:uppercase; font-weight:500; font-family:'JetBrains Mono',monospace; color:rgba(249,115,22,.7); }
+
+    .hero-htp__title { font-size:2rem; font-weight:700; letter-spacing:-.025em; line-height:1.15; margin-bottom:1rem; }
+    @media(min-width:640px) { .hero-htp__title { font-size:2.75rem; } }
+    @media(min-width:1024px) { .hero-htp__title { font-size:3.5rem; } }
+
+    .hero-htp__subtitle { color:var(--noir-400); font-size:.9375rem; line-height:1.7; max-width:36rem; margin:0 auto; }
+    @media(min-width:640px) { .hero-htp__subtitle { font-size:1.0625rem; } }
+
+    .hero-htp__leaflet { margin:2.5rem auto 0; max-width:32rem; border-radius:1rem; overflow:hidden; border:1px solid rgba(249,115,22,.1); transition:box-shadow .4s; }
+    .hero-htp__leaflet:hover { box-shadow:0 16px 48px -12px rgba(249,115,22,.15); }
+    .hero-htp__leaflet img { width:100%; height:auto; }
+
+    /* ========================================
+       SECTION LAYOUT
+       ======================================== */
+    .section { position:relative; padding:5rem 0; }
+    @media(min-width:640px) { .section { padding:6rem 0; } }
+    @media(min-width:1024px) { .section { padding:8rem 0; } }
+    .section__header { max-width:42rem; margin-bottom:3rem; }
+    @media(min-width:640px) { .section__header { margin-bottom:4rem; } }
+    .section__eyebrow { display:flex; align-items:center; gap:.75rem; margin-bottom:1rem; }
+    .section__label { font-size:10px; letter-spacing:.35em; text-transform:uppercase; color:var(--noir-500); font-family:'JetBrains Mono',monospace; }
+    .section__title { font-size:1.75rem; font-weight:700; letter-spacing:-.025em; color:var(--noir-100); line-height:1.2; }
+    @media(min-width:640px) { .section__title { font-size:2.25rem; } }
+    @media(min-width:1024px) { .section__title { font-size:2.75rem; } }
+    .section__desc { margin-top:1rem; color:var(--noir-400); font-size:.875rem; line-height:1.7; max-width:32rem; }
+    @media(min-width:640px) { .section__desc { font-size:1rem; } }
+
+    /* ========================================
+       PLAYING CARDS (CSS Rendered)
+       ======================================== */
+    .card { position:relative; width:68px; height:96px; border-radius:8px; font-family:'JetBrains Mono',monospace; font-weight:700; display:flex; flex-direction:column; align-items:center; justify-content:center; transition:all .4s cubic-bezier(.34,1.56,.64,1); flex-shrink:0; }
+    @media(min-width:640px) { .card { width:80px; height:112px; border-radius:10px; } }
+    .card--face-up { background:linear-gradient(145deg,#ffffff 0%,#f0f0f3 100%); border:1px solid rgba(0,0,0,.12); box-shadow:0 4px 16px rgba(0,0,0,.25), 0 1px 3px rgba(0,0,0,.15); }
+    .card--face-down { background:linear-gradient(145deg,#2a1a3e 0%,#1a0e28 50%,#2a1a3e 100%); border:1px solid rgba(100,60,140,.3); box-shadow:0 4px 16px rgba(0,0,0,.35); }
+    .card--face-down::before { content:''; position:absolute; inset:4px; border-radius:5px; border:1.5px solid rgba(249,115,22,.2); background:repeating-linear-gradient(45deg,transparent,transparent 3px,rgba(249,115,22,.04) 3px,rgba(249,115,22,.04) 6px); }
+    .card--face-down::after { content:'🔥'; position:absolute; font-size:1.25rem; opacity:.4; }
+
+    .card--discarded { opacity:.3; transform:rotate(-8deg) scale(.85); filter:grayscale(.6); }
+    .card--highlight { animation:pulseGlow 2s infinite; }
+    .card--win { box-shadow:0 0 20px rgba(34,197,94,.4), 0 4px 16px rgba(0,0,0,.25); border-color:rgba(34,197,94,.3); }
+    .card--new { border-color:rgba(249,115,22,.4); box-shadow:0 0 20px rgba(249,115,22,.3), 0 4px 16px rgba(0,0,0,.25); }
+
+    .card__rank { font-size:1.25rem; line-height:1; }
+    @media(min-width:640px) { .card__rank { font-size:1.5rem; } }
+    .card__suit { font-size:1rem; line-height:1; margin-top:2px; }
+    @media(min-width:640px) { .card__suit { font-size:1.125rem; } }
+    .card--red .card__rank, .card--red .card__suit { color:var(--card-red); }
+    .card--black .card__rank, .card--black .card__suit { color:var(--card-black); }
+
+    .card__corner { position:absolute; top:4px; left:5px; font-size:.5rem; line-height:1; display:flex; flex-direction:column; align-items:center; }
+    .card__corner-rank { font-size:.5625rem; }
+    .card__corner-suit { font-size:.5rem; }
+
+    /* ========================================
+       EXAMPLE HAND CONTAINER
+       ======================================== */
+    .example { position:relative; background:linear-gradient(165deg,rgba(28,28,33,.6) 0%,rgba(14,14,17,.8) 100%); border:1px solid rgba(249,115,22,.08); border-radius:1rem; padding:0; overflow:hidden; transition:border-color .4s, box-shadow .4s, opacity .7s ease-out, transform .7s ease-out; margin-bottom:3rem; }
+    .example:hover { border-color:rgba(249,115,22,.15); box-shadow:0 16px 48px -12px rgba(249,115,22,.1); }
+    .example::before { content:''; position:absolute; top:0; left:24px; right:24px; height:1px; background:linear-gradient(90deg,transparent,rgba(249,115,22,.15),transparent); }
+
+    .example__header { padding:1.5rem 2rem; display:flex; align-items:center; gap:1rem; border-bottom:1px solid rgba(249,115,22,.06); }
+    @media(min-width:640px) { .example__header { padding:2rem 2.5rem; } }
+    .example__number { flex-shrink:0; width:2.5rem; height:2.5rem; border-radius:50%; background:linear-gradient(135deg,rgba(249,115,22,.15),rgba(234,88,12,.08)); border:1px solid rgba(249,115,22,.2); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:.875rem; color:var(--ember-400); }
+    .example__title { font-size:1.125rem; font-weight:700; color:var(--noir-100); }
+    @media(min-width:640px) { .example__title { font-size:1.375rem; } }
+    .example__scenario-tag { margin-left:auto; font-size:.625rem; letter-spacing:.15em; text-transform:uppercase; font-family:'JetBrains Mono',monospace; padding:.25rem .75rem; border-radius:999px; white-space:nowrap; }
+    .tag--win { background:rgba(34,197,94,.1); color:#4ade80; border:1px solid rgba(34,197,94,.2); }
+    .tag--push { background:rgba(59,130,246,.1); color:#60a5fa; border:1px solid rgba(59,130,246,.2); }
+    .tag--loss { background:rgba(239,68,68,.1); color:#f87171; border:1px solid rgba(239,68,68,.2); }
+    .tag--instant { background:rgba(250,204,21,.1); color:#fbbf24; border:1px solid rgba(250,204,21,.2); }
+
+    .example__body { padding:1.5rem 2rem 2rem; }
+    @media(min-width:640px) { .example__body { padding:2rem 2.5rem 2.5rem; } }
+
+    /* ========================================
+       HAND LAYOUT — FELT AREA
+       ======================================== */
+    .felt { position:relative; background:radial-gradient(ellipse at 50% 60%,rgba(6,78,59,.08),transparent 70%); border:1px solid rgba(249,115,22,.04); border-radius:.75rem; padding:1.5rem; margin-bottom:1.5rem; }
+    @media(min-width:640px) { .felt { padding:2rem; } }
+
+    .felt__row { display:flex; align-items:center; gap:1rem; margin-bottom:1.25rem; }
+    .felt__row:last-child { margin-bottom:0; }
+    .felt__label { font-size:.625rem; letter-spacing:.2em; text-transform:uppercase; color:var(--noir-500); font-family:'JetBrains Mono',monospace; width:5rem; flex-shrink:0; text-align:right; }
+    @media(min-width:640px) { .felt__label { width:6rem; font-size:.6875rem; } }
+    .felt__cards { display:flex; gap:.75rem; align-items:center; flex-wrap:wrap; }
+    .felt__vs { font-size:.625rem; letter-spacing:.15em; text-transform:uppercase; color:var(--noir-600); font-family:'JetBrains Mono',monospace; margin:0 .25rem; }
+
+    .felt__divider { height:1px; background:linear-gradient(90deg,transparent,rgba(249,115,22,.08),transparent); margin:1rem 0; }
+
+    /* ========================================
+       STEP TIMELINE
+       ======================================== */
+    .steps { position:relative; padding-left:1.5rem; }
+    .steps::before { content:''; position:absolute; left:0; top:0; bottom:0; width:2px; background:linear-gradient(180deg,rgba(249,115,22,.3),rgba(249,115,22,.05)); border-radius:1px; }
+
+    .step { position:relative; padding:0 0 1.5rem 1.5rem; }
+    .step:last-child { padding-bottom:0; }
+    .step::before { content:''; position:absolute; left:-5px; top:6px; width:12px; height:12px; border-radius:50%; border:2px solid rgba(249,115,22,.4); background:var(--noir-900); z-index:1; }
+    .step--active::before { background:var(--ember-500); border-color:var(--ember-400); box-shadow:0 0 12px rgba(249,115,22,.4); }
+
+    .step__title { font-size:.8125rem; font-weight:600; color:var(--noir-200); margin-bottom:.375rem; letter-spacing:.01em; }
+    .step__desc { font-size:.8125rem; color:var(--noir-400); line-height:1.65; }
+    .step__desc strong { color:var(--noir-200); }
+
+    /* ========================================
+       OUTCOME BADGE
+       ======================================== */
+    .outcome { display:flex; align-items:center; gap:.75rem; padding:1rem 1.25rem; border-radius:.75rem; margin-top:1rem; }
+    .outcome--win { background:rgba(34,197,94,.06); border:1px solid rgba(34,197,94,.15); }
+    .outcome--push { background:rgba(59,130,246,.06); border:1px solid rgba(59,130,246,.15); }
+    .outcome--loss { background:rgba(239,68,68,.06); border:1px solid rgba(239,68,68,.15); }
+
+    .outcome__icon { font-size:1.25rem; flex-shrink:0; }
+    .outcome__text { font-size:.8125rem; font-weight:600; line-height:1.5; }
+    .outcome--win .outcome__text { color:#4ade80; }
+    .outcome--push .outcome__text { color:#60a5fa; }
+    .outcome--loss .outcome__text { color:#f87171; }
+    .outcome__detail { font-size:.75rem; color:var(--noir-400); font-weight:400; display:block; margin-top:.125rem; }
+
+    /* ========================================
+       WAGER TRACKER
+       ======================================== */
+    .wager-track { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.75rem; }
+    .wager-chip { display:inline-flex; align-items:center; gap:.375rem; padding:.25rem .625rem; border-radius:999px; font-size:.6875rem; font-family:'JetBrains Mono',monospace; font-weight:600; }
+    .wager-chip--base { background:rgba(249,115,22,.1); border:1px solid rgba(249,115,22,.2); color:var(--ember-300); }
+    .wager-chip--strike { background:rgba(59,130,246,.1); border:1px solid rgba(59,130,246,.2); color:#93c5fd; }
+    .wager-chip--outburn { background:rgba(168,85,247,.1); border:1px solid rgba(168,85,247,.2); color:#c4b5fd; }
+    .wager-chip--side { background:rgba(250,204,21,.1); border:1px solid rgba(250,204,21,.2); color:#fde68a; }
+
+    /* ========================================
+       CARD ACTIONS ANNOTATION
+       ======================================== */
+    .card-action { position:absolute; bottom:-8px; left:50%; transform:translateX(-50%); font-size:.5rem; letter-spacing:.1em; text-transform:uppercase; font-family:'JetBrains Mono',monospace; padding:1px 6px; border-radius:4px; white-space:nowrap; z-index:2; }
+    .card-action--burn { background:rgba(239,68,68,.9); color:#fff; }
+    .card-action--stand { background:rgba(34,197,94,.9); color:#fff; }
+    .card-action--new { background:rgba(249,115,22,.9); color:#fff; }
+    .card-action--flip { background:rgba(168,85,247,.9); color:#fff; }
+    .card-action--discard { background:rgba(100,100,120,.8); color:#fff; }
+    .card-action--community { background:rgba(59,130,246,.9); color:#fff; }
+
+    /* ========================================
+       PHASE BADGE
+       ======================================== */
+    .phase-badge { display:inline-flex; align-items:center; gap:.375rem; padding:.25rem .75rem; border-radius:6px; font-size:.625rem; letter-spacing:.15em; text-transform:uppercase; font-family:'JetBrains Mono',monospace; font-weight:600; margin-bottom:1rem; background:rgba(249,115,22,.08); border:1px solid rgba(249,115,22,.15); color:var(--ember-300); }
+
+    /* ========================================
+       CONTACT CTA
+       ======================================== */
+    .contact__overlay { position:absolute; inset:0; background:linear-gradient(180deg,var(--noir-950),transparent,var(--noir-950)); pointer-events:none; }
+    .btn--ember { display:inline-flex; align-items:center; gap:.5rem; padding:.875rem 2rem; border-radius:.25rem; font-size:.75rem; letter-spacing:.15em; text-transform:uppercase; font-weight:600; background:linear-gradient(135deg,#f97316,#ea580c); color:#fff; box-shadow:0 4px 20px -4px rgba(249,115,22,.3); transition:all .3s; }
+    .btn--ember:hover { box-shadow:0 8px 30px -4px rgba(249,115,22,.5); }
+    .btn--ember svg { width:1rem; height:1rem; }
+    .btn--ember-ghost { display:inline-flex; align-items:center; gap:.5rem; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:rgba(249,115,22,.5); transition:color .3s; }
+    .btn--ember-ghost:hover { color:rgba(253,186,116,.8); }
+
+    .btn--ember-outline { display:inline-flex; align-items:center; gap:.5rem; padding:.75rem 1.75rem; border:1px solid rgba(249,115,22,.3); border-radius:.25rem; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:rgba(253,186,116,.9); transition:all .3s; }
+    .btn--ember-outline:hover { border-color:rgba(249,115,22,.5); box-shadow:0 0 30px -10px rgba(249,115,22,.2); }
+    .btn--ember-outline svg { width:.875rem; height:.875rem; transition:transform .3s; }
+    .btn--ember-outline:hover svg { transform:translateX(4px); }
+
+    .contact__buttons { margin-top:2.5rem; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem; }
+    @media(min-width:640px) { .contact__buttons { flex-direction:row; } }
+
+    /* ========================================
+       FOOTER
+       ======================================== */
+    .footer { padding:4rem 0 5rem; border-top:1px solid rgba(28,28,33,.4); }
+    @media(min-width:640px) { .footer { padding:5rem 0; } }
+    .footer__grid { display:grid; grid-template-columns:1fr; gap:3rem; }
+    @media(min-width:768px) { .footer__grid { grid-template-columns:repeat(3,1fr); gap:4rem; } }
+    .footer__brand { display:flex; align-items:center; gap:.75rem; margin-bottom:1rem; }
+    .footer__brand img { width:1.75rem; height:1.75rem; object-fit:contain; opacity:.6; aspect-ratio:1/1; }
+    .footer__brand span { font-size:.875rem; font-weight:600; letter-spacing:.25em; color:var(--noir-200); }
+    .footer__desc { color:var(--noir-500); font-size:.75rem; line-height:1.7; max-width:20rem; }
+    .footer__heading { font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:var(--noir-500); font-family:'JetBrains Mono',monospace; margin-bottom:1rem; }
+    .footer__address { color:var(--noir-400); font-size:.875rem; line-height:1.7; }
+    .footer__address p + p { margin-top:.25rem; }
+    .footer__contact { margin-top:1rem; }
+    .footer__contact > div + div { margin-top:.5rem; }
+    .footer__contact-label { font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--noir-600); font-family:'JetBrains Mono',monospace; }
+    .footer__contact a { color:var(--noir-400); font-size:.875rem; transition:color .3s; }
+    .footer__contact a:hover { color:var(--noir-200); }
+    .footer__nav { display:flex; flex-direction:column; gap:.5rem; }
+    .footer__nav a { color:var(--noir-400); font-size:.875rem; transition:color .3s; }
+    .footer__nav a:hover { color:var(--noir-200); }
+    .footer__bottom { margin-top:3.5rem; padding-top:2rem; border-top:1px solid rgba(28,28,33,.3); display:flex; flex-direction:column; align-items:center; justify-content:space-between; gap:1rem; }
+    @media(min-width:640px) { .footer__bottom { flex-direction:row; } }
+    .footer__copy { color:var(--noir-600); font-size:.75rem; letter-spacing:.05em; }
+    .footer__legal { display:flex; align-items:center; gap:1.5rem; }
+    .footer__legal a { color:var(--noir-600); font-size:.75rem; transition:color .3s; }
+    .footer__legal a:hover { color:var(--noir-400); }
+
+    /* ========================================
+       QUICK NAV / TOC
+       ======================================== */
+    .toc { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:2rem; justify-content:center; }
+    .toc__link { display:inline-flex; align-items:center; gap:.375rem; padding:.5rem 1rem; border-radius:999px; font-size:.6875rem; letter-spacing:.1em; text-transform:uppercase; font-family:'JetBrains Mono',monospace; border:1px solid rgba(249,115,22,.1); color:var(--noir-300); background:rgba(28,28,33,.4); transition:all .3s; }
+    .toc__link:hover { border-color:rgba(249,115,22,.3); color:var(--ember-300); background:rgba(249,115,22,.05); }
+    .toc__link-dot { width:4px; height:4px; border-radius:50%; background:var(--ember-500); opacity:.5; }
+
+    /* ========================================
+       CARD WRAPPER WITH LABEL
+       ======================================== */
+    .card-wrap { position:relative; display:inline-flex; flex-direction:column; align-items:center; }
+
+    /* ========================================
+       FULL TABLE LAYOUT
+       ======================================== */
+    .table-grid { display:grid; grid-template-columns:1fr; gap:1rem; }
+    @media(min-width:640px) { .table-grid { grid-template-columns:repeat(2,1fr); } }
+    @media(min-width:1024px) { .table-grid { grid-template-columns:repeat(3,1fr); } }
+
+    .seat { position:relative; background:linear-gradient(165deg,rgba(28,28,33,.5) 0%,rgba(14,14,17,.7) 100%); border:1px solid rgba(249,115,22,.06); border-radius:.75rem; padding:1rem 1.125rem; transition:border-color .3s, box-shadow .3s; }
+    .seat:hover { border-color:rgba(249,115,22,.15); }
+    .seat--striker { border-left:3px solid rgba(59,130,246,.35); }
+    .seat--non-striker { border-left:3px solid rgba(249,115,22,.3); }
+
+    .seat__header { display:flex; align-items:center; justify-content:space-between; margin-bottom:.75rem; gap:.5rem; }
+    .seat__name { font-size:.6875rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; font-family:'JetBrains Mono',monospace; color:var(--noir-200); }
+    .seat__badge { font-size:.5rem; letter-spacing:.12em; text-transform:uppercase; font-family:'JetBrains Mono',monospace; padding:2px 8px; border-radius:999px; font-weight:600; }
+    .seat__badge--striker { background:rgba(59,130,246,.12); color:#93c5fd; border:1px solid rgba(59,130,246,.2); }
+    .seat__badge--non-striker { background:rgba(249,115,22,.1); color:var(--ember-300); border:1px solid rgba(249,115,22,.2); }
+
+    .seat__cards { display:flex; gap:.5rem; align-items:center; margin-bottom:.625rem; flex-wrap:wrap; }
+    .seat__cards .card { width:52px; height:72px; border-radius:6px; }
+    .seat__cards .card__rank { font-size:1rem; }
+    .seat__cards .card__suit { font-size:.75rem; }
+    .seat__cards .card__corner { display:none; }
+    .seat__cards .card-action { font-size:.4rem; bottom:-6px; padding:1px 4px; }
+
+    .seat__action { font-size:.6875rem; color:var(--noir-400); line-height:1.5; margin-bottom:.5rem; }
+    .seat__action strong { color:var(--noir-200); }
+
+    .seat__result { display:flex; align-items:center; gap:.375rem; font-size:.625rem; font-weight:700; font-family:'JetBrains Mono',monospace; letter-spacing:.1em; text-transform:uppercase; padding:.25rem .5rem; border-radius:6px; width:fit-content; }
+    .seat__result--win { background:rgba(34,197,94,.1); color:#4ade80; border:1px solid rgba(34,197,94,.15); }
+    .seat__result--push { background:rgba(59,130,246,.1); color:#60a5fa; border:1px solid rgba(59,130,246,.15); }
+    .seat__result--loss { background:rgba(239,68,68,.1); color:#f87171; border:1px solid rgba(239,68,68,.15); }
+
+    .phase-divider { position:relative; display:flex; align-items:center; gap:1rem; margin:2rem 0; }
+    .phase-divider::before, .phase-divider::after { content:''; flex:1; height:1px; background:linear-gradient(90deg,transparent,rgba(249,115,22,.15),transparent); }
+    .phase-divider__text { font-size:.625rem; letter-spacing:.2em; text-transform:uppercase; font-family:'JetBrains Mono',monospace; color:var(--ember-400); white-space:nowrap; }
+
+    .dealer-strip { display:flex; align-items:center; gap:.75rem; padding:1rem 1.25rem; border-radius:.75rem; margin-bottom:1.25rem; background:linear-gradient(135deg,rgba(28,28,33,.8),rgba(14,14,17,.9)); border:1px solid rgba(249,115,22,.08); flex-wrap:wrap; }
+    .dealer-strip__label { font-size:.625rem; letter-spacing:.2em; text-transform:uppercase; font-family:'JetBrains Mono',monospace; color:var(--noir-500); min-width:4rem; }
+    .dealer-strip__cards { display:flex; gap:.5rem; align-items:center; flex-wrap:wrap; }
+    .dealer-strip__cards .card { width:52px; height:72px; border-radius:6px; }
+    .dealer-strip__cards .card__rank { font-size:1rem; }
+    .dealer-strip__cards .card__suit { font-size:.75rem; }
+    .dealer-strip__cards .card__corner { display:none; }
+    .dealer-strip__cards .card-action { font-size:.4rem; bottom:-6px; padding:1px 4px; }
+    .dealer-strip__score { margin-left:auto; font-size:.75rem; font-family:'JetBrains Mono',monospace; font-weight:700; }
+
+    .legend-row { display:flex; flex-wrap:wrap; gap:1rem; margin-bottom:1.5rem; }
+    .legend-item { display:flex; align-items:center; gap:.375rem; font-size:.6875rem; color:var(--noir-400); }
+    .legend-swatch { width:12px; height:3px; border-radius:2px; }
+    .legend-swatch--striker { background:rgba(59,130,246,.5); }
+    .legend-swatch--non-striker { background:rgba(249,115,22,.5); }
+
+    /* ========================================
+       ARROW / CONNECTOR
+       ======================================== */
+    .arrow { color:var(--noir-600); font-size:1.25rem; display:flex; align-items:center; }
+    .arrow svg { width:1.25rem; height:1.25rem; }
+  </style>
+</head>
+
+<body>
+
+  <!-- ======================== NAVIGATION ======================== -->
+  <nav id="navbar" class="navbar">
+    <div class="container">
+      <div class="navbar__inner">
+        <a href="index.html" class="navbar__logo" aria-label="ENTROPY LLC Home">
+          <picture><source srcset="logos/banner_entropy_transparent_back.webp" type="image/webp"><img src="logos/banner_entropy_transparent_back.png" alt="Entropy" class="navbar__logo-img" /></picture>
+          <span class="navbar__logo-text">ENTROPY</span>
+        </a>
+        <div class="navbar__links">
+          <a href="burn-it.html" class="nav-link">Game Info</a>
+          <a href="index.html#projects" class="nav-link">Projects</a>
+          <a href="index.html#contact" class="nav-link">Contact</a>
+        </div>
+        <button id="mobile-toggle" class="navbar__toggle" aria-label="Toggle menu">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" d="M4 8h16M4 16h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="mobile-menu">
+      <div class="mobile-menu__inner">
+        <a href="burn-it.html">Game Info</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+  <!-- ======================== HERO ======================== -->
+  <section class="hero-htp">
+    <div class="hero-htp__bg" aria-hidden="true"></div>
+
+    <div class="hero__back">
+      <a href="burn-it.html" class="back-arrow">
+        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+        </svg>
+        Back to Burn It™
+      </a>
+    </div>
+
+    <div class="hero-htp__content" style="animation:fadeInUp .8s ease-out both;">
+      <div class="hero-htp__eyebrow" style="animation:fadeInUp .7s .15s ease-out both;">
+        <span class="hero-htp__eyebrow-line"></span>
+        <span class="hero-htp__eyebrow-text">How to Play</span>
+        <span class="hero-htp__eyebrow-line"></span>
+      </div>
+
+      <h1 class="hero-htp__title" style="animation:fadeInUp .7s .3s ease-out both;">
+        See <span class="text-ember-gradient font-brand">Burn It</span>™ <br class="hidden-sm" />in action.
+      </h1>
+
+      <p class="hero-htp__subtitle" style="animation:fadeInUp .7s .45s ease-out both;">
+        Walk through real hand examples — from the initial deal to the final showdown. Every scenario, every decision, every outcome — illustrated step by step.
+      </p>
+
+      <!-- Quick Nav -->
+      <div class="toc" style="animation:fadeInUp .7s .6s ease-out both;">
+        <a href="#ex-instant-win" class="toc__link"><span class="toc__link-dot"></span>Royal Instant Win</a>
+        <a href="#ex-stand-win" class="toc__link"><span class="toc__link-dot"></span>Stand & Win</a>
+        <a href="#ex-burn-win" class="toc__link"><span class="toc__link-dot"></span>Burn to Win</a>
+        <a href="#ex-outburn" class="toc__link"><span class="toc__link-dot"></span>Outburn</a>
+        <a href="#ex-strike" class="toc__link"><span class="toc__link-dot"></span>Strike</a>
+        <a href="#ex-community" class="toc__link"><span class="toc__link-dot"></span>Community Draw</a>
+        <a href="#ex-full-table" class="toc__link"><span class="toc__link-dot"></span>Full Table</a>
+      </div>
+
+      <!-- Leaflet Image -->
+      <div class="hero-htp__leaflet" style="animation:fadeInUp .7s .75s ease-out both;">
+        <img src="logos/Leaflet_Burn_It.png" alt="Burn It Table Layout — Felt with all betting circles" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule-glow" aria-hidden="true" />
+
+
+  <!-- ======================== EXAMPLES SECTION ======================== -->
+  <section id="examples" class="section">
+    <div class="container">
+      <div class="section__header reveal">
+        <div class="section__eyebrow">
+          <div class="marker-dot"></div>
+          <span class="section__label">Hand Examples</span>
+        </div>
+        <h2 class="section__title">
+          Every scenario, <br class="hidden-sm" /><span class="text-ember-gradient">explained</span>.
+        </h2>
+        <p class="section__desc">
+          Below are six fully illustrated hands covering all the core mechanics of <span class="font-brand">Burn It</span>™. 
+          Follow each step from the deal through resolution.
+        </p>
+      </div>
+
+
+      <!-- ============================================================ -->
+      <!-- EXAMPLE 1: ROYAL INSTANT WIN (Ace Up-Card)                    -->
+      <!-- ============================================================ -->
+      <div id="ex-instant-win" class="example reveal">
+        <div class="example__header">
+          <div class="example__number">01</div>
+          <div class="example__title">Royal Instant Win</div>
+          <span class="example__scenario-tag tag--instant">Instant Win</span>
+        </div>
+        <div class="example__body">
+          <div class="phase-badge">Phase 0 — The Deal</div>
+
+          <div class="felt">
+            <!-- Player Hand -->
+            <div class="felt__row">
+              <div class="felt__label">Player</div>
+              <div class="felt__cards">
+                <div class="card-wrap">
+                  <div class="card card--face-up card--red card--highlight">
+                    <span class="card__rank">A</span>
+                    <span class="card__suit">♥</span>
+                    <div class="card__corner"><span class="card__corner-rank">A</span><span class="card__corner-suit">♥</span></div>
+                  </div>
+                  <span class="card-action card-action--stand">Up-Card</span>
+                </div>
+                <div class="card card--face-down">
+                </div>
+              </div>
+            </div>
+
+            <div class="felt__divider"></div>
+
+            <!-- Dealer Hand -->
+            <div class="felt__row">
+              <div class="felt__label">Dealer</div>
+              <div class="felt__cards">
+                <div class="card card--face-up card--black">
+                  <span class="card__rank">9</span>
+                  <span class="card__suit">♠</span>
+                  <div class="card__corner"><span class="card__corner-rank">9</span><span class="card__corner-suit">♠</span></div>
+                </div>
+                <div class="card card--face-down">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="wager-track">
+            <span class="wager-chip wager-chip--base">Base: $10</span>
+          </div>
+
+          <div class="steps" style="margin-top:1.25rem;">
+            <div class="step step--active">
+              <div class="step__title">Cards are dealt</div>
+              <div class="step__desc">Player receives <strong>A♥ face-up</strong> and a face-down hole card. Dealer shows <strong>9♠ face-up</strong>.</div>
+            </div>
+            <div class="step step--active">
+              <div class="step__title">Royal Instant Win triggers</div>
+              <div class="step__desc">Because the player's Up-Card is an <strong>Ace</strong> and the dealer's Up-Card is <strong>not an Ace</strong>, the hand is resolved immediately. <strong>No further action required</strong> — the player wins instantly.</div>
+            </div>
+            <div class="step">
+              <div class="step__title">Hand cleared</div>
+              <div class="step__desc">The player's cards are swept. The hole card is never revealed. The hand <strong>bypasses all other phases</strong> — no Strike, no Burn, no dealer resolution.</div>
+            </div>
+          </div>
+
+          <div class="outcome outcome--win">
+            <span class="outcome__icon">🏆</span>
+            <div class="outcome__text">
+              PLAYER WINS — Instant Win pays 1:1
+              <span class="outcome__detail">$10 Base Wager → +$10 profit. Hand resolved before any player decisions.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ============================================================ -->
+      <!-- EXAMPLE 1B: ROYAL INSTANT PUSH (Both Aces)                   -->
+      <!-- ============================================================ -->
+      <div class="example reveal">
+        <div class="example__header">
+          <div class="example__number">01b</div>
+          <div class="example__title">Royal Instant Win — Ace vs. Ace Push</div>
+          <span class="example__scenario-tag tag--push">Push</span>
+        </div>
+        <div class="example__body">
+          <div class="phase-badge">Phase 0 — The Deal</div>
+
+          <div class="felt">
+            <div class="felt__row">
+              <div class="felt__label">Player</div>
+              <div class="felt__cards">
+                <div class="card-wrap">
+                  <div class="card card--face-up card--black card--highlight">
+                    <span class="card__rank">A</span>
+                    <span class="card__suit">♣</span>
+                    <div class="card__corner"><span class="card__corner-rank">A</span><span class="card__corner-suit">♣</span></div>
+                  </div>
+                  <span class="card-action card-action--stand">Up-Card</span>
+                </div>
+                <div class="card card--face-down"></div>
+              </div>
+            </div>
+
+            <div class="felt__divider"></div>
+
+            <div class="felt__row">
+              <div class="felt__label">Dealer</div>
+              <div class="felt__cards">
+                <div class="card-wrap">
+                  <div class="card card--face-up card--red card--highlight">
+                    <span class="card__rank">A</span>
+                    <span class="card__suit">♦</span>
+                    <div class="card__corner"><span class="card__corner-rank">A</span><span class="card__corner-suit">♦</span></div>
+                  </div>
+                </div>
+                <div class="card card--face-down"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="wager-track">
+            <span class="wager-chip wager-chip--base">Base: $10</span>
+          </div>
+
+          <div class="steps" style="margin-top:1.25rem;">
+            <div class="step step--active">
+              <div class="step__title">Both show Aces</div>
+              <div class="step__desc">Player's Up-Card is <strong>A♣</strong>. Dealer's Up-Card is also an <strong>A♦</strong>. Ace vs. Ace = <strong>Push</strong>.</div>
+            </div>
+            <div class="step">
+              <div class="step__title">Wager returned</div>
+              <div class="step__desc">No win, no loss. The $10 Base Wager is <strong>returned in full</strong>. Hand bypasses all phases.</div>
+            </div>
+          </div>
+
+          <div class="outcome outcome--push">
+            <span class="outcome__icon">🤝</span>
+            <div class="outcome__text">
+              PUSH — Wager returned
+              <span class="outcome__detail">$10 Base Wager returned. Neither player nor house gains.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ============================================================ -->
+      <!-- EXAMPLE 2: STAND & WIN (No Strike — Dealer Low Card)         -->
+      <!-- ============================================================ -->
+      <div id="ex-stand-win" class="example reveal">
+        <div class="example__header">
+          <div class="example__number">02</div>
+          <div class="example__title">Stand & Win — No Strike Round</div>
+          <span class="example__scenario-tag tag--win">Player Win</span>
+        </div>
+        <div class="example__body">
+          <div class="phase-badge">Phase 0 → Phase 2</div>
+
+          <div class="felt">
+            <div class="felt__row">
+              <div class="felt__label">Player</div>
+              <div class="felt__cards">
+                <div class="card-wrap">
+                  <div class="card card--face-up card--black card--win">
+                    <span class="card__rank">K</span>
+                    <span class="card__suit">♠</span>
+                    <div class="card__corner"><span class="card__corner-rank">K</span><span class="card__corner-suit">♠</span></div>
+                  </div>
+                  <span class="card-action card-action--stand">Stand</span>
+                </div>
+                <div class="card card--face-down">
+                </div>
+              </div>
+            </div>
+
+            <div class="felt__divider"></div>
+
+            <div class="felt__row">
+              <div class="felt__label">Dealer</div>
+              <div class="felt__cards">
+                <div class="card card--face-up card--red">
+                  <span class="card__rank">7</span>
+                  <span class="card__suit">♥</span>
+                  <div class="card__corner"><span class="card__corner-rank">7</span><span class="card__corner-suit">♥</span></div>
+                </div>
+                <div class="card-wrap">
+                  <div class="card card--face-up card--black">
+                    <span class="card__rank">10</span>
+                    <span class="card__suit">♣</span>
+                    <div class="card__corner"><span class="card__corner-rank">10</span><span class="card__corner-suit">♣</span></div>
+                  </div>
+                  <span class="card-action card-action--flip">Revealed</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="wager-track">
+            <span class="wager-chip wager-chip--base">Base: $10</span>
+          </div>
+
+          <div class="steps" style="margin-top:1.25rem;">
+            <div class="step step--active">
+              <div class="step__title">Deal: Player K♠, Dealer shows 7♥</div>
+              <div class="step__desc">Dealer's Up-Card is <strong>7</strong> (below Jack), so <strong>no Strike is offered</strong>. Phase 1 is skipped entirely.</div>
+            </div>
+            <div class="step step--active">
+              <div class="step__title">Player action: Stand</div>
+              <div class="step__desc">The player has a strong K♠ (value 13) and chooses to <strong>Stand</strong> — keeping it as their final card.</div>
+            </div>
+            <div class="step step--active">
+              <div class="step__title">Dealer reveals down card: 10♣</div>
+              <div class="step__desc">Dealer's two cards are 7♥ and 10♣. The <strong>highest card is 10</strong>. Since 10 ≥ 8, the dealer <strong>stands on 10</strong>.</div>
+            </div>
+            <div class="step">
+              <div class="step__title">Comparison: K (13) vs. 10</div>
+              <div class="step__desc">Player's King (13) <strong>beats</strong> the dealer's 10. Player wins.</div>
+            </div>
+          </div>
+
+          <div class="outcome outcome--win">
+            <span class="outcome__icon">💰</span>
+            <div class="outcome__text">
+              PLAYER WINS — 1:1 payout
+              <span class="outcome__detail">$10 Base Wager → +$10 profit. Clean stand on a strong card.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ============================================================ -->
+      <!-- EXAMPLE 3: BURN TO WIN                                        -->
+      <!-- ============================================================ -->
+      <div id="ex-burn-win" class="example reveal">
+        <div class="example__header">
+          <div class="example__number">03</div>
+          <div class="example__title">Burn to Win — Swap for a Better Card</div>
+          <span class="example__scenario-tag tag--win">Player Win</span>
+        </div>
+        <div class="example__body">
+          <div class="phase-badge">Phase 0 → Phase 2 (Burn)</div>
+
+          <div class="felt">
+            <div class="felt__row">
+              <div class="felt__label">Player</div>
+              <div class="felt__cards">
+                <div class="card-wrap">
+                  <div class="card card--face-up card--red card--discarded">
+                    <span class="card__rank">4</span>
+                    <span class="card__suit">♦</span>
+                    <div class="card__corner"><span class="card__corner-rank">4</span><span class="card__corner-suit">♦</span></div>
+                  </div>
+                  <span class="card-action card-action--burn">Burned</span>
+                </div>
+                <span class="arrow">→</span>
+                <div class="card-wrap">
+                  <div class="card card--face-up card--black card--win">
+                    <span class="card__rank">Q</span>
+                    <span class="card__suit">♠</span>
+                    <div class="card__corner"><span class="card__corner-rank">Q</span><span class="card__corner-suit">♠</span></div>
+                  </div>
+                  <span class="card-action card-action--flip">Hole Card</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="felt__divider"></div>
+
+            <div class="felt__row">
+              <div class="felt__label">Dealer</div>
+              <div class="felt__cards">
+                <div class="card card--face-up card--black">
+                  <span class="card__rank">8</span>
+                  <span class="card__suit">♣</span>
+                  <div class="card__corner"><span class="card__corner-rank">8</span><span class="card__corner-suit">♣</span></div>
+                </div>
+                <div class="card-wrap">
+                  <div class="card card--face-up card--red">
+                    <span class="card__rank">J</span>
+                    <span class="card__suit">♥</span>
+                    <div class="card__corner"><span class="card__corner-rank">J</span><span class="card__corner-suit">♥</span></div>
+                  </div>
+                  <span class="card-action card-action--flip">Revealed</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="wager-track">
+            <span class="wager-chip wager-chip--base">Base: $10</span>
+          </div>
+
+          <div class="steps" style="margin-top:1.25rem;">
+            <div class="step step--active">
+              <div class="step__title">Deal: Player sees 4♦ up, Dealer shows 8♣</div>
+              <div class="step__desc">Dealer shows an 8 — <strong>no Strike offered</strong>. The player's 4♦ is very weak against any dealer hand.</div>
+            </div>
+            <div class="step step--active">
+              <div class="step__title">Player action: Burn! 🔥</div>
+              <div class="step__desc">The player <strong>forfeits the 4♦</strong> (it's discarded) and <strong>flips the hidden hole card</strong> face-up. It's a <strong>Q♠ (value 12)</strong> — a massive upgrade at no extra cost.</div>
+            </div>
+            <div class="step step--active">
+              <div class="step__title">Dealer reveals: J♥</div>
+              <div class="step__desc">Dealer's cards are 8♣ and J♥. Highest card = <strong>Jack (11)</strong>. Since 11 ≥ 8, dealer <strong>stands on 11</strong>.</div>
+            </div>
+            <div class="step">
+              <div class="step__title">Comparison: Q (12) vs. J (11)</div>
+              <div class="step__desc">Player's Queen <strong>beats</strong> the dealer's Jack. The Burn paid off!</div>
+            </div>
+          </div>
+
+          <div class="outcome outcome--win">
+            <span class="outcome__icon">🔥</span>
+            <div class="outcome__text">
+              PLAYER WINS — Burn saves the day
+              <span class="outcome__detail">$10 Base → +$10 profit. Burn is free — no additional cost to swap cards.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ============================================================ -->
+      <!-- EXAMPLE 4: OUTBURN — DOUBLE DOWN ON A NEW DRAW               -->
+      <!-- ============================================================ -->
+      <div id="ex-outburn" class="example reveal">
+        <div class="example__header">
+          <div class="example__number">04</div>
+          <div class="example__title">Outburn — Double Down for the Kill</div>
+          <span class="example__scenario-tag tag--win">Player Win</span>
+        </div>
+        <div class="example__body">
+          <div class="phase-badge">Phase 0 → Phase 2 (Burn → Outburn)</div>
+
+          <div class="felt">
+            <div class="felt__row">
+              <div class="felt__label">Player</div>
+              <div class="felt__cards">
+                <div class="card-wrap">
+                  <div class="card card--face-up card--black card--discarded">
+                    <span class="card__rank">3</span>
+                    <span class="card__suit">♣</span>
+                    <div class="card__corner"><span class="card__corner-rank">3</span><span class="card__corner-suit">♣</span></div>
+                  </div>
+                  <span class="card-action card-action--burn">Burned</span>
+                </div>
+                <span class="arrow">→</span>
+                <div class="card-wrap">
+                  <div class="card card--face-up card--red card--discarded">
+                    <span class="card__rank">5</span>
+                    <span class="card__suit">♦</span>
+                    <div class="card__corner"><span class="card__corner-rank">5</span><span class="card__corner-suit">♦</span></div>
+                  </div>
+                  <span class="card-action card-action--discard">Outburned</span>
+                </div>
+                <span class="arrow">→</span>
+                <div class="card-wrap">
+                  <div class="card card--face-up card--red card--new card--win">
+                    <span class="card__rank">K</span>
+                    <span class="card__suit">♥</span>
+                    <div class="card__corner"><span class="card__corner-rank">K</span><span class="card__corner-suit">♥</span></div>
+                  </div>
+                  <span class="card-action card-action--new">New Draw</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="felt__divider"></div>
+
+            <div class="felt__row">
+              <div class="felt__label">Dealer</div>
+              <div class="felt__cards">
+                <div class="card card--face-up card--black">
+                  <span class="card__rank">9</span>
+                  <span class="card__suit">♠</span>
+                  <div class="card__corner"><span class="card__corner-rank">9</span><span class="card__corner-suit">♠</span></div>
+                </div>
+                <div class="card-wrap">
+                  <div class="card card--face-up card--red">
+                    <span class="card__rank">6</span>
+                    <span class="card__suit">♥</span>
+                    <div class="card__corner"><span class="card__corner-rank">6</span><span class="card__corner-suit">♥</span></div>
+                  </div>
+                  <span class="card-action card-action--flip">Revealed</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="wager-track">
+            <span class="wager-chip wager-chip--base">Base: $10</span>
+            <span class="wager-chip wager-chip--outburn">Outburn: +$10</span>
+          </div>
+
+          <div class="steps" style="margin-top:1.25rem;">
+            <div class="step step--active">
+              <div class="step__title">Deal: Player 3♣ up, Dealer shows 9♠</div>
+              <div class="step__desc">Dealer shows 9 — <strong>no Strike</strong>. Player's 3♣ is weak. The player opts to <strong>Burn</strong>.</div>
+            </div>
+            <div class="step step--active">
+              <div class="step__title">Burn: Hole card revealed — 5♦</div>
+              <div class="step__desc">The hole card is only a 5♦. Still weak against a dealer showing 9. The player decides to go aggressive.</div>
+            </div>
+            <div class="step step--active">
+              <div class="step__title">Outburn! Double the wager, draw a new card</div>
+              <div class="step__desc">The player places an <strong>additional $10</strong> (total now $20 at risk). The 5♦ is discarded and a <strong>new card is drawn from the shoe</strong>: <strong>K♥ (value 13)</strong>!</div>
+            </div>
+            <div class="step step--active">
+              <div class="step__title">Dealer reveals: 6♥</div>
+              <div class="step__desc">Dealer's cards are 9♠ and 6♥. Highest card = <strong>9</strong>. Since 9 ≥ 8, dealer <strong>stands on 9</strong>.</div>
+            </div>
+            <div class="step">
+              <div class="step__title">Comparison: K (13) vs. 9</div>
+              <div class="step__desc">Player's King <strong>crushes</strong> the dealer's 9. The Outburn gamble pays big.</div>
+            </div>
+          </div>
+
+          <div class="outcome outcome--win">
+            <span class="outcome__icon">⚡</span>
+            <div class="outcome__text">
+              PLAYER WINS — Outburn pays 1:1 on doubled wager
+              <span class="outcome__detail">$20 total wagered → +$20 profit. High risk, high reward.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ============================================================ -->
+      <!-- EXAMPLE 5: STRIKE — RESETTING THE DEALER'S HAND              -->
+      <!-- ============================================================ -->
+      <div id="ex-strike" class="example reveal">
+        <div class="example__header">
+          <div class="example__number">05</div>
+          <div class="example__title">Strike — Resetting the Dealer's Hand</div>
+          <span class="example__scenario-tag tag--win">Player Win</span>
+        </div>
+        <div class="example__body">
+
+          <!-- PHASE 0: Deal -->
+          <div class="phase-badge">Phase 0 — The Deal</div>
+          <div class="felt">
+            <div class="felt__row">
+              <div class="felt__label">Player</div>
+              <div class="felt__cards">
+                <div class="card-wrap">
+                  <div class="card card--face-up card--red">
+                    <span class="card__rank">10</span>
+                    <span class="card__suit">♦</span>
+                    <div class="card__corner"><span class="card__corner-rank">10</span><span class="card__corner-suit">♦</span></div>
+                  </div>
+                  <span class="card-action card-action--stand">Up-Card</span>
+                </div>
+                <div class="card card--face-down"></div>
+              </div>
+            </div>
+            <div class="felt__divider"></div>
+            <div class="felt__row">
+              <div class="felt__label">Dealer</div>
+              <div class="felt__cards">
+                <div class="card-wrap">
+                  <div class="card card--face-up card--black card--highlight">
+                    <span class="card__rank">K</span>
+                    <span class="card__suit">♠</span>
+                    <div class="card__corner"><span class="card__corner-rank">K</span><span class="card__corner-suit">♠</span></div>
+                  </div>
+                </div>
+                <div class="card card--face-down"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="steps" style="margin-top:1.25rem;">
+            <div class="step step--active">
+              <div class="step__title">Dealer shows K♠ — Strike is offered!</div>
+              <div class="step__desc">Dealer's Up-Card is a <strong>King (value 13)</strong> — that's Jack or higher, so the <strong>Strike is open</strong>. Player's 10♦ is currently losing to the King.</div>
+            </div>
+            <div class="step step--active">
+              <div class="step__title">Player places Strike wager: $5</div>
+              <div class="step__desc">Player pays <strong>50% of the $10 Base Wager = $5 Strike Fee</strong>. This buys access to a <strong>reset dealer hand</strong> in Phase 3.</div>
+            </div>
+          </div>
+
+          <!-- PHASE 2: Non-Strikers resolved (skipped for this player) -->
+          <div class="phase-badge" style="margin-top:1.5rem;">Phase 2 — Non-Strikers Resolved (skipped for this player)</div>
+          <p style="color:var(--noir-500); font-size:.8125rem; margin-bottom:1rem; line-height:1.6;">Any players who declined Strike are resolved now against the dealer's original hand. Our player took Strike, so they wait.</p>
+
+          <!-- PHASE 3: Strike Resolution -->
+          <div class="phase-badge" style="margin-top:.5rem;">Phase 3 — The Strike Showdown</div>
+
+          <div class="felt">
+            <div class="felt__row">
+              <div class="felt__label">Player</div>
+              <div class="felt__cards">
+                <div class="card-wrap">
+                  <div class="card card--face-up card--red card--win">
+                    <span class="card__rank">10</span>
+                    <span class="card__suit">♦</span>
+                    <div class="card__corner"><span class="card__corner-rank">10</span><span class="card__corner-suit">♦</span></div>
+                  </div>
+                  <span class="card-action card-action--stand">Stand</span>
+                </div>
+              </div>
+            </div>
+            <div class="felt__divider"></div>
+            <div class="felt__row">
+              <div class="felt__label">Dealer<br><span style="font-size:.5rem;color:var(--noir-600);">Reset Hand</span></div>
+              <div class="felt__cards">
+                <div class="card-wrap">
+                  <div class="card card--face-up card--black card--discarded">
+                    <span class="card__rank">K</span>
+                    <span class="card__suit">♠</span>
+                    <div class="card__corner"><span class="card__corner-rank">K</span><span class="card__corner-suit">♠</span></div>
+                  </div>
+                  <span class="card-action card-action--discard">Discarded</span>
+                </div>
+                <div class="card-wrap">
+                  <div class="card card--face-up card--red">
+                    <span class="card__rank">5</span>
+                    <span class="card__suit">♥</span>
+                    <div class="card__corner"><span class="card__corner-rank">5</span><span class="card__corner-suit">♥</span></div>
+                  </div>
+                  <span class="card-action card-action--flip">Original Down</span>
+                </div>
+                <div class="card-wrap">
+                  <div class="card card--face-up card--black card--new">
+                    <span class="card__rank">8</span>
+                    <span class="card__suit">♣</span>
+                    <div class="card__corner"><span class="card__corner-rank">8</span><span class="card__corner-suit">♣</span></div>
+                  </div>
+                  <span class="card-action card-action--new">New Down</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="wager-track">
+            <span class="wager-chip wager-chip--base">Base: $10</span>
+            <span class="wager-chip wager-chip--strike">Strike Fee: $5</span>
+          </div>
+
+          <div class="steps" style="margin-top:1.25rem;">
+            <div class="step step--active">
+              <div class="step__title">Dealer's K♠ is discarded</div>
+              <div class="step__desc">The dangerous King is <strong>removed from play</strong>. The dealer's original down card (5♥) is exposed.</div>
+            </div>
+            <div class="step step--active">
+              <div class="step__title">A new card is dealt face-down, then revealed: 8♣</div>
+              <div class="step__desc">Dealer's new hand for Strikers: 5♥ and 8♣. Highest = <strong>8</strong>. Since 8 ≥ 8, dealer <strong>stands on 8</strong>.</div>
+            </div>
+            <div class="step step--active">
+              <div class="step__title">Player stands on 10♦</div>
+              <div class="step__desc">10 is solid against the dealer's new hand of 8.</div>
+            </div>
+            <div class="step">
+              <div class="step__title">Comparison: 10 vs. 8</div>
+              <div class="step__desc">Player's 10 <strong>beats</strong> the dealer's 8. Strike fee is <strong>refunded</strong> on a win.</div>
+            </div>
+          </div>
+
+          <div class="outcome outcome--win">
+            <span class="outcome__icon">⚔️</span>
+            <div class="outcome__text">
+              PLAYER WINS — Strike pays off!
+              <span class="outcome__detail">+$10 profit. The $5 Strike Fee is 100% refunded. Without the Strike, the player would have lost to the King.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ============================================================ -->
+      <!-- EXAMPLE 6: COMMUNITY DRAW                                     -->
+      <!-- ============================================================ -->
+      <div id="ex-community" class="example reveal">
+        <div class="example__header">
+          <div class="example__number">06</div>
+          <div class="example__title">Community Draw — Dealer Draws a New Card</div>
+          <span class="example__scenario-tag tag--loss">Player Loss</span>
+        </div>
+        <div class="example__body">
+          <div class="phase-badge">Phase 0 → Phase 2 (Community Draw)</div>
+
+          <div class="felt">
+            <div class="felt__row">
+              <div class="felt__label">Player</div>
+              <div class="felt__cards">
+                <div class="card-wrap">
+                  <div class="card card--face-up card--red">
+                    <span class="card__rank">9</span>
+                    <span class="card__suit">♥</span>
+                    <div class="card__corner"><span class="card__corner-rank">9</span><span class="card__corner-suit">♥</span></div>
+                  </div>
+                  <span class="card-action card-action--stand">Stand</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="felt__divider"></div>
+
+            <div class="felt__row">
+              <div class="felt__label">Dealer</div>
+              <div class="felt__cards">
+                <div class="card card--face-up card--black">
+                  <span class="card__rank">3</span>
+                  <span class="card__suit">♣</span>
+                  <div class="card__corner"><span class="card__corner-rank">3</span><span class="card__corner-suit">♣</span></div>
+                </div>
+                <div class="card-wrap">
+                  <div class="card card--face-up card--red">
+                    <span class="card__rank">6</span>
+                    <span class="card__suit">♦</span>
+                    <div class="card__corner"><span class="card__corner-rank">6</span><span class="card__corner-suit">♦</span></div>
+                  </div>
+                  <span class="card-action card-action--flip">Revealed</span>
+                </div>
+                <span class="arrow" style="color:var(--push-blue);">→</span>
+                <div class="card-wrap">
+                  <div class="card card--face-up card--black card--new">
+                    <span class="card__rank">Q</span>
+                    <span class="card__suit">♠</span>
+                    <div class="card__corner"><span class="card__corner-rank">Q</span><span class="card__corner-suit">♠</span></div>
+                  </div>
+                  <span class="card-action card-action--community">Community</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="wager-track">
+            <span class="wager-chip wager-chip--base">Base: $10</span>
+          </div>
+
+          <div class="steps" style="margin-top:1.25rem;">
+            <div class="step step--active">
+              <div class="step__title">Deal: Player 9♥, Dealer shows 3♣</div>
+              <div class="step__desc">Dealer shows 3 — <strong>no Strike offered</strong>. Player has a solid 9 and <strong>Stands</strong>.</div>
+            </div>
+            <div class="step step--active">
+              <div class="step__title">Dealer reveals down card: 6♦</div>
+              <div class="step__desc">Dealer's cards are 3♣ and 6♦. The highest = <strong>6</strong>. Since 6 is <strong>below 8</strong>, the Community Draw rule triggers!</div>
+            </div>
+            <div class="step step--active">
+              <div class="step__title">Community Card drawn: Q♠</div>
+              <div class="step__desc">The Community Card <strong>completely overrides</strong> the dealer's baseline. The dealer's final score becomes <strong>Queen (12)</strong> — not 6.</div>
+            </div>
+            <div class="step">
+              <div class="step__title">Comparison: 9 vs. Q (12)</div>
+              <div class="step__desc">Player's 9 <strong>loses</strong> to the dealer's Community Draw Queen. The Community Card turned the tables.</div>
+            </div>
+          </div>
+
+          <div class="outcome outcome--loss">
+            <span class="outcome__icon">💥</span>
+            <div class="outcome__text">
+              PLAYER LOSES — Community Draw reversal
+              <span class="outcome__detail">-$10 Base Wager forfeited. The dealer's low hand was rescued by the Community Draw — that's the risk of standing on a mid-range card.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="rule-glow" aria-hidden="true" />
+
+
+  <!-- ======================== QUICK REFERENCE ======================== -->
+  <!-- EXAMPLE 7: FULL 6-PLAYER TABLE inserted above -->
+  <section id="ex-full-table-section" class="section">
+    <div class="container">
+
+      <div id="ex-full-table" class="example reveal">
+        <div class="example__header">
+          <div class="example__number">07</div>
+          <div class="example__title">Full Table — 6 Players, Strike vs. Non-Strike</div>
+          <span class="example__scenario-tag" style="background:rgba(168,85,247,.1);color:#c4b5fd;border:1px solid rgba(168,85,247,.2);">Mixed</span>
+        </div>
+        <div class="example__body">
+
+          <p style="color:var(--noir-300);font-size:.875rem;line-height:1.7;margin-bottom:1.5rem;">This example follows a complete round with <strong style="color:var(--noir-100);">six players</strong> at the table. The dealer shows a Queen — so <strong style="color:var(--noir-100);">Strike is offered</strong>. Three players take it, three decline. Watch how <strong style="color:var(--noir-100);">Non-Strikers resolve first</strong>, then Strikers get their own separate showdown against a <strong style="color:var(--noir-100);">reset dealer hand</strong>.</p>
+
+          <div class="legend-row">
+            <div class="legend-item"><span class="legend-swatch legend-swatch--non-striker"></span>Non-Striker (declines Strike)</div>
+            <div class="legend-item"><span class="legend-swatch legend-swatch--striker"></span>Striker (pays Strike fee)</div>
+          </div>
+
+          <!-- ===== PHASE 0: THE DEAL ===== -->
+          <div class="phase-badge">Phase 0 — The Deal</div>
+
+          <div class="dealer-strip">
+            <span class="dealer-strip__label">Dealer</span>
+            <div class="dealer-strip__cards">
+              <div class="card-wrap"><div class="card card--face-up card--black card--highlight"><span class="card__rank">Q</span><span class="card__suit">♠</span></div><span class="card-action card-action--stand">Up-Card</span></div>
+              <div class="card card--face-down"></div>
+            </div>
+            <span class="dealer-strip__score"><span class="text-ember-gradient">Q♠ showing</span></span>
+          </div>
+
+          <div class="table-grid">
+            <div class="seat seat--non-striker"><div class="seat__header"><span class="seat__name">Seat 1</span><span class="seat__badge seat__badge--non-striker">Non-Striker</span></div><div class="seat__cards"><div class="card-wrap"><div class="card card--face-up card--red"><span class="card__rank">K</span><span class="card__suit">♥</span></div></div><div class="card card--face-down"></div></div><div class="seat__action">Up-Card: <strong>K♥ (13)</strong> — Strong hand, declines Strike.</div></div>
+            <div class="seat seat--striker"><div class="seat__header"><span class="seat__name">Seat 2</span><span class="seat__badge seat__badge--striker">Striker</span></div><div class="seat__cards"><div class="card-wrap"><div class="card card--face-up card--red"><span class="card__rank">8</span><span class="card__suit">♦</span></div></div><div class="card card--face-down"></div></div><div class="seat__action">Up-Card: <strong>8♦ (8)</strong> — Weak vs. Queen, takes Strike. Fee: <strong>$5</strong></div></div>
+            <div class="seat seat--non-striker"><div class="seat__header"><span class="seat__name">Seat 3</span><span class="seat__badge seat__badge--non-striker">Non-Striker</span></div><div class="seat__cards"><div class="card-wrap"><div class="card card--face-up card--black"><span class="card__rank">5</span><span class="card__suit">♠</span></div></div><div class="card card--face-down"></div></div><div class="seat__action">Up-Card: <strong>5♠ (5)</strong> — Weak, but declines Strike hoping to Burn.</div></div>
+            <div class="seat seat--striker"><div class="seat__header"><span class="seat__name">Seat 4</span><span class="seat__badge seat__badge--striker">Striker</span></div><div class="seat__cards"><div class="card-wrap"><div class="card card--face-up card--red"><span class="card__rank">10</span><span class="card__suit">♥</span></div></div><div class="card card--face-down"></div></div><div class="seat__action">Up-Card: <strong>10♥ (10)</strong> — Losing to Q, takes Strike. Fee: <strong>$5</strong></div></div>
+            <div class="seat seat--non-striker"><div class="seat__header"><span class="seat__name">Seat 5</span><span class="seat__badge seat__badge--non-striker">Non-Striker</span></div><div class="seat__cards"><div class="card-wrap"><div class="card card--face-up card--black"><span class="card__rank">J</span><span class="card__suit">♣</span></div></div><div class="card card--face-down"></div></div><div class="seat__action">Up-Card: <strong>J♣ (11)</strong> — Just below Q, declines Strike.</div></div>
+            <div class="seat seat--striker"><div class="seat__header"><span class="seat__name">Seat 6</span><span class="seat__badge seat__badge--striker">Striker</span></div><div class="seat__cards"><div class="card-wrap"><div class="card card--face-up card--black"><span class="card__rank">6</span><span class="card__suit">♣</span></div></div><div class="card card--face-down"></div></div><div class="seat__action">Up-Card: <strong>6♣ (6)</strong> — Very weak vs. Queen, takes Strike. Fee: <strong>$5</strong></div></div>
+          </div>
+
+          <div class="steps" style="margin-top:1.5rem;">
+            <div class="step step--active">
+              <div class="step__title">Dealer shows Q♠ — Strike is open!</div>
+              <div class="step__desc">Queen is Jack or higher, so the dealer announces <strong>"Strike is Open."</strong> Players decide. <strong>Seats 2, 4, 6</strong> pay the $5 Strike Fee. <strong>Seats 1, 3, 5</strong> decline. The dealer announces <strong>"Strike is Closed."</strong></div>
+            </div>
+          </div>
+
+          <!-- ===== PHASE 2: NON-STRIKER RESOLUTION ===== -->
+          <div class="phase-divider"><span class="phase-divider__text">⬇ Phase 2 — Non-Striker Resolution (Seats 1, 3, 5)</span></div>
+
+          <div class="dealer-strip">
+            <span class="dealer-strip__label">Dealer</span>
+            <div class="dealer-strip__cards">
+              <div class="card card--face-up card--black" style="width:52px;height:72px;border-radius:6px;"><span class="card__rank" style="font-size:1rem;">Q</span><span class="card__suit" style="font-size:.75rem;">♠</span></div>
+              <div class="card-wrap"><div class="card card--face-up card--red" style="width:52px;height:72px;border-radius:6px;"><span class="card__rank" style="font-size:1rem;">4</span><span class="card__suit" style="font-size:.75rem;">♥</span></div><span class="card-action card-action--flip" style="font-size:.4rem;bottom:-6px;padding:1px 4px;">Revealed</span></div>
+            </div>
+            <span class="dealer-strip__score">Highest: <span class="text-ember-gradient">Q (12)</span></span>
+          </div>
+
+          <div class="steps" style="margin-bottom:1.25rem;">
+            <div class="step step--active">
+              <div class="step__title">Dealer reveals down card: 4♥</div>
+              <div class="step__desc">Dealer's two cards: Q♠ (12) and 4♥ (4). Highest = <strong>Queen (12)</strong>. Since 12 ≥ 8, dealer <strong>stands on 12</strong>. Non-Strikers are resolved left to right.</div>
+            </div>
+          </div>
+
+          <div class="table-grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr));">
+            <div class="seat seat--non-striker"><div class="seat__header"><span class="seat__name">Seat 1</span></div><div class="seat__cards"><div class="card-wrap"><div class="card card--face-up card--red card--win" style="width:52px;height:72px;border-radius:6px;"><span class="card__rank" style="font-size:1rem;">K</span><span class="card__suit" style="font-size:.75rem;">♥</span></div><span class="card-action card-action--stand" style="font-size:.4rem;bottom:-6px;padding:1px 4px;">Stand</span></div></div><div class="seat__action"><strong>Stands on K (13)</strong> vs. Dealer Q (12)</div><div class="seat__result seat__result--win">✓ Win +$10</div></div>
+            <div class="seat seat--non-striker"><div class="seat__header"><span class="seat__name">Seat 3</span></div><div class="seat__cards"><div class="card-wrap"><div class="card card--face-up card--black card--discarded" style="width:52px;height:72px;border-radius:6px;"><span class="card__rank" style="font-size:1rem;">5</span><span class="card__suit" style="font-size:.75rem;">♠</span></div><span class="card-action card-action--burn" style="font-size:.4rem;bottom:-6px;padding:1px 4px;">Burned</span></div><span class="arrow" style="font-size:.875rem;">→</span><div class="card-wrap"><div class="card card--face-up card--black card--win" style="width:52px;height:72px;border-radius:6px;"><span class="card__rank" style="font-size:1rem;">K</span><span class="card__suit" style="font-size:.75rem;">♣</span></div><span class="card-action card-action--flip" style="font-size:.4rem;bottom:-6px;padding:1px 4px;">Hole</span></div></div><div class="seat__action"><strong>Burns 5♠ → Hole K♣ (13)</strong> vs. Q (12)</div><div class="seat__result seat__result--win">✓ Win +$10</div></div>
+            <div class="seat seat--non-striker"><div class="seat__header"><span class="seat__name">Seat 5</span></div><div class="seat__cards"><div class="card-wrap"><div class="card card--face-up card--black" style="width:52px;height:72px;border-radius:6px;"><span class="card__rank" style="font-size:1rem;">J</span><span class="card__suit" style="font-size:.75rem;">♣</span></div><span class="card-action card-action--stand" style="font-size:.4rem;bottom:-6px;padding:1px 4px;">Stand</span></div></div><div class="seat__action"><strong>Stands on J (11)</strong> vs. Q (12)</div><div class="seat__result seat__result--loss">✗ Loss −$10</div></div>
+          </div>
+
+          <div class="steps" style="margin-top:1rem;">
+            <div class="step"><div class="step__title">Non-Striker cards cleared from the layout</div><div class="step__desc"><strong>Seats 1 &amp; 3 win</strong> (both holding Kings that beat Q), <strong>Seat 5 loses</strong> (J falls short of Q). Seat 3's Burn turned a hopeless 5 into a winning King. Now Strikers get their turn.</div></div>
+          </div>
+
+          <!-- ===== PHASE 3: STRIKER RESOLUTION ===== -->
+          <div class="phase-divider"><span class="phase-divider__text">⬇ Phase 3 — Striker Resolution (Seats 2, 4, 6)</span></div>
+
+          <div class="steps" style="margin-bottom:1.25rem;">
+            <div class="step step--active"><div class="step__title">Step A — Dealer's hand is reset</div><div class="step__desc">The dealer's <strong>Q♠ is discarded</strong> from play. The original down card (<strong>4♥</strong>) stays face-up as the new visible card. A <strong>new card is dealt face-down</strong> from the shoe.</div></div>
+            <div class="step step--active"><div class="step__title">Step B — Strikers make their moves (left to right)</div><div class="step__desc">Each Striker decides: Stand, Burn, or Outburn — now evaluating against the dealer's <strong>exposed 4♥</strong> (the new visible target).</div></div>
+          </div>
+
+          <div class="dealer-strip">
+            <span class="dealer-strip__label">Dealer<br><span style="font-size:.45rem;color:var(--noir-600);">Reset Hand</span></span>
+            <div class="dealer-strip__cards">
+              <div class="card-wrap"><div class="card card--face-up card--black card--discarded" style="width:52px;height:72px;border-radius:6px;"><span class="card__rank" style="font-size:1rem;">Q</span><span class="card__suit" style="font-size:.75rem;">♠</span></div><span class="card-action card-action--discard" style="font-size:.4rem;bottom:-6px;padding:1px 4px;">Discarded</span></div>
+              <div class="card-wrap"><div class="card card--face-up card--red" style="width:52px;height:72px;border-radius:6px;"><span class="card__rank" style="font-size:1rem;">4</span><span class="card__suit" style="font-size:.75rem;">♥</span></div><span class="card-action card-action--flip" style="font-size:.4rem;bottom:-6px;padding:1px 4px;">Orig. Down</span></div>
+              <div class="card-wrap"><div class="card card--face-up card--black card--new" style="width:52px;height:72px;border-radius:6px;"><span class="card__rank" style="font-size:1rem;">7</span><span class="card__suit" style="font-size:.75rem;">♣</span></div><span class="card-action card-action--new" style="font-size:.4rem;bottom:-6px;padding:1px 4px;">New Down</span></div>
+              <span class="arrow" style="color:var(--push-blue);font-size:.875rem;">→</span>
+              <div class="card-wrap"><div class="card card--face-up card--red card--new" style="width:52px;height:72px;border-radius:6px;border-color:rgba(59,130,246,.4);box-shadow:0 0 16px rgba(59,130,246,.2);"><span class="card__rank" style="font-size:1rem;">9</span><span class="card__suit" style="font-size:.75rem;">♦</span></div><span class="card-action card-action--community" style="font-size:.4rem;bottom:-6px;padding:1px 4px;">Community</span></div>
+            </div>
+            <span class="dealer-strip__score">Final: <span class="text-ember-gradient">9</span></span>
+          </div>
+
+          <div class="steps" style="margin-bottom:1.25rem;">
+            <div class="step step--active"><div class="step__title">Step C — New down card revealed: 7♣</div><div class="step__desc">Dealer's Striker hand: 4♥ and 7♣. Highest = <strong>7</strong>. Since 7 ≤ 7, <strong>Community Draw triggers!</strong></div></div>
+            <div class="step step--active"><div class="step__title">Community Card drawn: 9♦</div><div class="step__desc">The Community Card <strong>overrides</strong> the baseline. Dealer's final score for Strikers = <strong>9</strong>. Much weaker than the original Queen!</div></div>
+          </div>
+
+          <div class="table-grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr));">
+            <div class="seat seat--striker"><div class="seat__header"><span class="seat__name">Seat 2</span></div><div class="seat__cards"><div class="card-wrap"><div class="card card--face-up card--red card--discarded" style="width:52px;height:72px;border-radius:6px;"><span class="card__rank" style="font-size:1rem;">8</span><span class="card__suit" style="font-size:.75rem;">♦</span></div><span class="card-action card-action--burn" style="font-size:.4rem;bottom:-6px;padding:1px 4px;">Burned</span></div><span class="arrow" style="font-size:.875rem;">→</span><div class="card-wrap"><div class="card card--face-up card--black card--discarded" style="width:52px;height:72px;border-radius:6px;"><span class="card__rank" style="font-size:1rem;">5</span><span class="card__suit" style="font-size:.75rem;">♣</span></div><span class="card-action card-action--discard" style="font-size:.4rem;bottom:-6px;padding:1px 4px;">Outburned</span></div><span class="arrow" style="font-size:.875rem;">→</span><div class="card-wrap"><div class="card card--face-up card--black card--win" style="width:52px;height:72px;border-radius:6px;"><span class="card__rank" style="font-size:1rem;">K</span><span class="card__suit" style="font-size:.75rem;">♠</span></div><span class="card-action card-action--new" style="font-size:.4rem;bottom:-6px;padding:1px 4px;">Draw</span></div></div><div class="seat__action"><strong>Burns → Outburns → Draws K♠ (13)</strong> vs. 9</div><div class="wager-track" style="margin-bottom:.5rem;margin-top:0;"><span class="wager-chip wager-chip--base" style="font-size:.5625rem;padding:.125rem .5rem;">Base $10</span><span class="wager-chip wager-chip--outburn" style="font-size:.5625rem;padding:.125rem .5rem;">+$10 OB</span><span class="wager-chip wager-chip--strike" style="font-size:.5625rem;padding:.125rem .5rem;">$5 Fee ↩</span></div><div class="seat__result seat__result--win">✓ Win +$20 (fee refunded)</div></div>
+            <div class="seat seat--striker"><div class="seat__header"><span class="seat__name">Seat 4</span></div><div class="seat__cards"><div class="card-wrap"><div class="card card--face-up card--red card--win" style="width:52px;height:72px;border-radius:6px;"><span class="card__rank" style="font-size:1rem;">10</span><span class="card__suit" style="font-size:.75rem;">♥</span></div><span class="card-action card-action--stand" style="font-size:.4rem;bottom:-6px;padding:1px 4px;">Stand</span></div></div><div class="seat__action"><strong>Stands on 10</strong> vs. Dealer 9</div><div class="wager-track" style="margin-bottom:.5rem;margin-top:0;"><span class="wager-chip wager-chip--base" style="font-size:.5625rem;padding:.125rem .5rem;">Base $10</span><span class="wager-chip wager-chip--strike" style="font-size:.5625rem;padding:.125rem .5rem;">$5 Fee ↩</span></div><div class="seat__result seat__result--win">✓ Win +$10 (fee refunded)</div></div>
+            <div class="seat seat--striker"><div class="seat__header"><span class="seat__name">Seat 6</span></div><div class="seat__cards"><div class="card-wrap"><div class="card card--face-up card--black card--discarded" style="width:52px;height:72px;border-radius:6px;"><span class="card__rank" style="font-size:1rem;">6</span><span class="card__suit" style="font-size:.75rem;">♣</span></div><span class="card-action card-action--burn" style="font-size:.4rem;bottom:-6px;padding:1px 4px;">Burned</span></div><span class="arrow" style="font-size:.875rem;">→</span><div class="card-wrap"><div class="card card--face-up card--red" style="width:52px;height:72px;border-radius:6px;"><span class="card__rank" style="font-size:1rem;">7</span><span class="card__suit" style="font-size:.75rem;">♥</span></div><span class="card-action card-action--flip" style="font-size:.4rem;bottom:-6px;padding:1px 4px;">Hole</span></div></div><div class="seat__action"><strong>Burns 6♣ → Hole 7♥ (7)</strong> vs. Dealer 9</div><div class="wager-track" style="margin-bottom:.5rem;margin-top:0;"><span class="wager-chip wager-chip--base" style="font-size:.5625rem;padding:.125rem .5rem;">Base $10</span><span class="wager-chip wager-chip--strike" style="font-size:.5625rem;padding:.125rem .5rem;">$5 Fee ✗</span></div><div class="seat__result seat__result--loss">✗ Loss −$15 (wager + fee)</div></div>
+          </div>
+
+          <!-- ===== SCOREBOARD ===== -->
+          <div class="phase-divider"><span class="phase-divider__text">Round Summary</span></div>
+
+          <div style="overflow-x:auto;border-radius:.75rem;border:1px solid rgba(249,115,22,.08);margin-bottom:1rem;">
+            <table style="width:100%;border-collapse:collapse;font-size:.75rem;">
+              <thead><tr>
+                <th style="padding:.625rem .75rem;font-size:.5625rem;letter-spacing:.15em;text-transform:uppercase;color:var(--noir-500);font-family:'JetBrains Mono',monospace;text-align:left;background:rgba(14,14,17,.6);border-bottom:1px solid rgba(249,115,22,.1);">Seat</th>
+                <th style="padding:.625rem .75rem;font-size:.5625rem;letter-spacing:.15em;text-transform:uppercase;color:var(--noir-500);font-family:'JetBrains Mono',monospace;text-align:left;background:rgba(14,14,17,.6);border-bottom:1px solid rgba(249,115,22,.1);">Type</th>
+                <th style="padding:.625rem .75rem;font-size:.5625rem;letter-spacing:.15em;text-transform:uppercase;color:var(--noir-500);font-family:'JetBrains Mono',monospace;text-align:left;background:rgba(14,14,17,.6);border-bottom:1px solid rgba(249,115,22,.1);">Action</th>
+                <th style="padding:.625rem .75rem;font-size:.5625rem;letter-spacing:.15em;text-transform:uppercase;color:var(--noir-500);font-family:'JetBrains Mono',monospace;text-align:left;background:rgba(14,14,17,.6);border-bottom:1px solid rgba(249,115,22,.1);">Final Card</th>
+                <th style="padding:.625rem .75rem;font-size:.5625rem;letter-spacing:.15em;text-transform:uppercase;color:var(--noir-500);font-family:'JetBrains Mono',monospace;text-align:left;background:rgba(14,14,17,.6);border-bottom:1px solid rgba(249,115,22,.1);">vs. Dealer</th>
+                <th style="padding:.625rem .75rem;font-size:.5625rem;letter-spacing:.15em;text-transform:uppercase;color:var(--noir-500);font-family:'JetBrains Mono',monospace;text-align:right;background:rgba(14,14,17,.6);border-bottom:1px solid rgba(249,115,22,.1);">P/L</th>
+              </tr></thead>
+              <tbody>
+                <tr style="border-bottom:1px solid rgba(28,28,33,.5);"><td style="padding:.5rem .75rem;color:var(--noir-200);font-weight:600;">Seat 1</td><td style="padding:.5rem .75rem;color:var(--ember-300);font-size:.6875rem;">Non-Striker</td><td style="padding:.5rem .75rem;color:var(--noir-300);">Stand</td><td style="padding:.5rem .75rem;color:var(--noir-200);font-weight:600;">K♥ (13)</td><td style="padding:.5rem .75rem;color:var(--noir-300);">Q (12)</td><td style="padding:.5rem .75rem;text-align:right;color:#4ade80;font-weight:700;font-family:'JetBrains Mono',monospace;">+$10</td></tr>
+                <tr style="border-bottom:1px solid rgba(28,28,33,.5);"><td style="padding:.5rem .75rem;color:var(--noir-200);font-weight:600;">Seat 3</td><td style="padding:.5rem .75rem;color:var(--ember-300);font-size:.6875rem;">Non-Striker</td><td style="padding:.5rem .75rem;color:var(--noir-300);">Burn</td><td style="padding:.5rem .75rem;color:var(--noir-200);font-weight:600;">K♣ (13)</td><td style="padding:.5rem .75rem;color:var(--noir-300);">Q (12)</td><td style="padding:.5rem .75rem;text-align:right;color:#4ade80;font-weight:700;font-family:'JetBrains Mono',monospace;">+$10</td></tr>
+                <tr style="border-bottom:1px solid rgba(28,28,33,.5);"><td style="padding:.5rem .75rem;color:var(--noir-200);font-weight:600;">Seat 5</td><td style="padding:.5rem .75rem;color:var(--ember-300);font-size:.6875rem;">Non-Striker</td><td style="padding:.5rem .75rem;color:var(--noir-300);">Stand</td><td style="padding:.5rem .75rem;color:var(--noir-200);font-weight:600;">J♣ (11)</td><td style="padding:.5rem .75rem;color:var(--noir-300);">Q (12)</td><td style="padding:.5rem .75rem;text-align:right;color:#f87171;font-weight:700;font-family:'JetBrains Mono',monospace;">−$10</td></tr>
+                <tr style="border-bottom:1px solid rgba(28,28,33,.5);background:rgba(59,130,246,.03);"><td style="padding:.5rem .75rem;color:var(--noir-200);font-weight:600;">Seat 2</td><td style="padding:.5rem .75rem;color:#93c5fd;font-size:.6875rem;">Striker</td><td style="padding:.5rem .75rem;color:var(--noir-300);">Burn → Outburn</td><td style="padding:.5rem .75rem;color:var(--noir-200);font-weight:600;">K♠ (13)</td><td style="padding:.5rem .75rem;color:var(--noir-300);">9</td><td style="padding:.5rem .75rem;text-align:right;color:#4ade80;font-weight:700;font-family:'JetBrains Mono',monospace;">+$20</td></tr>
+                <tr style="border-bottom:1px solid rgba(28,28,33,.5);background:rgba(59,130,246,.03);"><td style="padding:.5rem .75rem;color:var(--noir-200);font-weight:600;">Seat 4</td><td style="padding:.5rem .75rem;color:#93c5fd;font-size:.6875rem;">Striker</td><td style="padding:.5rem .75rem;color:var(--noir-300);">Stand</td><td style="padding:.5rem .75rem;color:var(--noir-200);font-weight:600;">10♥ (10)</td><td style="padding:.5rem .75rem;color:var(--noir-300);">9</td><td style="padding:.5rem .75rem;text-align:right;color:#4ade80;font-weight:700;font-family:'JetBrains Mono',monospace;">+$10</td></tr>
+                <tr style="background:rgba(59,130,246,.03);"><td style="padding:.5rem .75rem;color:var(--noir-200);font-weight:600;">Seat 6</td><td style="padding:.5rem .75rem;color:#93c5fd;font-size:.6875rem;">Striker</td><td style="padding:.5rem .75rem;color:var(--noir-300);">Burn</td><td style="padding:.5rem .75rem;color:var(--noir-200);font-weight:600;">7♥ (7)</td><td style="padding:.5rem .75rem;color:var(--noir-300);">9</td><td style="padding:.5rem .75rem;text-align:right;color:#f87171;font-weight:700;font-family:'JetBrains Mono',monospace;">−$15</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="outcome outcome--win" style="margin-top:1rem;">
+            <span class="outcome__icon">🎰</span>
+            <div class="outcome__text">
+              ROUND COMPLETE — Mixed results across the table
+              <span class="outcome__detail"><strong>Non-Strikers</strong> faced the dealer's full-strength Queen (12). Seats 1 &amp; 3 survived — Seat 3's Burn swapped a worthless 5 for a hidden King.<br><strong>Strikers</strong> got a reset dealer hand that drew a community 9 — turning certain losses into wins for Seats 2 &amp; 4. Seat 2's aggressive Outburn netted the biggest payout at +$20.</span>
+            </div>
+          </div>
+
+          <div style="margin-top:1.25rem;padding:1rem 1.25rem;border-radius:.75rem;background:rgba(249,115,22,.04);border:1px solid rgba(249,115,22,.08);">
+            <p style="font-size:.8125rem;color:var(--noir-300);line-height:1.7;">
+              <strong style="color:var(--ember-300);">Key takeaway:</strong> Non-Strikers always resolve <strong style="color:var(--noir-100);">first</strong> — they play against the dealer's original two-card hand. Strikers wait, but their patience is rewarded: the dealer's dangerous Up-Card is discarded and a fresh hand is dealt. In this round, the Strike turned the dealer's Q (12) into a community-drawn 9 — <strong style="color:var(--noir-100);">completely changing the outcome</strong> for two of three Strikers.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="rule-glow" aria-hidden="true" />
+
+
+  <section class="section dot-grid" style="position:relative;">
+    <div class="contact__overlay" aria-hidden="true"></div>
+    <div class="container" style="position:relative;z-index:10;">
+      <div class="section__header reveal" style="text-align:center;max-width:48rem;margin-left:auto;margin-right:auto;">
+        <div class="section__eyebrow" style="justify-content:center;">
+          <div class="marker-dot"></div>
+          <span class="section__label">Quick Reference</span>
+        </div>
+        <h2 class="section__title" style="text-align:center;">
+          Key rules at a <span class="text-ember-gradient">glance</span>.
+        </h2>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr;gap:1.5rem;max-width:64rem;margin:0 auto;">
+        <!-- Row 1 -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;">
+          <div class="example reveal" style="margin-bottom:0;">
+            <div class="example__body" style="padding:1.5rem;">
+              <div style="font-size:.875rem;font-weight:700;color:var(--ember-300);margin-bottom:.5rem;font-family:'JetBrains Mono',monospace;">Card Ranking</div>
+              <p style="color:var(--noir-300);font-size:.8125rem;line-height:1.7;">Ace (14) is highest → 2 is lowest. Standard 52-card deck ranking. Suits do not matter for the main game.</p>
+            </div>
+          </div>
+          <div class="example reveal" style="margin-bottom:0;">
+            <div class="example__body" style="padding:1.5rem;">
+              <div style="font-size:.875rem;font-weight:700;color:var(--ember-300);margin-bottom:.5rem;font-family:'JetBrains Mono',monospace;">Dealer Draw Rule</div>
+              <p style="color:var(--noir-300);font-size:.8125rem;line-height:1.7;">If the dealer's best card is <strong style="color:var(--noir-100);">7 or lower</strong>, a Community Card is drawn from the shoe and <strong style="color:var(--noir-100);">overrides</strong> the dealer's hand entirely.</p>
+            </div>
+          </div>
+          <div class="example reveal" style="margin-bottom:0;">
+            <div class="example__body" style="padding:1.5rem;">
+              <div style="font-size:.875rem;font-weight:700;color:var(--ember-300);margin-bottom:.5rem;font-family:'JetBrains Mono',monospace;">Strike Trigger</div>
+              <p style="color:var(--noir-300);font-size:.8125rem;line-height:1.7;">Strike is only offered when the dealer's Up-Card is <strong style="color:var(--noir-100);">Jack, Queen, King, or Ace</strong>. Fee = 50% of Base Wager. Refunded on Win or Push.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Row 2 -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;">
+          <div class="example reveal" style="margin-bottom:0;">
+            <div class="example__body" style="padding:1.5rem;">
+              <div style="font-size:.875rem;font-weight:700;color:var(--ember-300);margin-bottom:.5rem;font-family:'JetBrains Mono',monospace;">Burn (Free)</div>
+              <p style="color:var(--noir-300);font-size:.8125rem;line-height:1.7;">Discard your Up-Card and flip your hidden Hole Card face-up. <strong style="color:var(--noir-100);">No extra cost</strong>. Swap for your hidden card.</p>
+            </div>
+          </div>
+          <div class="example reveal" style="margin-bottom:0;">
+            <div class="example__body" style="padding:1.5rem;">
+              <div style="font-size:.875rem;font-weight:700;color:var(--ember-300);margin-bottom:.5rem;font-family:'JetBrains Mono',monospace;">Outburn (2× Wager)</div>
+              <p style="color:var(--noir-300);font-size:.8125rem;line-height:1.7;">After Burning, you may <strong style="color:var(--noir-100);">double your wager</strong>, discard the Hole Card, and draw a <strong style="color:var(--noir-100);">brand new card</strong> from the shoe.</p>
+            </div>
+          </div>
+          <div class="example reveal" style="margin-bottom:0;">
+            <div class="example__body" style="padding:1.5rem;">
+              <div style="font-size:.875rem;font-weight:700;color:var(--ember-300);margin-bottom:.5rem;font-family:'JetBrains Mono',monospace;">Match the Dealer</div>
+              <p style="color:var(--noir-300);font-size:.8125rem;line-height:1.7;">Optional side bet. If your Up-Card matches the Dealer's Up-Card by rank, you win. <strong style="color:var(--noir-100);">Suited Aces pay 100:1</strong>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule-glow" aria-hidden="true" />
+
+
+  <!-- ======================== CTA ======================== -->
+  <section id="contact" class="section dot-grid" style="position:relative;">
+    <div class="contact__overlay" aria-hidden="true"></div>
+    <div class="container" style="position:relative; z-index:10; max-width:48rem; text-align:center;">
+      <div class="reveal">
+        <div class="section__eyebrow" style="justify-content:center;">
+          <div class="marker-dot"></div>
+          <span class="section__label">Ready to Deal?</span>
+        </div>
+        <h2 class="section__title" style="text-align:center;">
+          Bring <span class="text-ember-gradient font-brand">Burn It</span>™<br />to your floor.
+        </h2>
+        <p class="section__desc" style="max-width:32rem;margin:1rem auto 0;">
+          For licensing, partnership opportunities, or full game documentation — connect with ENTROPY LLC.
+        </p>
+        <div class="phoenix-logo">
+          <img src="logos/white_phoenix_transparent_back-with-signature.png" alt="ENTROPY LLC — Phoenix Mark" loading="lazy" style="width:100%;filter:drop-shadow(0 0 24px rgba(249,115,22,.15));opacity:.85;transition:opacity .4s,filter .4s;" onmouseover="this.style.opacity='1';this.style.filter='drop-shadow(0 0 32px rgba(249,115,22,.3))'" onmouseout="this.style.opacity='.85';this.style.filter='drop-shadow(0 0 24px rgba(249,115,22,.15))'" />
+        </div>
+        <div class="contact__buttons">
+          <a href="mailto:info@entropyconcepts.com" class="btn--ember">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+            </svg>
+            Contact for Licensing
+          </a>
+          <a href="burn-it.html" class="btn--ember-outline">
+            ← Back to Game Info
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule-glow" aria-hidden="true" />
+
+  </main>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer id="footer" class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand">
+            <picture><source srcset="logos/banner_entropy_transparent_back.webp" type="image/webp"><img src="logos/banner_entropy_transparent_back.png" alt="Entropy" loading="lazy" /></picture>
+            <span>ENTROPY LLC</span>
+          </div>
+          <p class="footer__desc">A disciplined incubator developing proprietary digital products and probability-driven systems.</p>
+        </div>
+        <div>
+          <h4 class="footer__heading">Headquarters</h4>
+          <address class="footer__address">
+            <p>221 Main St Ste R</p>
+            <p>Nashua, NH 03060, USA</p>
+          </address>
+          <div class="footer__contact">
+            <div>
+              <span class="footer__contact-label">Partnerships</span>
+              <p><a href="mailto:info@entropyconcepts.com">info@entropyconcepts.com</a></p>
+            </div>
+            <div>
+              <span class="footer__contact-label">General Inquiries</span>
+              <p><a href="mailto:contact@entropyconcepts.com">contact@entropyconcepts.com</a></p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__heading">Navigation</h4>
+          <nav class="footer__nav" aria-label="Footer navigation">
+            <a href="index.html">Home</a>
+            <a href="burn-it.html">Burn It™ Info</a>
+            <a href="burn-it-how-to-play.html">How to Play</a>
+            <a href="index.html#contact">Contact</a>
+          </nav>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2026 ENTROPY LLC. All rights reserved. <span class="font-brand">Burn It</span>™ is a trademark of ENTROPY LLC.</p>
+        <div class="footer__legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================== SCRIPTS ======================== -->
+  <script>
+    /* Navbar scroll */
+    const navbar = document.getElementById('navbar');
+    const onScroll = () => {
+      if (window.scrollY > 40) { navbar.classList.add('navbar--scrolled'); }
+      else { navbar.classList.remove('navbar--scrolled'); }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    /* Mobile menu */
+    const toggle = document.getElementById('mobile-toggle');
+    const menu = document.getElementById('mobile-menu');
+    toggle.addEventListener('click', () => menu.classList.toggle('open'));
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+
+    /* Reveal on scroll */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+
+</html>

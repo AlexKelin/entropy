@@ -129,9 +129,9 @@
     .hero__eyebrow-text { font-size:10px; letter-spacing:.4em; text-transform:uppercase; font-weight:500; font-family:'JetBrains Mono',monospace; color:rgba(249,115,22,.7); }
 
     .hero__logo { margin-bottom:2rem; }
-    .hero__logo img { width:90vw; max-width:24rem; margin:0 auto; aspect-ratio:800/517; }
-    @media(min-width:640px) { .hero__logo img { width:20rem; } }
-    @media(min-width:1024px) { .hero__logo img { width:24rem; } }
+    .hero__logo img { width:90vw; margin:0 auto; aspect-ratio:800/517; }
+    @media(min-width:640px) { .hero__logo img { width:80vw; } }
+    @media(min-width:1024px) { .hero__logo img { width:75vw; } }
 
     .hero__tagline { margin-top:.5rem; font-size:1.125rem; color:var(--noir-300); font-weight:300; letter-spacing:.05em; max-width:42rem; margin-left:auto; margin-right:auto; }
     @media(min-width:640px) { .hero__tagline { font-size:1.25rem; } }
@@ -308,7 +308,7 @@
           <span class="navbar__logo-text">ENTROPY</span>
         </a>
         <div class="navbar__links">
-          <a href="index.html#about" class="nav-link">Divisions</a>
+          <a href="burn-it-how-to-play.html" class="nav-link">How to Play</a>
           <a href="index.html#projects" class="nav-link">Projects</a>
           <a href="index.html#contact" class="nav-link">Contact</a>
         </div>
@@ -321,7 +321,7 @@
     </div>
     <div id="mobile-menu" class="mobile-menu">
       <div class="mobile-menu__inner">
-        <a href="index.html#about">Divisions</a>
+        <a href="burn-it-how-to-play.html">How to Play</a>
         <a href="index.html#projects">Projects</a>
         <a href="index.html#contact">Contact</a>
       </div>
@@ -358,7 +358,7 @@
 
       <!-- Logo -->
       <div class="hero__logo">
-        <picture><source srcset="logos/burn_it_banner_transparent_background.webp" type="image/webp"><img src="logos/burn_it_banner_transparent_background.png" alt="Burn It Logo" class="logo-glow" /></picture>
+        <img src="logos/burn_it_banner_transparent_background.png" alt="Burn It Logo" class="logo-glow" />
       </div>
 
       <!-- Tagline -->
@@ -523,6 +523,17 @@
           <h3 style="font-size:1rem;font-weight:600;color:var(--noir-100);letter-spacing:-.025em;margin-bottom:.75rem;">Beat the Dealer</h3>
           <p style="color:var(--noir-400);font-size:.8125rem;line-height:1.7;">The dealer reveals their cards and resolves the hand. Highest card wins — simple, exciting, and rewarding.</p>
         </div>
+      </div>
+
+      <!-- How to Play CTA -->
+      <div class="reveal" style="margin-top:4rem;text-align:center;">
+        <a href="burn-it-how-to-play.html" class="btn--ember" style="font-size:.8125rem;padding:1rem 2.5rem;">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width:1.125rem;height:1.125rem;">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
+          </svg>
+          See It In Action — Hand Examples
+        </a>
+        <p style="margin-top:1rem;color:var(--noir-500);font-size:.8125rem;">Walk through real hands with step-by-step illustrations</p>
       </div>
     </div>
   </section>
@@ -837,6 +848,7 @@
             <a href="index.html">Home</a>
             <a href="#overview">Overview</a>
             <a href="#how-it-works">How It Works</a>
+            <a href="burn-it-how-to-play.html">How to Play</a>
             <a href="#features">Features</a>
             <a href="#specs">Specifications</a>
             <a href="#math">Mathematics</a>
