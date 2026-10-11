@@ -306,6 +306,17 @@
     .two-tables { display:grid; grid-template-columns:1fr; gap:2rem; }
     @media(min-width:1024px) { .two-tables { grid-template-columns:1fr 1fr; } }
     .table-label { font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:var(--noir-500); font-family:'JetBrains Mono',monospace; margin-bottom:.75rem; }
+    .variant-tag { display:inline-block; margin-left:.5rem; padding:1px 6px; border-radius:4px; font-size:9px; letter-spacing:.15em; text-transform:uppercase; font-family:'JetBrains Mono',monospace; font-weight:500; color:var(--ember-400); border:1px solid rgba(249,115,22,.25); background:rgba(249,115,22,.06); vertical-align:middle; }
+    .variant-callout { margin-top:2rem; position:relative; display:grid; grid-template-columns:1fr; gap:1.5rem; align-items:center; background:linear-gradient(165deg,rgba(28,28,33,.55) 0%,rgba(14,14,17,.75) 100%); border:1px solid rgba(249,115,22,.12); border-radius:.75rem; padding:1.75rem 2rem; overflow:hidden; transition:border-color .3s, box-shadow .3s; }
+    .variant-callout::before { content:''; position:absolute; left:0; top:0; bottom:0; width:2px; background:linear-gradient(180deg,transparent,rgba(249,115,22,.7),transparent); }
+    .variant-callout:hover { border-color:rgba(249,115,22,.25); box-shadow:0 0 30px -10px rgba(249,115,22,.2); }
+    @media(min-width:768px) { .variant-callout { grid-template-columns:1fr auto; gap:2.5rem; } }
+    .variant-callout__title { font-size:1rem; font-weight:600; color:var(--noir-100); letter-spacing:-.025em; margin:.5rem 0 .5rem; }
+    .variant-callout__text { color:var(--noir-400); font-size:.8125rem; line-height:1.7; max-width:40rem; }
+    .variant-callout__stat { text-align:left; }
+    @media(min-width:768px) { .variant-callout__stat { text-align:right; } }
+    .variant-callout__value { font-family:'JetBrains Mono',monospace; font-weight:700; font-size:2.25rem; line-height:1; }
+    .variant-callout__note { margin-top:.5rem; font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--noir-500); font-family:'JetBrains Mono',monospace; }
   </style>
 </head>
 
@@ -600,7 +611,7 @@
         <div class="pillar-card reveal" style="transition-delay:.35s;">
           <div class="feature-icon feature-icon--sm" style="margin-bottom:1.25rem;"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" /></svg></div>
           <h3 style="font-size:1rem;font-weight:600;color:var(--noir-100);letter-spacing:-.025em;margin-bottom:.5rem;">Competitive House Edge</h3>
-          <p style="color:var(--noir-400);font-size:.8125rem;line-height:1.7;">A balanced RTP keeps players engaged longer while generating sustainable table revenue for operators.</p>
+          <p style="color:var(--noir-400);font-size:.8125rem;line-height:1.7;">A balanced RTP keeps players engaged longer while generating sustainable table revenue for operators. A high-hold variant is also available.</p>
         </div>
       </div>
     </div>
@@ -770,6 +781,11 @@
                   <td class="text-right"><span class="val-ember">1.06%</span></td>
                   <td class="text-right">60–70</td>
                 </tr>
+                <tr class="row-highlight">
+                  <td><span class="font-brand">Burn It</span>™<span class="variant-tag">High-Hold</span></td>
+                  <td class="text-right"><span class="val-ember text-ember-gradient">≈ 1.9%</span></td>
+                  <td class="text-right">60–65</td>
+                </tr>
                 <tr>
                   <td>Ultimate Texas Hold'em</td>
                   <td class="text-right"><span class="val-ember">2.40%</span></td>
@@ -788,6 +804,21 @@
               </tbody>
             </table>
           </div>
+        </div>
+      </div>
+
+      <!-- High-Hold Variant -->
+      <div class="variant-callout reveal" style="transition-delay:.35s;">
+        <div>
+          <div class="table-label" style="margin-bottom:0;">Operator Option</div>
+          <h3 class="variant-callout__title"><span class="font-brand">Burn It</span>™ High-Hold Variant</h3>
+          <p class="variant-callout__text">
+            A single rule adjustment raises the house edge for operators who want a higher table hold: the Strike Fee is refunded <strong style="color:var(--noir-200);">only on a player win</strong>, and is forfeited on a push. Everything else stays the same: gameplay, procedures, and equipment.
+          </p>
+        </div>
+        <div class="variant-callout__stat">
+          <div class="variant-callout__value text-ember-gradient">≈ 1.9%</div>
+          <div class="variant-callout__note">House Edge · Base Wager</div>
         </div>
       </div>
     </div>
