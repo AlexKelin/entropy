@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Burn It™ — A New Casino Table Game | ENTROPY LLC</title>
   <meta name="description"
-    content="Burn It™ is an original casino table game by ENTROPY LLC — a fast-paced, multi-phase high-card shoe game that gives players the power to manipulate the dealer's hand." />
+    content="Burn It™ is an original casino table game by ENTROPY LLC. Learn about the game, walk through hand examples, watch it played, or try the demo." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://entropyconcepts.com/burn-it" />
 
@@ -25,920 +25,219 @@
   <meta name="twitter:description" content="Burn It™ is an original casino table game by ENTROPY LLC — a fast-paced, multi-phase high-card shoe game." />
   <meta name="twitter:image" content="https://www.entropyconcepts.com/logos/burn_it_og.png" />
 
-  
   <style>
-    /* ========================================
-       SELF-HOSTED FONTS (no external requests)
-       ======================================== */
     @font-face { font-family:'Inter'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/inter-400.woff2') format('woff2'); }
     @font-face { font-family:'Inter'; font-style:normal; font-weight:700; font-display:swap; src:url('fonts/inter-700.woff2') format('woff2'); }
     @font-face { font-family:'Cinzel'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/cinzel-400.woff2') format('woff2'); }
     @font-face { font-family:'Cinzel'; font-style:normal; font-weight:700; font-display:swap; src:url('fonts/cinzel-700.woff2') format('woff2'); }
     @font-face { font-family:'JetBrains Mono'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/jetbrains-400.woff2') format('woff2'); }
 
-    /* ========================================
-       DESIGN TOKENS
-       ======================================== */
     :root {
-      --noir-50: #f7f7f8; --noir-100: #ededf0; --noir-200: #d4d4d9;
-      --noir-300: #a8a8b3; --noir-400: #71717f; --noir-500: #53535f;
-      --noir-600: #3f3f47; --noir-700: #2c2c32; --noir-800: #1c1c21;
-      --noir-850: #151519; --noir-900: #0e0e11; --noir-950: #08080a;
-      --ember-50: #fff8ed; --ember-100: #ffedd5; --ember-200: #fed7aa;
-      --ember-300: #fdba74; --ember-400: #fb923c; --ember-500: #f97316;
-      --ember-600: #ea580c; --ember-700: #c2410c; --ember-800: #9a3412;
+      --noir-100: #ededf0; --noir-200: #d4d4d9; --noir-300: #a8a8b3; --noir-400: #71717f;
+      --noir-500: #53535f; --noir-600: #3f3f47; --noir-700: #2c2c32; --noir-800: #1c1c21;
+      --noir-900: #0e0e11; --noir-950: #08080a;
+      --ember-300: #fdba74; --ember-400: #fb923c; --ember-500: #f97316; --ember-600: #ea580c;
     }
 
-    /* ========================================
-       RESET & BASE
-       ======================================== */
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-    html { font-family:'Inter',system-ui,-apple-system,sans-serif; scroll-behavior:smooth; }
-    body { background:var(--noir-950); color:var(--noir-100); overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+    html { font-family:'Inter',system-ui,-apple-system,sans-serif; }
+    body { background:var(--noir-950); color:var(--noir-100); overflow-x:hidden; -webkit-font-smoothing:antialiased; min-height:100vh; display:flex; flex-direction:column; }
     a { text-decoration:none; color:inherit; }
     img { display:block; max-width:100%; }
     button { background:none; border:none; cursor:pointer; font:inherit; }
-    address { font-style:normal; }
-
     ::selection { background:rgba(249,115,22,.25); color:#fff; }
-    ::-webkit-scrollbar { width:6px; }
-    ::-webkit-scrollbar-track { background:var(--noir-950); }
-    ::-webkit-scrollbar-thumb { background:var(--noir-700); border-radius:3px; }
 
-    /* (keyframes removed for performance) */
-
-    /* ========================================
-       LAYOUT
-       ======================================== */
-    .container { max-width:80rem; margin:0 auto; padding:0 1.5rem; }
+    .container { max-width:72rem; margin:0 auto; padding:0 1.5rem; width:100%; }
     @media(min-width:640px) { .container { padding:0 2.5rem; } }
-    @media(min-width:1024px) { .container { padding:0 4rem; } }
-
-    
-
-    /* ========================================
-       REVEAL
-       ======================================== */
-    @keyframes fadeInUp { 0% { opacity:0; transform:translateY(24px); } 100% { opacity:1; transform:translateY(0); } }
-
-    .reveal { opacity:0; transform:translateY(32px); transition:opacity .6s ease-out, transform .6s ease-out; }
-    .reveal.visible { opacity:1; transform:none; }
-
-    /* ========================================
-       COMMON COMPONENTS
-       ======================================== */
-    .rule-glow { height:1px; border:none; background:linear-gradient(90deg,transparent,rgba(249,115,22,.12) 30%,rgba(249,115,22,.2) 50%,rgba(249,115,22,.12) 70%,transparent); }
-    .dot-grid { background-image:radial-gradient(circle,rgba(249,115,22,.04) 1px,transparent 1px); background-size:28px 28px; }
-    .marker-dot { width:6px; height:6px; border-radius:50%; background:rgba(249,115,22,.6); box-shadow:0 0 12px rgba(249,115,22,.3); }
     .text-ember-gradient { background:linear-gradient(135deg,#fdba74,#f97316,#ea580c); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-    .logo-glow { }
-    .hidden-sm { display:none; }
-    @media(min-width:640px) { .hidden-sm { display:block; } }
     .font-brand { font-family:'Cinzel',serif; }
 
-    /* ========================================
-       NAVIGATION
-       ======================================== */
-    .navbar { position:fixed; top:0; left:0; right:0; z-index:50; transition:all .5s; }
-    .navbar--scrolled { background:rgba(8,8,10,.8); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); border-bottom:1px solid rgba(28,28,33,.4); }
+    @keyframes fadeInUp { 0% { opacity:0; transform:translateY(24px); } 100% { opacity:1; transform:translateY(0); } }
+
+    /* NAV */
+    .navbar { position:absolute; top:0; left:0; right:0; z-index:50; }
     .navbar__inner { display:flex; align-items:center; justify-content:space-between; height:4rem; }
     @media(min-width:640px) { .navbar__inner { height:5rem; } }
     .navbar__logo { display:flex; align-items:center; gap:.75rem; }
-    .navbar__logo-img { width:2rem; height:2rem; object-fit:contain; opacity:.7; transition:opacity .3s; aspect-ratio:1/1; }
+    .navbar__logo-img { width:2rem; height:2rem; object-fit:contain; opacity:.7; transition:opacity .3s; }
     .navbar__logo:hover .navbar__logo-img { opacity:1; }
     .navbar__logo-text { font-size:.875rem; font-weight:600; letter-spacing:.25em; color:var(--noir-100); }
-    .navbar__links { display:none; align-items:center; gap:2.5rem; }
-    @media(min-width:768px) { .navbar__links { display:flex; } }
-    .nav-link { position:relative; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--noir-300); transition:color .3s; }
-    .nav-link:hover { color:var(--noir-100); }
-    .nav-link::after { content:''; position:absolute; left:0; bottom:-2px; width:0; height:1px; background:#c8c8d0; transition:width .3s; }
-    .nav-link:hover::after { width:100%; }
-    .navbar__toggle { display:block; padding:.5rem; color:var(--noir-300); transition:color .3s; }
-    .navbar__toggle:hover { color:var(--noir-100); }
-    .navbar__toggle svg { width:1.25rem; height:1.25rem; }
-    @media(min-width:768px) { .navbar__toggle { display:none; } }
-    .mobile-menu { display:none; border-top:1px solid rgba(28,28,33,.6); background:rgba(8,8,10,.95); backdrop-filter:blur(24px); }
-    .mobile-menu.open { display:block; }
-    @media(min-width:768px) { .mobile-menu { display:none !important; } }
-    .mobile-menu__inner { padding:1.5rem; display:flex; flex-direction:column; gap:1rem; }
-    .mobile-menu__inner a { font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--noir-300); transition:color .3s; }
-    .mobile-menu__inner a:hover { color:var(--noir-100); }
-
-    /* ========================================
-       HERO
-       ======================================== */
-    .hero { position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center; overflow:hidden; }
-    .hero__vline { position:absolute; top:0; bottom:0; width:1px; background:linear-gradient(180deg,transparent,rgba(249,115,22,.04) 30%,rgba(249,115,22,.04) 70%,transparent); display:none; }
-    @media(min-width:1024px) { .hero__vline { display:block; } }
-    .hero__vline--1 { left:16.67%; } .hero__vline--2 { left:50%; } .hero__vline--3 { left:83.33%; }
-    .hero__content { position:relative; z-index:10; text-align:center; padding:3rem 1.5rem 0; max-width:56rem; margin:0 auto; }
-
-    .hero__back { position:absolute; top:0; left:1.5rem; }
-    @media(min-width:640px) { .hero__back { left:0; } }
     .back-arrow { display:inline-flex; align-items:center; gap:.5rem; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--noir-500); transition:transform .3s, color .3s; }
     .back-arrow:hover { transform:translateX(-4px); color:var(--ember-400); }
     .back-arrow svg { width:1rem; height:1rem; }
 
-    .hero__eyebrow { display:flex; align-items:center; justify-content:center; gap:.75rem; margin-bottom:2rem; }
-    .hero__eyebrow-line { display:block; width:2rem; height:1px; background:rgba(249,115,22,.3); }
-    .hero__eyebrow-text { font-size:10px; letter-spacing:.4em; text-transform:uppercase; font-weight:500; font-family:'JetBrains Mono',monospace; color:rgba(249,115,22,.7); }
+    /* HUB */
+    .hub { position:relative; flex:1; display:flex; align-items:center; padding:6rem 0 4rem; overflow:hidden; }
+    .hub__glow { position:absolute; top:-10%; left:50%; width:70rem; height:40rem; transform:translateX(-50%); background:radial-gradient(ellipse at center,rgba(249,115,22,.12),transparent 60%); pointer-events:none; }
+    .hub__grid-bg { position:absolute; inset:0; background-image:radial-gradient(circle,rgba(249,115,22,.05) 1px,transparent 1px); background-size:28px 28px; mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%); -webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%); pointer-events:none; }
+    .hub__content { position:relative; z-index:1; text-align:center; }
 
-    .hero__logo { margin-bottom:2rem; }
-    .hero__logo img { width:90vw; margin:0 auto; aspect-ratio:800/517; }
-    @media(min-width:640px) { .hero__logo img { width:80vw; } }
-    @media(min-width:1024px) { .hero__logo img { width:75vw; } }
+    .hub__eyebrow { display:flex; align-items:center; justify-content:center; gap:.75rem; margin-bottom:1.5rem; animation:fadeInUp .7s ease-out both; }
+    .hub__eyebrow-line { width:2rem; height:1px; background:rgba(249,115,22,.3); }
+    .hub__eyebrow-text { font-size:10px; letter-spacing:.4em; text-transform:uppercase; font-family:'JetBrains Mono',monospace; color:rgba(249,115,22,.7); }
 
-    .hero__tagline { margin-top:.5rem; font-size:1.125rem; color:var(--noir-300); font-weight:300; letter-spacing:.05em; max-width:42rem; margin-left:auto; margin-right:auto; }
-    @media(min-width:640px) { .hero__tagline { font-size:1.25rem; } }
-    @media(min-width:1024px) { .hero__tagline { font-size:1.5rem; } }
+    .hub__logo { animation:fadeInUp .8s .1s ease-out both; }
+    .hub__logo img { width:min(90vw,40rem); margin:0 auto; aspect-ratio:800/517; }
+    .hub__title { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+    .hub__tagline { margin-top:.5rem; font-size:1rem; color:var(--noir-300); font-weight:300; letter-spacing:.03em; animation:fadeInUp .8s .2s ease-out both; }
+    @media(min-width:640px) { .hub__tagline { font-size:1.125rem; } }
 
-    .hero__stats { margin-top:3rem; display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:1.5rem; }
-    @media(min-width:640px) { .hero__stats { gap:2.5rem; } }
-    .hero__stat { text-align:center; }
-    .hero__stat-value { font-size:1.5rem; font-weight:700; font-family:'JetBrains Mono',monospace; }
-    @media(min-width:640px) { .hero__stat-value { font-size:1.875rem; } }
-    .hero__stat-label { margin-top:.25rem; font-size:9px; letter-spacing:.3em; text-transform:uppercase; color:var(--noir-500); }
-    .hero__stat-divider { width:1px; height:2.5rem; background:var(--noir-800); }
+    /* MENU */
+    .menu { margin-top:3rem; display:grid; grid-template-columns:1fr; gap:1rem; text-align:left; }
+    @media(min-width:640px) { .menu { grid-template-columns:repeat(2,1fr); gap:1.25rem; } }
+    @media(min-width:1024px) { .menu { grid-template-columns:repeat(4,1fr); } }
 
-    .hero__cta-wrap { margin-top:3rem; }
-    .btn--ember-outline { display:inline-flex; align-items:center; gap:.5rem; padding:.75rem 1.75rem; border:1px solid rgba(249,115,22,.3); border-radius:.25rem; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:rgba(253,186,116,.9); transition:all .3s; }
-    .btn--ember-outline:hover { border-color:rgba(249,115,22,.5); box-shadow:0 0 30px -10px rgba(249,115,22,.2); }
-    .btn--ember-outline svg { width:.875rem; height:.875rem; transition:transform .3s; }
-    .btn--ember-outline:hover svg { transform:translateY(4px); }
+    .menu-card { position:relative; display:flex; flex-direction:column; padding:1.75rem 1.5rem 1.5rem; border-radius:.875rem;
+      background:linear-gradient(165deg,rgba(28,28,33,.65) 0%,rgba(14,14,17,.85) 100%); border:1px solid rgba(249,115,22,.1);
+      backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); overflow:hidden;
+      transition:border-color .35s, transform .35s, box-shadow .35s; animation:fadeInUp .7s ease-out both; }
+    .menu-card:nth-child(1) { animation-delay:.3s; } .menu-card:nth-child(2) { animation-delay:.38s; }
+    .menu-card:nth-child(3) { animation-delay:.46s; } .menu-card:nth-child(4) { animation-delay:.54s; }
+    .menu-card::before { content:''; position:absolute; inset:0; border-radius:inherit; background:radial-gradient(400px circle at var(--mx,50%) var(--my,50%),rgba(249,115,22,.09),transparent 45%); opacity:0; transition:opacity .35s; pointer-events:none; }
+    .menu-card::after { content:''; position:absolute; top:0; left:20px; right:20px; height:1px; background:linear-gradient(90deg,transparent,rgba(249,115,22,.25),transparent); }
+    a.menu-card:hover { border-color:rgba(249,115,22,.35); transform:translateY(-4px); box-shadow:0 18px 50px -14px rgba(249,115,22,.25); }
+    a.menu-card:hover::before { opacity:1; }
+    a.menu-card:focus-visible { outline:2px solid var(--ember-500); outline-offset:3px; }
 
-    .hero__scroll { position:absolute; bottom:2.5rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:.5rem; }
-    .hero__scroll-text { font-size:9px; letter-spacing:.3em; text-transform:uppercase; font-family:'JetBrains Mono',monospace; color:rgba(249,115,22,.3); }
-    .hero__scroll-line { width:1px; height:2rem; background:linear-gradient(180deg,rgba(249,115,22,.4),transparent); }
+    .menu-card__top { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.5rem; }
+    .menu-card__icon { width:3rem; height:3rem; border-radius:.75rem; display:flex; align-items:center; justify-content:center;
+      background:linear-gradient(135deg,rgba(249,115,22,.14),rgba(234,88,12,.05)); border:1px solid rgba(249,115,22,.18); color:var(--ember-300); transition:transform .35s, box-shadow .35s; }
+    .menu-card__icon svg { width:1.375rem; height:1.375rem; }
+    a.menu-card:hover .menu-card__icon { transform:scale(1.06); box-shadow:0 0 24px -4px rgba(249,115,22,.35); }
+    .menu-card__num { font-family:'JetBrains Mono',monospace; font-size:.75rem; letter-spacing:.15em; color:var(--noir-600); }
 
-    /* ========================================
-       SECTIONS
-       ======================================== */
-    .section { position:relative; padding:6rem 0; }
-    @media(min-width:640px) { .section { padding:8rem 0; } }
-    @media(min-width:1024px) { .section { padding:10rem 0; } }
-    .section__header { max-width:42rem; margin-bottom:4rem; }
-    @media(min-width:640px) { .section__header { margin-bottom:5rem; } }
-    .section__eyebrow { display:flex; align-items:center; gap:.75rem; margin-bottom:1rem; }
-    .section__label { font-size:10px; letter-spacing:.35em; text-transform:uppercase; color:var(--noir-500); font-family:'JetBrains Mono',monospace; }
-    .section__title { font-size:1.875rem; font-weight:700; letter-spacing:-.025em; color:var(--noir-100); line-height:1.2; }
-    @media(min-width:640px) { .section__title { font-size:2.25rem; } }
-    @media(min-width:1024px) { .section__title { font-size:3rem; } }
-    .section__desc { margin-top:1rem; color:var(--noir-400); font-size:.875rem; line-height:1.7; max-width:32rem; }
-    @media(min-width:640px) { .section__desc { font-size:1rem; } }
+    .menu-card__title { font-size:1.125rem; font-weight:700; letter-spacing:-.01em; color:var(--noir-100); display:flex; align-items:center; gap:.5rem; }
+    .menu-card__arrow { width:1rem; height:1rem; color:var(--ember-400); opacity:.6; transition:transform .3s, opacity .3s; }
+    a.menu-card:hover .menu-card__arrow { transform:translateX(4px); opacity:1; }
+    .menu-card__desc { margin-top:.625rem; color:var(--noir-400); font-size:.8125rem; line-height:1.65; flex:1; }
 
-    /* ========================================
-       PILLAR CARDS (Ember themed)
-       ======================================== */
-    .pillar-card { position:relative; background:linear-gradient(165deg,rgba(28,28,33,.6) 0%,rgba(14,14,17,.8) 100%); border:1px solid rgba(249,115,22,.08); backdrop-filter:blur(12px); border-radius:.75rem; padding:2rem; transition:border-color .4s, transform .4s, box-shadow .4s; }
-    @media(min-width:640px) { .pillar-card { padding:2.5rem; } }
-    .pillar-card:hover { border-color:rgba(249,115,22,.2); transform:translateY(-4px); box-shadow:0 16px 48px -12px rgba(249,115,22,.12); }
-    .pillar-card::before { content:''; position:absolute; inset:0; border-radius:inherit; background:radial-gradient(600px circle at var(--mouse-x,50%) var(--mouse-y,50%),rgba(249,115,22,.06),transparent 40%); pointer-events:none; transition:opacity .4s; }
-    .pillar-card:hover::before { opacity:1; }
-    .pillar-card::after { content:''; position:absolute; top:0; left:24px; right:24px; height:1px; background:linear-gradient(90deg,transparent,rgba(249,115,22,.15),transparent); }
+    .menu-card--primary { border-color:rgba(249,115,22,.3); background:linear-gradient(165deg,rgba(249,115,22,.12) 0%,rgba(14,14,17,.9) 70%); }
+    .menu-card--soon { cursor:default; }
+    .menu-card--soon .menu-card__icon { filter:grayscale(.6); opacity:.7; }
+    .menu-card--soon .menu-card__title { color:var(--noir-300); }
+    .badge-soon { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.2em; text-transform:uppercase; padding:3px 8px; border-radius:999px; color:var(--ember-400); border:1px solid rgba(249,115,22,.25); background:rgba(249,115,22,.06); }
 
-    .card-grid { display:grid; grid-template-columns:1fr; gap:1.5rem; }
-    @media(min-width:640px) { .card-grid--2 { grid-template-columns:repeat(2,1fr); } }
-    @media(min-width:768px) { .card-grid--3 { grid-template-columns:repeat(3,1fr); } }
-    @media(min-width:1024px) { .card-grid--4 { grid-template-columns:repeat(4,1fr); } .card-grid { gap:2rem; } }
-    @media(min-width:640px) { .card-grid--2-to-4 { grid-template-columns:repeat(2,1fr); } }
-    @media(min-width:1024px) { .card-grid--2-to-4 { grid-template-columns:repeat(4,1fr); } }
+    /* FOOTER */
+    .footer { padding:2rem 0; border-top:1px solid rgba(28,28,33,.6); }
+    .footer__inner { display:flex; flex-direction:column; align-items:center; justify-content:space-between; gap:.75rem; }
+    @media(min-width:640px) { .footer__inner { flex-direction:row; } }
+    .footer__copy { color:var(--noir-600); font-size:.75rem; letter-spacing:.05em; text-align:center; }
+    .footer a { color:var(--noir-500); font-size:.75rem; transition:color .3s; }
+    .footer a:hover { color:var(--ember-400); }
 
-    /* ========================================
-       FEATURE ICON
-       ======================================== */
-    .feature-icon { background:linear-gradient(135deg,rgba(249,115,22,.1),rgba(234,88,12,.05)); border:1px solid rgba(249,115,22,.12); display:flex; align-items:center; justify-content:center; }
-    .feature-icon svg { width:1.25rem; height:1.25rem; color:rgba(253,186,116,.8); }
-    .feature-icon--sm { width:2.5rem; height:2.5rem; border-radius:.5rem; }
-    .feature-icon--lg { width:3.5rem; height:3.5rem; border-radius:50%; }
-
-    /* ========================================
-       STAT CARD
-       ======================================== */
-    .stat-card { position:relative; background:linear-gradient(165deg,rgba(28,28,33,.5) 0%,rgba(14,14,17,.7) 100%); border:1px solid rgba(249,115,22,.08); border-radius:.75rem; padding:2rem; transition:border-color .3s, box-shadow .3s; }
-    .stat-card:hover { border-color:rgba(249,115,22,.2); box-shadow:0 0 30px -10px rgba(249,115,22,.15); }
-    .stat-card__label { font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:var(--noir-500); font-family:'JetBrains Mono',monospace; margin-bottom:1rem; }
-    .stat-card__value { font-size:2.25rem; font-weight:700; font-family:'JetBrains Mono',monospace; }
-    .stat-card__note { margin-top:.75rem; color:var(--noir-500); font-size:.75rem; line-height:1.7; }
-
-    /* ========================================
-       TABLE IMAGE
-       ======================================== */
-    .table-image-container { position:relative; border-radius:1rem; overflow:hidden; border:1px solid rgba(249,115,22,.1); }
-    .table-image-container::before { content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(8,8,10,.3) 0%,transparent 30%,transparent 70%,rgba(8,8,10,.6) 100%); z-index:1; pointer-events:none; }
-    .table-image-container img { width:100%; height:auto; border-radius:1rem; background:linear-gradient(135deg,#1a0f08,#0e0e11); }
-
-    /* ========================================
-       FEATURE LIST (Overview)
-       ======================================== */
-    .feature-list { display:flex; flex-direction:column; gap:2rem; }
-    .feature-row { display:flex; gap:1rem; }
-    .feature-row__icon { flex-shrink:0; margin-top:.25rem; }
-    .feature-row__title { font-size:1.125rem; font-weight:600; color:var(--noir-100); margin-bottom:.5rem; }
-    .feature-row__text { color:var(--noir-400); font-size:.875rem; line-height:1.7; }
-
-    /* ========================================
-       OVERVIEW 2-COL
-       ======================================== */
-    .overview-grid { display:grid; grid-template-columns:1fr; gap:3rem; align-items:center; }
-    @media(min-width:1024px) { .overview-grid { grid-template-columns:1fr 1fr; gap:4rem; } }
-
-    /* ========================================
-       CONTACT CTA
-       ======================================== */
-    .contact__overlay { position:absolute; inset:0; background:linear-gradient(180deg,var(--noir-950),transparent,var(--noir-950)); pointer-events:none; }
-    .btn--ember { display:inline-flex; align-items:center; gap:.5rem; padding:.875rem 2rem; border-radius:.25rem; font-size:.75rem; letter-spacing:.15em; text-transform:uppercase; font-weight:600; background:linear-gradient(135deg,#f97316,#ea580c); color:#fff; box-shadow:0 4px 20px -4px rgba(249,115,22,.3); transition:all .3s; }
-    .btn--ember:hover { box-shadow:0 8px 30px -4px rgba(249,115,22,.5); }
-    .btn--ember svg { width:1rem; height:1rem; }
-    .btn--ember-ghost { display:inline-flex; align-items:center; gap:.5rem; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:rgba(249,115,22,.5); transition:color .3s; }
-    .btn--ember-ghost:hover { color:rgba(253,186,116,.8); }
-    .contact__buttons { margin-top:2.5rem; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem; }
-    @media(min-width:640px) { .contact__buttons { flex-direction:row; } }
-
-    /* ========================================
-       FOOTER
-       ======================================== */
-    .footer { padding:4rem 0 5rem; border-top:1px solid rgba(28,28,33,.4); }
-    @media(min-width:640px) { .footer { padding:5rem 0; } }
-    .footer__grid { display:grid; grid-template-columns:1fr; gap:3rem; }
-    @media(min-width:768px) { .footer__grid { grid-template-columns:repeat(3,1fr); gap:4rem; } }
-    .footer__brand { display:flex; align-items:center; gap:.75rem; margin-bottom:1rem; }
-    .footer__brand img { width:1.75rem; height:1.75rem; object-fit:contain; opacity:.6; aspect-ratio:1/1; }
-    .footer__brand span { font-size:.875rem; font-weight:600; letter-spacing:.25em; color:var(--noir-200); }
-    .footer__desc { color:var(--noir-500); font-size:.75rem; line-height:1.7; max-width:20rem; }
-    .footer__heading { font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:var(--noir-500); font-family:'JetBrains Mono',monospace; margin-bottom:1rem; }
-    .footer__address { color:var(--noir-400); font-size:.875rem; line-height:1.7; }
-    .footer__address p + p { margin-top:.25rem; }
-    .footer__contact { margin-top:1rem; }
-    .footer__contact > div + div { margin-top:.5rem; }
-    .footer__contact-label { font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--noir-600); font-family:'JetBrains Mono',monospace; }
-    .footer__contact a { color:var(--noir-400); font-size:.875rem; transition:color .3s; }
-    .footer__contact a:hover { color:var(--noir-200); }
-    .footer__nav { display:flex; flex-direction:column; gap:.5rem; }
-    .footer__nav a { color:var(--noir-400); font-size:.875rem; transition:color .3s; }
-    .footer__nav a:hover { color:var(--noir-200); }
-    .footer__bottom { margin-top:3.5rem; padding-top:2rem; border-top:1px solid rgba(28,28,33,.3); display:flex; flex-direction:column; align-items:center; justify-content:space-between; gap:1rem; }
-    @media(min-width:640px) { .footer__bottom { flex-direction:row; } }
-    .footer__copy { color:var(--noir-600); font-size:.75rem; letter-spacing:.05em; }
-    .footer__legal { display:flex; align-items:center; gap:1.5rem; }
-    .footer__legal a { color:var(--noir-600); font-size:.75rem; transition:color .3s; }
-    .footer__legal a:hover { color:var(--noir-400); }
-
-    /* ========================================
-       UTILITY
-       ======================================== */
-    .text-center { text-align:center; }
-    .caption { margin-top:1rem; text-align:center; font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:var(--noir-600); font-family:'JetBrains Mono',monospace; }
-
-    /* ========================================
-       DATA TABLES
-       ======================================== */
-    .data-table-wrap { overflow-x:auto; border-radius:.75rem; border:1px solid rgba(249,115,22,.08); }
-    .data-table { width:100%; border-collapse:collapse; font-size:.8125rem; }
-    .data-table th { padding:.875rem 1.25rem; font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--noir-500); font-family:'JetBrains Mono',monospace; font-weight:500; text-align:left; background:rgba(14,14,17,.6); border-bottom:1px solid rgba(249,115,22,.1); }
-    .data-table th.text-right, .data-table td.text-right { text-align:right; }
-    .data-table td { padding:.75rem 1.25rem; color:var(--noir-300); border-bottom:1px solid rgba(28,28,33,.5); }
-    .data-table tbody tr { transition:background .2s; }
-    .data-table tbody tr:hover { background:rgba(249,115,22,.03); }
-    .data-table tbody tr:last-child td { border-bottom:none; }
-    .data-table tbody tr.row-highlight { background:rgba(249,115,22,.06); }
-    .data-table tbody tr.row-highlight td { color:var(--noir-100); font-weight:600; }
-    .data-table .val-ember { font-family:'JetBrains Mono',monospace; font-weight:600; }
-    .two-tables { display:grid; grid-template-columns:1fr; gap:2rem; }
-    @media(min-width:1024px) { .two-tables { grid-template-columns:1fr 1fr; } }
-    .table-label { font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:var(--noir-500); font-family:'JetBrains Mono',monospace; margin-bottom:.75rem; }
-    .variant-tag { display:inline-block; margin-left:.5rem; padding:1px 6px; border-radius:4px; font-size:9px; letter-spacing:.15em; text-transform:uppercase; font-family:'JetBrains Mono',monospace; font-weight:500; color:var(--ember-400); border:1px solid rgba(249,115,22,.25); background:rgba(249,115,22,.06); vertical-align:middle; }
-    .variant-callout { margin-top:2rem; position:relative; display:grid; grid-template-columns:1fr; gap:1.5rem; align-items:center; background:linear-gradient(165deg,rgba(28,28,33,.55) 0%,rgba(14,14,17,.75) 100%); border:1px solid rgba(249,115,22,.12); border-radius:.75rem; padding:1.75rem 2rem; overflow:hidden; transition:border-color .3s, box-shadow .3s; }
-    .variant-callout::before { content:''; position:absolute; left:0; top:0; bottom:0; width:2px; background:linear-gradient(180deg,transparent,rgba(249,115,22,.7),transparent); }
-    .variant-callout:hover { border-color:rgba(249,115,22,.25); box-shadow:0 0 30px -10px rgba(249,115,22,.2); }
-    @media(min-width:768px) { .variant-callout { grid-template-columns:1fr auto; gap:2.5rem; } }
-    .variant-callout__title { font-size:1rem; font-weight:600; color:var(--noir-100); letter-spacing:-.025em; margin:.5rem 0 .5rem; }
-    .variant-callout__text { color:var(--noir-400); font-size:.8125rem; line-height:1.7; max-width:40rem; }
-    .variant-callout__stat { text-align:left; }
-    @media(min-width:768px) { .variant-callout__stat { text-align:right; } }
-    .variant-callout__value { font-family:'JetBrains Mono',monospace; font-weight:700; font-size:2.25rem; line-height:1; }
-    .variant-callout__note { margin-top:.5rem; font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--noir-500); font-family:'JetBrains Mono',monospace; }
+    @media (prefers-reduced-motion: reduce) { * { animation:none !important; transition:none !important; } }
   </style>
 </head>
 
 <body>
 
-  <!-- Film-Grain Overlay -->
-  
-
-  <!-- ======================== NAVIGATION ======================== -->
-  <nav id="navbar" class="navbar">
+  <nav class="navbar">
     <div class="container">
       <div class="navbar__inner">
         <a href="index.html" class="navbar__logo" aria-label="ENTROPY LLC Home">
           <picture><source srcset="logos/banner_entropy_transparent_back.webp" type="image/webp"><img src="logos/banner_entropy_transparent_back.png" alt="Entropy" class="navbar__logo-img" /></picture>
           <span class="navbar__logo-text">ENTROPY</span>
         </a>
-        <div class="navbar__links">
-          <a href="burn-it-how-to-play.html" class="nav-link">How to Play</a>
-          <a href="index.html#projects" class="nav-link">Projects</a>
-          <a href="index.html#contact" class="nav-link">Contact</a>
-        </div>
-        <button id="mobile-toggle" class="navbar__toggle" aria-label="Toggle menu">
-          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-            <path stroke-linecap="round" d="M4 8h16M4 16h16" />
-          </svg>
-        </button>
-      </div>
-    </div>
-    <div id="mobile-menu" class="mobile-menu">
-      <div class="mobile-menu__inner">
-        <a href="burn-it-how-to-play.html">How to Play</a>
-        <a href="index.html#projects">Projects</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="index.html#projects" class="back-arrow" id="back-to-projects">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" /></svg>
+          Projects
+        </a>
       </div>
     </div>
   </nav>
 
-  <main>
+  <main class="hub">
+    <div class="hub__glow" aria-hidden="true"></div>
+    <div class="hub__grid-bg" aria-hidden="true"></div>
 
-  <!-- ======================== HERO SECTION ======================== -->
-  <section id="hero" class="hero">
-    <div class="hero__vline hero__vline--1" aria-hidden="true"></div>
-    <div class="hero__vline hero__vline--2" aria-hidden="true"></div>
-    <div class="hero__vline hero__vline--3" aria-hidden="true"></div>
-    
-    
-
-    <div class="hero__content">
-      <!-- Back Link -->
-      <div class="hero__back">
-        <a href="index.html#projects" class="back-arrow">
-          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-          </svg>
-          Back to Projects
-        </a>
+    <div class="container hub__content">
+      <div class="hub__eyebrow">
+        <span class="hub__eyebrow-line"></span>
+        <span class="hub__eyebrow-text">Casino Table Game</span>
+        <span class="hub__eyebrow-line"></span>
       </div>
 
-      <!-- Eyebrow -->
-      <div class="hero__eyebrow">
-        <span class="hero__eyebrow-line"></span>
-        <span class="hero__eyebrow-text">Casino Table Game</span>
-        <span class="hero__eyebrow-line"></span>
+      <h1 class="hub__title">Burn It™</h1>
+      <div class="hub__logo">
+        <img src="logos/burnit_banner_final.png" alt="Burn It™ logo" width="800" height="517" />
       </div>
 
-      <!-- Logo -->
-      <div class="hero__logo">
-        <img src="logos/burnit_banner_final.png" alt="Burn It Logo" class="logo-glow" />
-      </div>
-
-      <!-- Tagline -->
-      <p class="hero__tagline">
-        A fast-paced, multi-phase high-card shoe game where <br class="hidden-sm" />
+      <p class="hub__tagline">
+        A fast-paced, multi-phase high-card shoe game where
         <span class="text-ember-gradient" style="font-weight:500;">players control the action</span>.
       </p>
 
-      <!-- Quick Stats Row -->
-      <div class="hero__stats">
-        <div class="hero__stat">
-          <div class="hero__stat-value text-ember-gradient">6–8</div>
-          <div class="hero__stat-label">Deck Shoe</div>
-        </div>
-        <div class="hero__stat-divider"></div>
-        <div class="hero__stat">
-          <div class="hero__stat-value text-ember-gradient">1–6</div>
-          <div class="hero__stat-label">Players</div>
-        </div>
-        <div class="hero__stat-divider"></div>
-        <div class="hero__stat">
-          <div class="hero__stat-value text-ember-gradient">1:1</div>
-          <div class="hero__stat-label">Main Payout</div>
-        </div>
-      </div>
-
-      <!-- CTA -->
-      <div class="hero__cta-wrap">
-        <a href="#overview" class="btn--ember-outline">
-          Learn More
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
+      <nav class="menu" aria-label="Burn It menu">
+        <!-- 1. About -->
+        <a href="burn-it-about.html" class="menu-card menu-card--primary" id="menu-about">
+          <div class="menu-card__top">
+            <div class="menu-card__icon">
+              <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" /></svg>
+            </div>
+            <span class="menu-card__num">01</span>
+          </div>
+          <h2 class="menu-card__title">About the Game
+            <svg class="menu-card__arrow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+          </h2>
+          <p class="menu-card__desc">Overview, key features, game specs and the math behind <span class="font-brand">Burn It</span>™.</p>
         </a>
-      </div>
 
-      <!-- Scroll Indicator -->
-      <div class="hero__scroll">
-        <span class="hero__scroll-text">Scroll</span>
-        <div class="hero__scroll-line"></div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="rule-glow" aria-hidden="true" />
-
-  <!-- ======================== GAME OVERVIEW ======================== -->
-  <section id="overview" class="section">
-    <div class="container">
-      <div class="section__header reveal">
-        <div class="section__eyebrow">
-          <div class="marker-dot"></div>
-          <span class="section__label">01 — Overview</span>
-        </div>
-        <h2 class="section__title">
-          The game<br class="hidden-sm" /> <span class="text-ember-gradient">redefined</span>.
-        </h2>
-        <p class="section__desc">
-          <span class="font-brand">Burn It</span>™ is an original casino table game that combines the speed and simplicity of high-card mechanics with
-          layered strategic decisions — creating a gaming experience unlike anything currently on the casino floor.
-        </p>
-      </div>
-
-      <div class="overview-grid">
-        <!-- Left: Features -->
-        <div class="feature-list reveal" style="transition-delay:.1s;">
-          <div class="feature-row">
-            <div class="feature-row__icon"><div class="feature-icon feature-icon--sm">
-              <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
-            </div></div>
-            <div>
-              <h3 class="feature-row__title">Fast-Paced Shoe Game</h3>
-              <p class="feature-row__text">Played from a standard 6 or 8 deck shoe with no cards removed. Each round is quick but packed with decision points that keep both players and spectators engaged.</p>
+        <!-- 2. Hand Examples -->
+        <a href="burn-it-how-to-play.html" class="menu-card" id="menu-hand-examples">
+          <div class="menu-card__top">
+            <div class="menu-card__icon">
+              <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0l4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0l-5.571 3-5.571-3" /></svg>
             </div>
+            <span class="menu-card__num">02</span>
           </div>
-          <div class="feature-row">
-            <div class="feature-row__icon"><div class="feature-icon feature-icon--sm">
-              <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" /></svg>
-            </div></div>
-            <div>
-              <h3 class="feature-row__title">Multi-Phase Decision Making</h3>
-              <p class="feature-row__text">Players face meaningful choices across multiple phases of play — including options to Stand, Burn, or Outburn — giving them genuine agency over the outcome of every hand.</p>
-            </div>
-          </div>
-          <div class="feature-row">
-            <div class="feature-row__icon"><div class="feature-icon feature-icon--sm">
-              <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1.001A3.75 3.75 0 0012 18z" /></svg>
-            </div></div>
-            <div>
-              <h3 class="feature-row__title">Manipulate the Dealer's Hand</h3>
-              <p class="feature-row__text">Unlike traditional table games, <span class="font-brand">Burn It</span>™ introduces a mechanic where strategic player actions directly influence how the dealer's hand is resolved — a first-of-its-kind feature in casino gaming.</p>
-            </div>
-          </div>
-          <div class="feature-row">
-            <div class="feature-row__icon"><div class="feature-icon feature-icon--sm">
-              <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            </div></div>
-            <div>
-              <h3 class="feature-row__title">Multiple Wagering Options</h3>
-              <p class="feature-row__text">The game features a main wager with optional side bets that add depth without complexity — including opportunities to increase stakes mid-hand for aggressive players.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right: Table Layout Image -->
-        <div class="reveal" style="transition-delay:.3s;">
-          <div class="table-image-container">
-            <picture><source srcset="logos/felt_with_cards_chips_transparent.webp" type="image/webp"><img src="logos/felt_with_cards_chips_transparent.png" alt="Burn It Table Layout" loading="lazy" width="724" height="468" /></picture>
-          </div>
-          <p class="caption">Table Layout Concept — <span class="font-brand">Burn It</span>™</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="rule-glow" aria-hidden="true" />
-
-  <!-- ======================== HOW IT WORKS ======================== -->
-  <section id="how-it-works" class="section dot-grid" style="position:relative;">
-    <div class="contact__overlay" aria-hidden="true"></div>
-    <div class="container" style="position:relative; z-index:10;">
-      <div class="section__header reveal">
-        <div class="section__eyebrow">
-          <div class="marker-dot"></div>
-          <span class="section__label">02 — How It Works</span>
-        </div>
-        <h2 class="section__title">
-          Simple to learn.<br class="hidden-sm" /> <span class="text-ember-gradient">Deep to master</span>.
-        </h2>
-        <p class="section__desc">
-          <span class="font-brand">Burn It</span>™ is built on a straightforward high-card comparison — but layers of strategic choice transform
-          every hand into a dynamic experience.
-        </p>
-      </div>
-
-      <div class="card-grid card-grid--2-to-4">
-        <div class="pillar-card text-center reveal" style="transition-delay:.1s;">
-          <div class="feature-icon feature-icon--lg" style="margin:0 auto 1.25rem;">
-            <span class="text-ember-gradient" style="font-size:1.25rem;font-weight:700;font-family:'JetBrains Mono',monospace;">01</span>
-          </div>
-          <h3 style="font-size:1rem;font-weight:600;color:var(--noir-100);letter-spacing:-.025em;margin-bottom:.75rem;">Place Your Wager</h3>
-          <p style="color:var(--noir-400);font-size:.8125rem;line-height:1.7;">Each player places a main wager before any cards are dealt. Optional side bets are available at this time.</p>
-        </div>
-        <div class="pillar-card text-center reveal" style="transition-delay:.2s;">
-          <div class="feature-icon feature-icon--lg" style="margin:0 auto 1.25rem;">
-            <span class="text-ember-gradient" style="font-size:1.25rem;font-weight:700;font-family:'JetBrains Mono',monospace;">02</span>
-          </div>
-          <h3 style="font-size:1rem;font-weight:600;color:var(--noir-100);letter-spacing:-.025em;margin-bottom:.75rem;">Receive Your Cards</h3>
-          <p style="color:var(--noir-400);font-size:.8125rem;line-height:1.7;">The dealer gives each player one face-up card and one face-down card. The dealer also receives two cards.</p>
-        </div>
-        <div class="pillar-card text-center reveal" style="transition-delay:.3s;">
-          <div class="feature-icon feature-icon--lg" style="margin:0 auto 1.25rem;">
-            <span class="text-ember-gradient" style="font-size:1.25rem;font-weight:700;font-family:'JetBrains Mono',monospace;">03</span>
-          </div>
-          <h3 style="font-size:1rem;font-weight:600;color:var(--noir-100);letter-spacing:-.025em;margin-bottom:.75rem;">Make Your Move</h3>
-          <p style="color:var(--noir-400);font-size:.8125rem;line-height:1.7;">Choose to Stand, Burn, or Outburn — each option carrying different strategic implications for your hand.</p>
-        </div>
-        <div class="pillar-card text-center reveal" style="transition-delay:.4s;">
-          <div class="feature-icon feature-icon--lg" style="margin:0 auto 1.25rem;">
-            <span class="text-ember-gradient" style="font-size:1.25rem;font-weight:700;font-family:'JetBrains Mono',monospace;">04</span>
-          </div>
-          <h3 style="font-size:1rem;font-weight:600;color:var(--noir-100);letter-spacing:-.025em;margin-bottom:.75rem;">Beat the Dealer</h3>
-          <p style="color:var(--noir-400);font-size:.8125rem;line-height:1.7;">The dealer reveals their cards and resolves the hand. Highest card wins — simple, exciting, and rewarding.</p>
-        </div>
-      </div>
-
-      <!-- How to Play CTA -->
-      <div class="reveal" style="margin-top:4rem;text-align:center;">
-        <a href="burn-it-how-to-play.html" class="btn--ember" style="font-size:.8125rem;padding:1rem 2.5rem;">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width:1.125rem;height:1.125rem;">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
-          </svg>
-          See It In Action — Hand Examples
+          <h2 class="menu-card__title">Hand Examples
+            <svg class="menu-card__arrow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+          </h2>
+          <p class="menu-card__desc">Walk through real hands with step-by-step illustrations of Stand, Burn and Outburn.</p>
         </a>
-        <p style="margin-top:1rem;color:var(--noir-500);font-size:.8125rem;">Walk through real hands with step-by-step illustrations</p>
-      </div>
+
+        <!-- 3. Watch the Game (video coming soon) -->
+        <div class="menu-card menu-card--soon" id="menu-watch" aria-disabled="true">
+          <div class="menu-card__top">
+            <div class="menu-card__icon">
+              <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112z" /></svg>
+            </div>
+            <span class="badge-soon">Coming Soon</span>
+          </div>
+          <h2 class="menu-card__title">Watch the Game Played</h2>
+          <p class="menu-card__desc">See a full round of <span class="font-brand">Burn It</span>™ dealt live at the table on video.</p>
+        </div>
+
+        <!-- 4. Play Demo -->
+        <a href="https://burn-it-demo.vercel.app" target="_blank" rel="noopener" class="menu-card" id="menu-demo">
+          <div class="menu-card__top">
+            <div class="menu-card__icon">
+              <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.25 6.087c0-.355.186-.676.401-.959.221-.29.349-.634.349-1.003 0-1.036-1.007-1.875-2.25-1.875s-2.25.84-2.25 1.875c0 .369.128.713.349 1.003.215.283.401.604.401.959v0a.64.64 0 01-.657.643 48.39 48.39 0 01-4.163-.3c.186 1.613.293 3.25.315 4.907a.656.656 0 01-.658.663v0c-.355 0-.676-.186-.959-.401a1.647 1.647 0 00-1.003-.349c-1.036 0-1.875 1.007-1.875 2.25s.84 2.25 1.875 2.25c.369 0 .713-.128 1.003-.349.283-.215.604-.401.959-.401v0c.31 0 .555.26.532.57a48.039 48.039 0 01-.642 5.056c1.518.19 3.058.309 4.616.354a.64.64 0 00.657-.643v0c0-.355-.186-.676-.401-.959a1.647 1.647 0 01-.349-1.003c0-1.035 1.008-1.875 2.25-1.875 1.243 0 2.25.84 2.25 1.875 0 .369-.128.713-.349 1.003-.215.283-.4.604-.4.959v0c0 .333.277.599.61.58a48.1 48.1 0 005.427-.63 48.05 48.05 0 00.582-4.717.532.532 0 00-.533-.57v0c-.355 0-.676.186-.959.401-.29.221-.634.349-1.003.349-1.035 0-1.875-1.007-1.875-2.25s.84-2.25 1.875-2.25c.37 0 .713.128 1.003.349.283.215.604.401.96.401v0a.656.656 0 00.658-.663 48.422 48.422 0 00-.37-5.36c-1.886.342-3.81.574-5.766.689a.578.578 0 01-.61-.58v0z" /></svg>
+            </div>
+            <span class="menu-card__num">04</span>
+          </div>
+          <h2 class="menu-card__title">Play Demo
+            <svg class="menu-card__arrow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>
+          </h2>
+          <p class="menu-card__desc">Take a seat and try <span class="font-brand">Burn It</span>™ yourself in an interactive demo.</p>
+        </a>
+      </nav>
     </div>
-  </section>
-
-  <hr class="rule-glow" aria-hidden="true" />
-
-  <!-- ======================== KEY FEATURES ======================== -->
-  <section id="features" class="section">
-    <div class="container">
-      <div class="section__header reveal">
-        <div class="section__eyebrow">
-          <div class="marker-dot"></div>
-          <span class="section__label">03 — Key Features</span>
-        </div>
-        <h2 class="section__title">
-          Engineered for<br class="hidden-sm" /> <span class="text-ember-gradient">the floor</span>.
-        </h2>
-        <p class="section__desc">
-          Every element of <span class="font-brand">Burn It</span>™ is designed to maximize player engagement while maintaining operational efficiency for the house.
-        </p>
-      </div>
-
-      <div class="card-grid card-grid--3">
-        <div class="pillar-card reveal" style="transition-delay:.1s;">
-          <div class="feature-icon feature-icon--sm" style="margin-bottom:1.25rem;"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div>
-          <h3 style="font-size:1rem;font-weight:600;color:var(--noir-100);letter-spacing:-.025em;margin-bottom:.5rem;">Rapid Game Pace</h3>
-          <p style="color:var(--noir-400);font-size:.8125rem;line-height:1.7;">High hands-per-hour throughput keeps the energy on the floor while maintaining an exciting player experience.</p>
-        </div>
-        <div class="pillar-card reveal" style="transition-delay:.15s;">
-          <div class="feature-icon feature-icon--sm" style="margin-bottom:1.25rem;"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" /></svg></div>
-          <h3 style="font-size:1rem;font-weight:600;color:var(--noir-100);letter-spacing:-.025em;margin-bottom:.5rem;">Up to 6 Players</h3>
-          <p style="color:var(--noir-400);font-size:.8125rem;line-height:1.7;">Designed for a full table of up to six players, creating a social and competitive atmosphere at every seat.</p>
-        </div>
-        <div class="pillar-card reveal" style="transition-delay:.2s;">
-          <div class="feature-icon feature-icon--sm" style="margin-bottom:1.25rem;"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg></div>
-          <h3 style="font-size:1rem;font-weight:600;color:var(--noir-100);letter-spacing:-.025em;margin-bottom:.5rem;">Mathematically Certified</h3>
-          <p style="color:var(--noir-400);font-size:.8125rem;line-height:1.7;">All probability models and return-to-player calculations have been rigorously analyzed and independently verified.</p>
-        </div>
-        <div class="pillar-card reveal" style="transition-delay:.25s;">
-          <div class="feature-icon feature-icon--sm" style="margin-bottom:1.25rem;"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg></div>
-          <h3 style="font-size:1rem;font-weight:600;color:var(--noir-100);letter-spacing:-.025em;margin-bottom:.5rem;">Easy Dealer Procedures</h3>
-          <p style="color:var(--noir-400);font-size:.8125rem;line-height:1.7;">Streamlined dealing procedures minimize training requirements while keeping the game flowing at an optimal pace.</p>
-        </div>
-        <div class="pillar-card reveal" style="transition-delay:.3s;">
-          <div class="feature-icon feature-icon--sm" style="margin-bottom:1.25rem;"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg></div>
-          <h3 style="font-size:1rem;font-weight:600;color:var(--noir-100);letter-spacing:-.025em;margin-bottom:.5rem;">Standard Equipment</h3>
-          <p style="color:var(--noir-400);font-size:.8125rem;line-height:1.7;">Uses standard 52-card decks dealt from a shoe — no proprietary equipment required for deployment.</p>
-        </div>
-        <div class="pillar-card reveal" style="transition-delay:.35s;">
-          <div class="feature-icon feature-icon--sm" style="margin-bottom:1.25rem;"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" /></svg></div>
-          <h3 style="font-size:1rem;font-weight:600;color:var(--noir-100);letter-spacing:-.025em;margin-bottom:.5rem;">Competitive House Edge</h3>
-          <p style="color:var(--noir-400);font-size:.8125rem;line-height:1.7;">A balanced RTP keeps players engaged longer while generating sustainable table revenue for operators. A high-hold variant is also available.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="rule-glow" aria-hidden="true" />
-
-  <!-- ======================== GAME SPECIFICATIONS ======================== -->
-  <section id="specs" class="section">
-    <div class="container">
-      <div class="section__header reveal">
-        <div class="section__eyebrow">
-          <div class="marker-dot"></div>
-          <span class="section__label">04 — Specifications</span>
-        </div>
-        <h2 class="section__title">
-          Built on<br class="hidden-sm" /> <span class="text-ember-gradient">precision math</span>.
-        </h2>
-        <p class="section__desc">
-          Every probability has been computed, every edge case accounted for. <span class="font-brand">Burn It</span>™ is backed by rigorous
-          mathematical analysis across both 6-deck and 8-deck configurations.
-        </p>
-      </div>
-
-      <div class="card-grid card-grid--3">
-        <div class="stat-card reveal" style="transition-delay:.1s;">
-          <div class="stat-card__label">Deck Options</div>
-          <div style="display:flex;align-items:baseline;gap:.5rem;">
-            <span class="stat-card__value text-ember-gradient">6</span>
-            <span style="color:var(--noir-500);font-size:.875rem;">or</span>
-            <span class="stat-card__value text-ember-gradient">8</span>
-          </div>
-          <p class="stat-card__note">Standard 52-card decks per shoe. No cards removed.</p>
-        </div>
-        <div class="stat-card reveal" style="transition-delay:.15s;">
-          <div class="stat-card__label">Max Players</div>
-          <div style="display:flex;align-items:baseline;gap:.25rem;">
-            <span class="stat-card__value text-ember-gradient">6</span>
-            <span style="color:var(--noir-500);font-size:.875rem;margin-left:.5rem;">per table</span>
-          </div>
-          <p class="stat-card__note">Full table capacity for maximum floor revenue.</p>
-        </div>
-        <div class="stat-card reveal" style="transition-delay:.2s;">
-          <div class="stat-card__label">Card Ranking</div>
-          <div style="display:flex;align-items:baseline;gap:.25rem;">
-            <span class="stat-card__value text-ember-gradient">A</span>
-            <span style="color:var(--noir-500);font-size:1.125rem;margin:0 .25rem;">→</span>
-            <span class="stat-card__value text-ember-gradient">2</span>
-          </div>
-          <p class="stat-card__note">Ace high through deuce. Standard ranking, instant familiarity.</p>
-        </div>
-        <div class="stat-card reveal" style="transition-delay:.25s;">
-          <div class="stat-card__label">Main Payout</div>
-          <span class="stat-card__value text-ember-gradient">1:1</span>
-          <p class="stat-card__note">Even money on the main wager. Clean and straightforward.</p>
-        </div>
-        <div class="stat-card reveal" style="transition-delay:.3s;">
-          <div class="stat-card__label">Player Actions</div>
-          <div style="display:flex;align-items:baseline;gap:.25rem;">
-            <span class="stat-card__value text-ember-gradient">3</span>
-            <span style="color:var(--noir-500);font-size:.875rem;margin-left:.5rem;">core choices</span>
-          </div>
-          <p class="stat-card__note">Stand, Burn, or Outburn — each a distinct strategic path.</p>
-        </div>
-        <div class="stat-card reveal" style="transition-delay:.35s;">
-          <div class="stat-card__label">Wager Types</div>
-          <span class="stat-card__value text-ember-gradient">3+</span>
-          <p class="stat-card__note">Main wager, conditional Strike, Outburn double-down, and Match the Dealer side bet.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="rule-glow" aria-hidden="true" />
-
-  <!-- ======================== HOUSE EDGE & MATHEMATICS ======================== -->
-  <section id="math" class="section dot-grid" style="position:relative;">
-    <div class="contact__overlay" aria-hidden="true"></div>
-    <div class="container" style="position:relative; z-index:10;">
-      <div class="section__header reveal">
-        <div class="section__eyebrow">
-          <div class="marker-dot"></div>
-          <span class="section__label">05 — Mathematics</span>
-        </div>
-        <h2 class="section__title">
-          Proven by<br class="hidden-sm" /> <span class="text-ember-gradient">the numbers</span>.
-        </h2>
-        <p class="section__desc">
-          Every probability has been independently verified. <span class="font-brand">Burn It</span>™ delivers a competitive house edge that keeps players at the table longer.
-        </p>
-      </div>
-
-      <div class="two-tables">
-        <!-- Burn It Key Metrics -->
-        <div class="reveal" style="transition-delay:.1s;">
-          <div class="table-label"><span class="font-brand">Burn It</span>™ — Key Metrics</div>
-          <div class="data-table-wrap">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Metric</th>
-                  <th class="text-right">6-Deck</th>
-                  <th class="text-right">8-Deck</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>House Edge (Base Wager)</td>
-                  <td class="text-right"><span class="val-ember text-ember-gradient">0.70%</span></td>
-                  <td class="text-right"><span class="val-ember text-ember-gradient">0.74%</span></td>
-                </tr>
-                <tr>
-                  <td>RTP (Base Wager)</td>
-                  <td class="text-right"><span class="val-ember text-ember-gradient">99.30%</span></td>
-                  <td class="text-right"><span class="val-ember text-ember-gradient">99.26%</span></td>
-                </tr>
-                <tr>
-                  <td>RTP (Total Wager)</td>
-                  <td class="text-right"><span class="val-ember text-ember-gradient">99.49%</span></td>
-                  <td class="text-right"><span class="val-ember text-ember-gradient">99.46%</span></td>
-                </tr>
-                <tr>
-                  <td>Player Win Frequency</td>
-                  <td class="text-right"><span class="val-ember text-ember-gradient">51.11%</span></td>
-                  <td class="text-right"><span class="val-ember text-ember-gradient">51.05%</span></td>
-                </tr>
-                <tr>
-                  <td>Match the Dealer Edge</td>
-                  <td class="text-right"><span class="val-ember">7.37%</span></td>
-                  <td class="text-right"><span class="val-ember">5.26%</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- Competitive Comparison -->
-        <div class="reveal" style="transition-delay:.25s;">
-          <div class="table-label">Industry Comparison — House Edge</div>
-          <div class="data-table-wrap">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Game</th>
-                  <th class="text-right">House Edge</th>
-                  <th class="text-right">Hands/Hr</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Spanish 21</td>
-                  <td class="text-right"><span class="val-ember">0.40 – 0.76%</span></td>
-                  <td class="text-right">60–65</td>
-                </tr>
-                <tr>
-                  <td>Blackjack</td>
-                  <td class="text-right"><span class="val-ember">0.50 – 2.00%</span></td>
-                  <td class="text-right">60–65</td>
-                </tr>
-                <tr class="row-highlight">
-                  <td><span class="font-brand">Burn It</span>™</td>
-                  <td class="text-right"><span class="val-ember text-ember-gradient">0.70 – 0.74%</span></td>
-                  <td class="text-right">60–65</td>
-                </tr>
-                <tr>
-                  <td>Baccarat (Banker)</td>
-                  <td class="text-right"><span class="val-ember">1.06%</span></td>
-                  <td class="text-right">60–70</td>
-                </tr>
-                <tr class="row-highlight">
-                  <td><span class="font-brand">Burn It</span>™<span class="variant-tag">High-Hold</span></td>
-                  <td class="text-right"><span class="val-ember text-ember-gradient">≈ 1.9%</span></td>
-                  <td class="text-right">60–65</td>
-                </tr>
-                <tr>
-                  <td>Ultimate Texas Hold'em</td>
-                  <td class="text-right"><span class="val-ember">2.40%</span></td>
-                  <td class="text-right">50–60</td>
-                </tr>
-                <tr>
-                  <td>Three Card Poker</td>
-                  <td class="text-right"><span class="val-ember">3.37%</span></td>
-                  <td class="text-right">35–45</td>
-                </tr>
-                <tr>
-                  <td>American Roulette</td>
-                  <td class="text-right"><span class="val-ember">5.26%</span></td>
-                  <td class="text-right">30–35</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- High-Hold Variant -->
-      <div class="variant-callout reveal" style="transition-delay:.35s;">
-        <div>
-          <div class="table-label" style="margin-bottom:0;">Operator Option</div>
-          <h3 class="variant-callout__title"><span class="font-brand">Burn It</span>™ High-Hold Variant</h3>
-          <p class="variant-callout__text">
-            A single rule adjustment raises the house edge for operators who want a higher table hold: the Strike Fee is refunded <strong style="color:var(--noir-200);">only on a player win</strong>, and is forfeited on a push. Everything else stays the same: gameplay, procedures, and equipment.
-          </p>
-        </div>
-        <div class="variant-callout__stat">
-          <div class="variant-callout__value text-ember-gradient">≈ 1.9%</div>
-          <div class="variant-callout__note">House Edge · Base Wager</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="rule-glow" aria-hidden="true" />
-
-  <!-- ======================== CONTACT CTA ======================== -->
-  <section id="contact" class="section dot-grid" style="position:relative;">
-    <div class="contact__overlay" aria-hidden="true"></div>
-    <div class="container" style="position:relative; z-index:10; max-width:48rem; text-align:center;">
-      <div class="reveal">
-        <div class="section__eyebrow" style="justify-content:center;">
-          <div class="marker-dot"></div>
-          <span class="section__label">06 — Inquiries</span>
-        </div>
-        <h2 class="section__title" style="text-align:center;">
-          Interested in<br /> <span class="text-ember-gradient font-brand">Burn It</span>™?
-        </h2>
-        <p class="section__desc" style="max-width:32rem;margin:1rem auto 0;">
-          For licensing inquiries, partnership opportunities, or detailed game documentation — connect with ENTROPY LLC.
-          Full game rules and mathematical certifications are available upon request.
-        </p>
-        <div class="contact__buttons">
-          <a href="mailto:info@entropyconcepts.com" class="btn--ember">
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-            </svg>
-            Contact for Licensing
-          </a>
-          <a href="index.html#projects" class="btn--ember-ghost">← Back to All Projects</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="rule-glow" aria-hidden="true" />
-
   </main>
 
-  <!-- ======================== FOOTER ======================== -->
-  <footer id="footer" class="footer">
-    <div class="container">
-      <div class="footer__grid">
-        <div>
-          <div class="footer__brand">
-            <picture><source srcset="logos/banner_entropy_transparent_back.webp" type="image/webp"><img src="logos/banner_entropy_transparent_back.png" alt="Entropy" loading="lazy" /></picture>
-            <span>ENTROPY LLC</span>
-          </div>
-          <p class="footer__desc">A disciplined incubator developing proprietary digital products and probability-driven systems.</p>
-        </div>
-        <div>
-          <h4 class="footer__heading">Headquarters</h4>
-          <address class="footer__address">
-            <p>221 Main St Ste R</p>
-            <p>Nashua, NH 03060, USA</p>
-          </address>
-          <div class="footer__contact">
-            <div>
-              <span class="footer__contact-label">Partnerships</span>
-              <p><a href="mailto:info@entropyconcepts.com">info@entropyconcepts.com</a></p>
-            </div>
-            <div>
-              <span class="footer__contact-label">General Inquiries</span>
-              <p><a href="mailto:contact@entropyconcepts.com">contact@entropyconcepts.com</a></p>
-            </div>
-          </div>
-        </div>
-        <div>
-          <h4 class="footer__heading">Navigation</h4>
-          <nav class="footer__nav" aria-label="Footer navigation">
-            <a href="index.html">Home</a>
-            <a href="#overview">Overview</a>
-            <a href="#how-it-works">How It Works</a>
-            <a href="burn-it-how-to-play.html">How to Play</a>
-            <a href="#features">Features</a>
-            <a href="#specs">Specifications</a>
-            <a href="#math">Mathematics</a>
-            <a href="#contact">Contact</a>
-          </nav>
-        </div>
-      </div>
-      <div class="footer__bottom">
-        <p class="footer__copy">&copy; 2026 ENTROPY LLC. All rights reserved. <span class="font-brand">Burn It</span>™ is a trademark of ENTROPY LLC.</p>
-        <div class="footer__legal">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-        </div>
-      </div>
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__copy">&copy; 2026 ENTROPY LLC. <span class="font-brand">Burn It</span>™ is a trademark of ENTROPY LLC.</p>
+      <a href="mailto:info@entropyconcepts.com">info@entropyconcepts.com</a>
     </div>
   </footer>
 
-  <!-- ======================== SCRIPTS ======================== -->
   <script>
-    const navbar = document.getElementById('navbar');
-    const onScroll = () => {
-      if (window.scrollY > 40) { navbar.classList.add('navbar--scrolled'); }
-      else { navbar.classList.remove('navbar--scrolled'); }
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-
-    const toggle = document.getElementById('mobile-toggle');
-    const menu = document.getElementById('mobile-menu');
-    toggle.addEventListener('click', () => menu.classList.toggle('open'));
-    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
-      });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    document.querySelectorAll('.pillar-card').forEach(card => {
+    document.querySelectorAll('a.menu-card').forEach(card => {
       card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        card.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
-        card.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        card.style.setProperty('--my', (e.clientY - r.top) + 'px');
       });
     });
   </script>
