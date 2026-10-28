@@ -76,20 +76,28 @@
     .hub__eyebrow-line { width:2rem; height:1px; background:rgba(249,115,22,.3); }
     .hub__eyebrow-text { font-size:10px; letter-spacing:.4em; text-transform:uppercase; font-family:'JetBrains Mono',monospace; color:rgba(249,115,22,.7); }
 
-    .hub__logo { animation:fadeInUp .8s .1s ease-out both; }
-    .hub__logo img { width:min(90vw,40rem); margin:0 auto; aspect-ratio:800/517; }
     .hub__title { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
-    .hub__tagline { margin-top:.5rem; font-size:1rem; color:var(--noir-300); font-weight:300; letter-spacing:.03em; animation:fadeInUp .8s .2s ease-out both; }
+    .hub__tagline { margin-top:2.5rem; font-size:1rem; color:var(--noir-300); font-weight:300; letter-spacing:.03em; animation:fadeInUp .8s .7s ease-out both; }
     @media(min-width:640px) { .hub__tagline { font-size:1.125rem; } }
 
+    /* STAGE: faded phoenix behind, menu on top.
+       padding-top is a % of width, so cards always start just under the "BURN IT" wordmark in the image. */
+    .stage { position:relative; max-width:72rem; margin:0 auto; padding-top:32%; }
+    @media(min-width:640px) { .stage { padding-top:20%; } }
+    @media(min-width:1024px) { .stage { padding-top:21%; } }
+    .stage__phoenix { position:absolute; top:0; left:-35%; width:170%; max-width:none; height:auto; pointer-events:none; user-select:none;
+      opacity:.32; filter:drop-shadow(0 0 40px rgba(249,115,22,.35)); animation:phoenixIn 1.4s ease-out both; }
+    @media(min-width:640px) { .stage__phoenix { left:-5%; width:110%; } }
+    @media(min-width:1024px) { .stage__phoenix { left:-15%; width:130%; } }
+    @keyframes phoenixIn { 0% { opacity:0; transform:scale(.96); } 100% { opacity:.32; transform:scale(1); } }
+
     /* MENU */
-    .menu { margin-top:3rem; display:grid; grid-template-columns:1fr; gap:1rem; text-align:left; }
-    @media(min-width:640px) { .menu { grid-template-columns:repeat(2,1fr); gap:1.25rem; } }
-    @media(min-width:1024px) { .menu { grid-template-columns:repeat(4,1fr); } }
+    .menu { position:relative; z-index:1; max-width:46rem; margin:0 auto; display:grid; grid-template-columns:repeat(2,1fr); gap:.75rem; text-align:left; }
+    @media(min-width:640px) { .menu { gap:1.25rem; } }
 
     .menu-card { position:relative; display:flex; flex-direction:column; padding:1.75rem 1.5rem 1.5rem; border-radius:.875rem;
-      background:linear-gradient(165deg,rgba(28,28,33,.65) 0%,rgba(14,14,17,.85) 100%); border:1px solid rgba(249,115,22,.1);
-      backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); overflow:hidden;
+      background:linear-gradient(165deg,rgba(28,28,33,.45) 0%,rgba(14,14,17,.6) 100%); border:1px solid rgba(249,115,22,.14);
+      backdrop-filter:blur(3px); -webkit-backdrop-filter:blur(3px); overflow:hidden;
       transition:border-color .35s, transform .35s, box-shadow .35s; animation:fadeInUp .7s ease-out both; }
     .menu-card:nth-child(1) { animation-delay:.3s; } .menu-card:nth-child(2) { animation-delay:.38s; }
     .menu-card:nth-child(3) { animation-delay:.46s; } .menu-card:nth-child(4) { animation-delay:.54s; }
@@ -111,11 +119,24 @@
     a.menu-card:hover .menu-card__arrow { transform:translateX(4px); opacity:1; }
     .menu-card__desc { margin-top:.625rem; color:var(--noir-400); font-size:.8125rem; line-height:1.65; flex:1; }
 
-    .menu-card--primary { border-color:rgba(249,115,22,.3); background:linear-gradient(165deg,rgba(249,115,22,.12) 0%,rgba(14,14,17,.9) 70%); }
+    .menu-card--primary { border-color:rgba(249,115,22,.3); background:linear-gradient(165deg,rgba(249,115,22,.12) 0%,rgba(14,14,17,.75) 70%); }
     .menu-card--soon { cursor:default; }
     .menu-card--soon .menu-card__icon { filter:grayscale(.6); opacity:.7; }
     .menu-card--soon .menu-card__title { color:var(--noir-300); }
     .badge-soon { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.2em; text-transform:uppercase; padding:3px 8px; border-radius:999px; color:var(--ember-400); border:1px solid rgba(249,115,22,.25); background:rgba(249,115,22,.06); }
+
+    /* Compact cards on phones (2×2 over the phoenix) */
+    @media(max-width:639px) {
+      .menu-card { padding:1rem .875rem .875rem; border-radius:.75rem; }
+      .menu-card__top { margin-bottom:.875rem; }
+      .menu-card__icon { width:2.25rem; height:2.25rem; border-radius:.5rem; }
+      .menu-card__icon svg { width:1.125rem; height:1.125rem; }
+      .menu-card__num { display:none; }
+      .badge-soon { font-size:8px; letter-spacing:.12em; padding:2px 6px; }
+      .menu-card__title { display:block; font-size:.9375rem; line-height:1.25; }
+      .menu-card__arrow { display:inline-block; vertical-align:-1px; margin-left:.25rem; width:.875rem; height:.875rem; }
+      .menu-card__desc { font-size:.75rem; line-height:1.5; margin-top:.375rem; }
+    }
 
     /* FOOTER */
     .footer { padding:2rem 0; border-top:1px solid rgba(28,28,33,.6); }
@@ -158,14 +179,9 @@
       </div>
 
       <h1 class="hub__title">Burn It™</h1>
-      <div class="hub__logo">
-        <img src="logos/burnit_banner_final.png" alt="Burn It™ logo" width="800" height="517" />
-      </div>
 
-      <p class="hub__tagline">
-        A fast-paced, multi-phase high-card shoe game where
-        <span class="text-ember-gradient" style="font-weight:500;">players control the action</span>.
-      </p>
+      <div class="stage">
+        <img src="logos/pheonix-with-name.png" alt="" aria-hidden="true" class="stage__phoenix" width="2000" height="1294" />
 
       <nav class="menu" aria-label="Burn It menu">
         <!-- 1. About -->
@@ -222,6 +238,12 @@
           <p class="menu-card__desc">Take a seat and try <span class="font-brand">Burn It</span>™ yourself in an interactive demo.</p>
         </a>
       </nav>
+      </div>
+
+      <p class="hub__tagline">
+        A fast-paced, multi-phase high-card shoe game where
+        <span class="text-ember-gradient" style="font-weight:500;">players control the action</span>.
+      </p>
     </div>
   </main>
 
