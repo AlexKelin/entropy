@@ -98,10 +98,11 @@
     .navbar__logo:hover .navbar__logo-img { opacity: 1; }
     .navbar__logo-text { font-size: .875rem; font-weight: 600; letter-spacing: .25em; color: var(--noir-100); }
 
-    .navbar__links { display: none; align-items: center; gap: 2.5rem; }
-    @media(min-width:768px) { .navbar__links { display: flex; } }
+    .navbar__links { display: none; align-items: center; gap: 1.5rem; }
+    @media(min-width:900px) { .navbar__links { display: flex; } }
+    @media(min-width:1100px) { .navbar__links { gap: 2.25rem; } }
 
-    .nav-link { position: relative; font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; color: var(--noir-300); transition: color .3s; }
+    .nav-link { position: relative; font-size: .75rem; letter-spacing: .18em; text-transform: uppercase; color: var(--noir-300); transition: color .3s; white-space: nowrap; }
     .nav-link:hover { color: var(--noir-100); }
     .nav-link::after { content:''; position:absolute; left:0; bottom:-2px; width:0; height:1px; background:var(--accent); transition:width .3s; }
     .nav-link:hover::after { width:100%; }
@@ -109,11 +110,11 @@
     .navbar__toggle { display: block; padding: .5rem; color: var(--noir-300); transition: color .3s; }
     .navbar__toggle:hover { color: var(--noir-100); }
     .navbar__toggle svg { width: 1.25rem; height: 1.25rem; }
-    @media(min-width:768px) { .navbar__toggle { display: none; } }
+    @media(min-width:900px) { .navbar__toggle { display: none; } }
 
     .mobile-menu { display: none; border-top: 1px solid rgba(28,28,33,.6); background: rgba(8,8,10,.95); backdrop-filter: blur(24px); }
     .mobile-menu.open { display: block; }
-    @media(min-width:768px) { .mobile-menu { display: none !important; } }
+    @media(min-width:900px) { .mobile-menu { display: none !important; } }
     .mobile-menu__inner { padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
     .mobile-menu__inner a { font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; color: var(--noir-300); transition: color .3s; }
     .mobile-menu__inner a:hover { color: var(--noir-100); }
