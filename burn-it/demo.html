@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Watch Burn It™ Played — Live Table Video | ENTROPY LLC</title>
+  <meta name="description"
+    content="Watch a full round of Burn It™ dealt live at the table. See how players Stand, Burn, Outburn, and Strike in ENTROPY LLC's original casino table game." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.entropyconcepts.com/burn-it/demo" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="video.other" />
+  <meta property="og:url" content="https://www.entropyconcepts.com/burn-it/demo" />
+  <meta property="og:title" content="Watch Burn It™ Played — Live Table Video | ENTROPY LLC" />
+  <meta property="og:description" content="See a full round of Burn It™ dealt live at the table on video." />
+  <meta property="og:image" content="https://www.entropyconcepts.com/logos/burn_it_og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Watch Burn It™ Played — Live Table Video | ENTROPY LLC" />
+  <meta name="twitter:description" content="See a full round of Burn It™ dealt live at the table on video." />
+  <meta name="twitter:image" content="https://www.entropyconcepts.com/logos/burn_it_og.png" />
+
+  <style>
+    @font-face { font-family:'Inter'; font-style:normal; font-weight:400; font-display:swap; src:url('../fonts/inter-400.woff2') format('woff2'); }
+    @font-face { font-family:'Inter'; font-style:normal; font-weight:700; font-display:swap; src:url('../fonts/inter-700.woff2') format('woff2'); }
+    @font-face { font-family:'Cinzel'; font-style:normal; font-weight:400; font-display:swap; src:url('../fonts/cinzel-400.woff2') format('woff2'); }
+    @font-face { font-family:'Cinzel'; font-style:normal; font-weight:700; font-display:swap; src:url('../fonts/cinzel-700.woff2') format('woff2'); }
+    @font-face { font-family:'JetBrains Mono'; font-style:normal; font-weight:400; font-display:swap; src:url('../fonts/jetbrains-400.woff2') format('woff2'); }
+
+    :root {
+      --noir-50: #f7f7f8; --noir-100: #ededf0; --noir-200: #d4d4d9; --noir-300: #a8a8b3; --noir-400: #71717f;
+      --noir-500: #53535f; --noir-600: #3f3f47; --noir-700: #2c2c32; --noir-800: #1c1c21;
+      --noir-900: #0e0e11; --noir-950: #08080a;
+      --ember-300: #fdba74; --ember-400: #fb923c; --ember-500: #f97316; --ember-600: #ea580c;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { font-family:'Inter',system-ui,-apple-system,sans-serif; }
+    body { background:var(--noir-950); color:var(--noir-100); overflow-x:hidden; -webkit-font-smoothing:antialiased; min-height:100vh; display:flex; flex-direction:column; }
+    a { text-decoration:none; color:inherit; }
+    img { display:block; max-width:100%; }
+    button { background:none; border:none; cursor:pointer; font:inherit; }
+    ::selection { background:rgba(249,115,22,.25); color:#fff; }
+
+    .container { max-width:72rem; margin:0 auto; padding:0 1.5rem; width:100%; }
+    @media(min-width:640px) { .container { padding:0 2.5rem; } }
+    .text-ember-gradient { background:linear-gradient(135deg,#fdba74,#f97316,#ea580c); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .font-brand { font-family:'Cinzel',serif; }
+
+    @keyframes fadeInUp { 0% { opacity:0; transform:translateY(24px); } 100% { opacity:1; transform:translateY(0); } }
+
+    /* ========================================
+       NAVIGATION (shared Burn It navbar)
+       ======================================== */
+    .navbar { position:fixed; top:0; left:0; right:0; z-index:50; transition:background .4s, border-color .4s; border-bottom:1px solid transparent; }
+    .navbar--scrolled, .navbar--open { background:rgba(8,8,10,.85); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); border-bottom-color:rgba(28,28,33,.6); }
+    .navbar__inner { display:flex; align-items:center; justify-content:space-between; height:4rem; }
+    @media(min-width:640px) { .navbar__inner { height:5rem; } }
+    .navbar__brand { display:flex; align-items:center; gap:.75rem; min-width:0; }
+    .navbar__logo { display:flex; align-items:center; gap:.75rem; }
+    .navbar__logo-img { width:2rem; height:2rem; object-fit:contain; opacity:.7; transition:opacity .3s; aspect-ratio:1/1; }
+    .navbar__logo:hover .navbar__logo-img { opacity:1; }
+    .navbar__logo-text { font-size:.875rem; font-weight:600; letter-spacing:.25em; color:var(--noir-100); }
+    @media(max-width:379px) { .navbar__logo-text { display:none; } }
+    .navbar__sep { width:1px; height:1.25rem; background:var(--noir-700); transform:rotate(18deg); }
+    .navbar__game { font-family:'Cinzel',serif; font-weight:700; font-size:1rem; letter-spacing:.06em; white-space:nowrap; color:var(--ember-300); transition:color .3s, text-shadow .3s; }
+    .navbar__game:hover, .navbar__game[aria-current="page"] { color:#fff; text-shadow:0 0 18px rgba(249,115,22,.55); }
+    .navbar__links { display:none; align-items:center; gap:2rem; }
+    @media(min-width:768px) { .navbar__links { display:flex; } }
+    .nav-link { position:relative; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--noir-300); transition:color .3s; }
+    .nav-link:hover, .nav-link[aria-current="page"] { color:var(--noir-100); }
+    .nav-link::after { content:''; position:absolute; left:0; bottom:-6px; width:0; height:1px; background:var(--ember-500); transition:width .3s; }
+    .nav-link:hover::after, .nav-link[aria-current="page"]::after { width:100%; }
+    .nav-link--cta { display:inline-flex; align-items:center; gap:.4rem; padding:.55rem 1.1rem; border:1px solid rgba(249,115,22,.4); border-radius:999px; color:var(--ember-300); transition:color .3s, background .3s, border-color .3s, box-shadow .3s; }
+    .nav-link--cta::after { display:none; }
+    .nav-link--cta:hover { color:#fff; background:rgba(249,115,22,.12); border-color:rgba(249,115,22,.7); box-shadow:0 0 24px -6px rgba(249,115,22,.5); }
+    .nav-link--cta svg { width:.8rem; height:.8rem; }
+    .navbar__toggle { display:block; padding:.5rem; margin-right:-.5rem; color:var(--noir-300); transition:color .3s; }
+    .navbar__toggle:hover { color:var(--noir-100); }
+    .navbar__toggle svg { width:1.25rem; height:1.25rem; }
+    @media(min-width:768px) { .navbar__toggle { display:none; } }
+    .mobile-menu { display:none; border-top:1px solid rgba(28,28,33,.6); }
+    .mobile-menu.open { display:block; }
+    @media(min-width:768px) { .mobile-menu { display:none !important; } }
+    .mobile-menu__inner { padding:1.25rem 1.5rem 1.75rem; display:flex; flex-direction:column; gap:1.1rem; }
+    .mobile-menu__inner a { font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--noir-300); transition:color .3s; }
+    .mobile-menu__inner a:hover, .mobile-menu__inner a[aria-current="page"] { color:var(--ember-300); }
+    .mobile-menu__divider { height:1px; background:rgba(28,28,33,.8); margin:.25rem 0; }
+    .mobile-menu__inner a.mobile-menu__muted { color:var(--noir-500); }
+
+    /* ========================================
+       WATCH SECTION
+       ======================================== */
+    .watch { position:relative; flex:1; display:flex; align-items:center; padding:6.5rem 0 4rem; overflow:hidden; }
+    @media(min-width:640px) { .watch { padding:7.5rem 0 5rem; } }
+    .watch__glow { position:absolute; top:-10%; left:50%; width:70rem; height:40rem; transform:translateX(-50%); background:radial-gradient(ellipse at center,rgba(249,115,22,.12),transparent 60%); pointer-events:none; }
+    .watch__grid-bg { position:absolute; inset:0; background-image:radial-gradient(circle,rgba(249,115,22,.05) 1px,transparent 1px); background-size:28px 28px; mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%); -webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%); pointer-events:none; }
+    .watch__content { position:relative; z-index:1; text-align:center; max-width:56rem; margin:0 auto; }
+
+    .watch__back { display:flex; justify-content:flex-start; margin-bottom:1.5rem; animation:fadeInUp .6s ease-out both; }
+    .back-arrow { display:inline-flex; align-items:center; gap:.5rem; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--noir-400); transition:transform .3s, color .3s; }
+    .back-arrow:hover { transform:translateX(-4px); color:var(--ember-400); }
+    .back-arrow svg { width:1rem; height:1rem; }
+
+    .watch__eyebrow { display:flex; align-items:center; justify-content:center; gap:.75rem; margin-bottom:1rem; animation:fadeInUp .7s .05s ease-out both; }
+    .watch__eyebrow-line { width:2rem; height:1px; background:rgba(249,115,22,.3); }
+    .watch__eyebrow-text { font-size:10px; letter-spacing:.4em; text-transform:uppercase; font-family:'JetBrains Mono',monospace; color:rgba(249,115,22,.7); }
+
+    .watch__title { font-size:1.875rem; font-weight:700; letter-spacing:-.025em; line-height:1.15; color:var(--noir-50); animation:fadeInUp .7s .12s ease-out both; }
+    @media(min-width:640px) { .watch__title { font-size:2.5rem; } }
+    @media(min-width:1024px) { .watch__title { font-size:3rem; } }
+
+    .watch__subtitle { margin:1rem auto 2rem; color:var(--noir-400); font-size:.9375rem; line-height:1.7; max-width:38rem; animation:fadeInUp .7s .18s ease-out both; }
+    @media(min-width:640px) { .watch__subtitle { font-size:1.0625rem; margin-bottom:2.5rem; } }
+
+    /* VIDEO FRAME */
+    .video-frame { position:relative; width:100%; border-radius:1rem; overflow:hidden; background:var(--noir-900); border:1px solid rgba(249,115,22,.24); box-shadow:0 24px 64px -16px rgba(249,115,22,.22), 0 16px 40px -12px rgba(0,0,0,.75); animation:fadeInUp .8s .25s ease-out both; }
+    .video-frame::after { content:''; position:absolute; top:0; left:24px; right:24px; height:1px; background:linear-gradient(90deg,transparent,rgba(249,115,22,.45),transparent); pointer-events:none; }
+    .video-frame__ratio { position:relative; width:100%; padding-top:56.25%; }
+    .video-frame__ratio iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+
+    /* ACTIONS BELOW VIDEO */
+    .watch__actions { margin-top:2rem; display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:.875rem; animation:fadeInUp .8s .35s ease-out both; }
+    .btn { display:inline-flex; align-items:center; gap:.5rem; padding:.75rem 1.4rem; border-radius:.5rem; font-size:.75rem; letter-spacing:.18em; text-transform:uppercase; font-weight:600; transition:all .3s; }
+    .btn svg { width:.95rem; height:.95rem; flex-shrink:0; }
+    .btn--ember { background:linear-gradient(135deg,rgba(249,115,22,.2),rgba(234,88,12,.1)); border:1px solid rgba(249,115,22,.45); color:var(--ember-300); }
+    .btn--ember:hover { color:#fff; background:rgba(249,115,22,.22); border-color:rgba(249,115,22,.8); box-shadow:0 0 28px -6px rgba(249,115,22,.45); transform:translateY(-2px); }
+    .btn--outline { border:1px solid var(--noir-700); color:var(--noir-300); background:rgba(28,28,33,.35); }
+    .btn--outline:hover { border-color:rgba(249,115,22,.35); color:var(--noir-100); transform:translateY(-2px); }
+
+    /* FOOTER */
+    .footer { padding:2rem 0; border-top:1px solid rgba(28,28,33,.6); }
+    .footer__inner { display:flex; flex-direction:column; align-items:center; justify-content:space-between; gap:.75rem; }
+    @media(min-width:640px) { .footer__inner { flex-direction:row; } }
+    .footer__copy { color:var(--noir-600); font-size:.75rem; letter-spacing:.05em; text-align:center; }
+    .footer a { color:var(--noir-500); font-size:.75rem; transition:color .3s; }
+    .footer a:hover { color:var(--ember-400); }
+
+    @media (prefers-reduced-motion: reduce) { * { animation:none !important; transition:none !important; } }
+  </style>
+</head>
+
+<body>
+
+  <nav id="navbar" class="navbar" aria-label="Main">
+    <div class="container">
+      <div class="navbar__inner">
+        <div class="navbar__brand">
+          <a href="../index.html" class="navbar__logo" aria-label="ENTROPY LLC Home">
+            <picture><source srcset="../logos/banner_entropy_transparent_back.webp" type="image/webp"><img src="../logos/banner_entropy_transparent_back.png" alt="Entropy" class="navbar__logo-img" /></picture>
+            <span class="navbar__logo-text">ENTROPY</span>
+          </a>
+          <span class="navbar__sep" aria-hidden="true"></span>
+          <a href="../burn-it.html" class="navbar__game" id="nav-burn-it">Burn It™</a>
+        </div>
+        <div class="navbar__links">
+          <a href="../burn-it-about.html" class="nav-link" id="nav-about">About</a>
+          <a href="../burn-it-how-to-play.html" class="nav-link" id="nav-hand-examples">Hand Examples</a>
+          <a href="../burn-it/demo.html" class="nav-link" id="nav-watch" aria-current="page">Watch</a>
+          <a href="https://burn-it-demo.vercel.app" target="_blank" rel="noopener" class="nav-link nav-link--cta" id="nav-play-demo">Play Demo <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg></a>
+        </div>
+        <button id="mobile-toggle" class="navbar__toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" d="M4 8h16M4 16h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="mobile-menu">
+      <div class="mobile-menu__inner">
+        <a href="../burn-it.html">Burn It™ Menu</a>
+        <a href="../burn-it-about.html">About the Game</a>
+        <a href="../burn-it-how-to-play.html">Hand Examples</a>
+        <a href="../burn-it/demo.html" aria-current="page">Watch the Game Played</a>
+        <a href="https://burn-it-demo.vercel.app" target="_blank" rel="noopener">Play Demo ↗</a>
+        <div class="mobile-menu__divider" aria-hidden="true"></div>
+        <a href="../index.html#projects" class="mobile-menu__muted">← All Projects</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="watch">
+    <div class="watch__glow" aria-hidden="true"></div>
+    <div class="watch__grid-bg" aria-hidden="true"></div>
+
+    <div class="container watch__content">
+      <div class="watch__back">
+        <a href="../burn-it.html" class="back-arrow">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" /></svg>
+          Burn It™ Menu
+        </a>
+      </div>
+
+      <div class="watch__eyebrow">
+        <span class="watch__eyebrow-line"></span>
+        <span class="watch__eyebrow-text">Live Table Video</span>
+        <span class="watch__eyebrow-line"></span>
+      </div>
+
+      <h1 class="watch__title">
+        Watch <span class="text-ember-gradient font-brand">Burn It</span>™ Played
+      </h1>
+
+      <p class="watch__subtitle">
+        See a full round of <span class="font-brand">Burn It</span>™ dealt live at the table — from the initial deal through player decisions and the final showdown.
+      </p>
+
+      <div class="video-frame">
+        <div class="video-frame__ratio">
+          <iframe
+            src="https://www.youtube.com/embed/LA7a9UYDxew?rel=0"
+            title="Watch Burn It™ Played — Casino Table Game Demo"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="watch__actions">
+        <a href="https://burn-it-demo.vercel.app" target="_blank" rel="noopener" class="btn btn--ember">
+          Play Interactive Demo
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>
+        </a>
+        <a href="../burn-it-how-to-play.html" class="btn btn--outline">
+          Hand Examples
+        </a>
+        <a href="https://youtu.be/LA7a9UYDxew" target="_blank" rel="noopener" class="btn btn--outline">
+          Watch on YouTube
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__copy">&copy; 2026 ENTROPY LLC. <span class="font-brand">Burn It</span>™ is a trademark of ENTROPY LLC.</p>
+      <a href="mailto:info@entropyconcepts.com">info@entropyconcepts.com</a>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    const onScroll = () => navbar.classList.toggle('navbar--scrolled', window.scrollY > 40);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    const toggle = document.getElementById('mobile-toggle');
+    const menu = document.getElementById('mobile-menu');
+    const setMenu = (open) => {
+      menu.classList.toggle('open', open);
+      navbar.classList.toggle('navbar--open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    };
+    toggle.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  </script>
+
+</body>
+
+</html>
+

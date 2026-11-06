@@ -54,17 +54,44 @@
 
     @keyframes fadeInUp { 0% { opacity:0; transform:translateY(24px); } 100% { opacity:1; transform:translateY(0); } }
 
-    /* NAV */
-    .navbar { position:absolute; top:0; left:0; right:0; z-index:50; }
+    /* ========================================
+       NAVIGATION (shared Burn It navbar)
+       ======================================== */
+    .navbar { position:fixed; top:0; left:0; right:0; z-index:50; transition:background .4s, border-color .4s; border-bottom:1px solid transparent; }
+    .navbar--scrolled, .navbar--open { background:rgba(8,8,10,.85); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); border-bottom-color:rgba(28,28,33,.6); }
     .navbar__inner { display:flex; align-items:center; justify-content:space-between; height:4rem; }
     @media(min-width:640px) { .navbar__inner { height:5rem; } }
+    .navbar__brand { display:flex; align-items:center; gap:.75rem; min-width:0; }
     .navbar__logo { display:flex; align-items:center; gap:.75rem; }
-    .navbar__logo-img { width:2rem; height:2rem; object-fit:contain; opacity:.7; transition:opacity .3s; }
+    .navbar__logo-img { width:2rem; height:2rem; object-fit:contain; opacity:.7; transition:opacity .3s; aspect-ratio:1/1; }
     .navbar__logo:hover .navbar__logo-img { opacity:1; }
     .navbar__logo-text { font-size:.875rem; font-weight:600; letter-spacing:.25em; color:var(--noir-100); }
-    .back-arrow { display:inline-flex; align-items:center; gap:.5rem; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--noir-500); transition:transform .3s, color .3s; }
-    .back-arrow:hover { transform:translateX(-4px); color:var(--ember-400); }
-    .back-arrow svg { width:1rem; height:1rem; }
+    @media(max-width:379px) { .navbar__logo-text { display:none; } }
+    .navbar__sep { width:1px; height:1.25rem; background:var(--noir-700); transform:rotate(18deg); }
+    .navbar__game { font-family:'Cinzel',serif; font-weight:700; font-size:1rem; letter-spacing:.06em; white-space:nowrap; color:var(--ember-300); transition:color .3s, text-shadow .3s; }
+    .navbar__game:hover, .navbar__game[aria-current="page"] { color:#fff; text-shadow:0 0 18px rgba(249,115,22,.55); }
+    .navbar__links { display:none; align-items:center; gap:2rem; }
+    @media(min-width:768px) { .navbar__links { display:flex; } }
+    .nav-link { position:relative; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--noir-300); transition:color .3s; }
+    .nav-link:hover, .nav-link[aria-current="page"] { color:var(--noir-100); }
+    .nav-link::after { content:''; position:absolute; left:0; bottom:-6px; width:0; height:1px; background:var(--ember-500); transition:width .3s; }
+    .nav-link:hover::after, .nav-link[aria-current="page"]::after { width:100%; }
+    .nav-link--cta { display:inline-flex; align-items:center; gap:.4rem; padding:.55rem 1.1rem; border:1px solid rgba(249,115,22,.4); border-radius:999px; color:var(--ember-300); transition:color .3s, background .3s, border-color .3s, box-shadow .3s; }
+    .nav-link--cta::after { display:none; }
+    .nav-link--cta:hover { color:#fff; background:rgba(249,115,22,.12); border-color:rgba(249,115,22,.7); box-shadow:0 0 24px -6px rgba(249,115,22,.5); }
+    .nav-link--cta svg { width:.8rem; height:.8rem; }
+    .navbar__toggle { display:block; padding:.5rem; margin-right:-.5rem; color:var(--noir-300); transition:color .3s; }
+    .navbar__toggle:hover { color:var(--noir-100); }
+    .navbar__toggle svg { width:1.25rem; height:1.25rem; }
+    @media(min-width:768px) { .navbar__toggle { display:none; } }
+    .mobile-menu { display:none; border-top:1px solid rgba(28,28,33,.6); }
+    .mobile-menu.open { display:block; }
+    @media(min-width:768px) { .mobile-menu { display:none !important; } }
+    .mobile-menu__inner { padding:1.25rem 1.5rem 1.75rem; display:flex; flex-direction:column; gap:1.1rem; }
+    .mobile-menu__inner a { font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--noir-300); transition:color .3s; }
+    .mobile-menu__inner a:hover, .mobile-menu__inner a[aria-current="page"] { color:var(--ember-300); }
+    .mobile-menu__divider { height:1px; background:rgba(28,28,33,.8); margin:.25rem 0; }
+    .mobile-menu__inner a.mobile-menu__muted { color:var(--noir-500); }
 
     /* HUB */
     .hub { position:relative; flex:1; display:flex; align-items:center; padding:6rem 0 4rem; overflow:hidden; }
@@ -152,17 +179,39 @@
 
 <body>
 
-  <nav class="navbar">
+  <nav id="navbar" class="navbar" aria-label="Main">
     <div class="container">
       <div class="navbar__inner">
-        <a href="index.html" class="navbar__logo" aria-label="ENTROPY LLC Home">
-          <picture><source srcset="logos/banner_entropy_transparent_back.webp" type="image/webp"><img src="logos/banner_entropy_transparent_back.png" alt="Entropy" class="navbar__logo-img" /></picture>
-          <span class="navbar__logo-text">ENTROPY</span>
-        </a>
-        <a href="index.html#projects" class="back-arrow" id="back-to-projects">
-          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" /></svg>
-          Projects
-        </a>
+        <div class="navbar__brand">
+          <a href="index.html" class="navbar__logo" aria-label="ENTROPY LLC Home">
+            <picture><source srcset="logos/banner_entropy_transparent_back.webp" type="image/webp"><img src="logos/banner_entropy_transparent_back.png" alt="Entropy" class="navbar__logo-img" /></picture>
+            <span class="navbar__logo-text">ENTROPY</span>
+          </a>
+          <span class="navbar__sep" aria-hidden="true"></span>
+          <a href="burn-it.html" class="navbar__game" id="nav-burn-it" aria-current="page">Burn It™</a>
+        </div>
+        <div class="navbar__links">
+          <a href="burn-it-about.html" class="nav-link" id="nav-about">About</a>
+          <a href="burn-it-how-to-play.html" class="nav-link" id="nav-hand-examples">Hand Examples</a>
+          <a href="burn-it/demo.html" class="nav-link" id="nav-watch">Watch</a>
+          <a href="https://burn-it-demo.vercel.app" target="_blank" rel="noopener" class="nav-link nav-link--cta" id="nav-play-demo">Play Demo <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg></a>
+        </div>
+        <button id="mobile-toggle" class="navbar__toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" d="M4 8h16M4 16h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="mobile-menu">
+      <div class="mobile-menu__inner">
+        <a href="burn-it.html" aria-current="page">Burn It™ Menu</a>
+        <a href="burn-it-about.html">About the Game</a>
+        <a href="burn-it-how-to-play.html">Hand Examples</a>
+        <a href="burn-it/demo.html">Watch the Game Played</a>
+        <a href="https://burn-it-demo.vercel.app" target="_blank" rel="noopener">Play Demo ↗</a>
+        <div class="mobile-menu__divider" aria-hidden="true"></div>
+        <a href="index.html#projects" class="mobile-menu__muted">← All Projects</a>
       </div>
     </div>
   </nav>
@@ -212,17 +261,19 @@
           <p class="menu-card__desc">Walk through real hands with step-by-step illustrations of Stand, Burn and Outburn.</p>
         </a>
 
-        <!-- 3. Watch the Game (video coming soon) -->
-        <div class="menu-card menu-card--soon" id="menu-watch" aria-disabled="true">
+        <!-- 3. Watch the Game -->
+        <a href="burn-it/demo.html" class="menu-card" id="menu-watch">
           <div class="menu-card__top">
             <div class="menu-card__icon">
               <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112z" /></svg>
             </div>
-            <span class="badge-soon">Coming Soon</span>
+            <span class="menu-card__num">03</span>
           </div>
-          <h2 class="menu-card__title">Watch the Game Played</h2>
+          <h2 class="menu-card__title">Watch the Game Played
+            <svg class="menu-card__arrow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+          </h2>
           <p class="menu-card__desc">See a full round of <span class="font-brand">Burn It</span>™ dealt live at the table on video.</p>
-        </div>
+        </a>
 
         <!-- 4. Play Demo -->
         <a href="https://burn-it-demo.vercel.app" target="_blank" rel="noopener" class="menu-card" id="menu-demo">
@@ -255,6 +306,21 @@
   </footer>
 
   <script>
+    const navbar = document.getElementById('navbar');
+    const onScroll = () => navbar.classList.toggle('navbar--scrolled', window.scrollY > 40);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    const toggle = document.getElementById('mobile-toggle');
+    const menu = document.getElementById('mobile-menu');
+    const setMenu = (open) => {
+      menu.classList.toggle('open', open);
+      navbar.classList.toggle('navbar--open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    };
+    toggle.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
     document.querySelectorAll('a.menu-card').forEach(card => {
       card.addEventListener('mousemove', (e) => {
         const r = card.getBoundingClientRect();
