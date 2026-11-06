@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Felt Runner — Casino Dealer Training &amp; Table Games Lab | ENTROPY LLC</title>
+  <meta name="description"
+    content="Felt Runner by ENTROPY LLC is a professional casino dealer training simulator and table-games lab covering Blackjack, Spanish 21, Roulette, Poker, Baccarat, Pai Gow Poker, Three Card Poker, and Burn It™ on iOS and Android." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.entropyconcepts.com/felt-runner" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.entropyconcepts.com/felt-runner" />
+  <meta property="og:title" content="Felt Runner — Casino Dealer Training &amp; Table Games Lab | ENTROPY LLC" />
+  <meta property="og:description" content="Master 8 casino table games from both sides of the felt. Dealer simulators, payout speed math, House Way hand setting, side-pot arithmetic, and 1v1 practice." />
+  <meta property="og:image" content="https://www.entropyconcepts.com/logos/FR_icon_1024_1024.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Felt Runner — Casino Dealer Training &amp; Table Games Lab | ENTROPY LLC" />
+  <meta name="twitter:description" content="Master 8 casino table games from both sides of the felt on iOS and Android." />
+  <meta name="twitter:image" content="https://www.entropyconcepts.com/logos/FR_icon_1024_1024.png" />
+
+  <style>
+    @font-face { font-family:'Inter'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/inter-400.woff2') format('woff2'); }
+    @font-face { font-family:'Inter'; font-style:normal; font-weight:700; font-display:swap; src:url('fonts/inter-700.woff2') format('woff2'); }
+    @font-face { font-family:'Orbitron'; font-style:normal; font-weight:800; font-display:swap; src:url('fonts/orbitron-800.woff2') format('woff2'); }
+    @font-face { font-family:'JetBrains Mono'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/jetbrains-400.woff2') format('woff2'); }
+
+    :root {
+      --noir-50: #f7f7f8; --noir-100: #ededf0; --noir-200: #d4d4d9; --noir-300: #a8a8b3;
+      --noir-400: #71717f; --noir-500: #53535f; --noir-600: #3f3f47; --noir-700: #2c2c32;
+      --noir-800: #1c1c21; --noir-850: #151519; --noir-900: #0e0e11; --noir-950: #08080a;
+      --neon-cyan: #00e5ff; --neon-green: #00ff88; --neon-amber: #ff9500; --neon-pink: #ff0066;
+      --neon-yellow: #ffea00; --neon-violet: #a855f7; --neon-red: #ff2a55; --neon-flame: #ff5e3a;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { font-family:'Inter',system-ui,-apple-system,sans-serif; scroll-behavior:smooth; }
+    body { background:var(--noir-950); color:var(--noir-100); overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+    a { text-decoration:none; color:inherit; }
+    img { display:block; max-width:100%; }
+    button { background:none; border:none; cursor:pointer; font:inherit; }
+    ::selection { background:rgba(0,229,255,.22); color:#fff; }
+
+    .container { max-width:76rem; margin:0 auto; padding:0 1.5rem; width:100%; }
+    @media(min-width:640px) { .container { padding:0 2.5rem; } }
+    @media(min-width:1024px) { .container { padding:0 4rem; } }
+
+    .text-cyan-gradient { background:linear-gradient(135deg,#a5f3fc,#00e5ff,#00ff88); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .rule-glow { height:1px; border:none; background:linear-gradient(90deg,transparent,rgba(0,229,255,.15) 30%,rgba(0,229,255,.3) 50%,rgba(0,229,255,.15) 70%,transparent); }
+    .dot-grid { background-image:radial-gradient(circle,rgba(0,229,255,.05) 1px,transparent 1px); background-size:28px 28px; }
+
+    @keyframes fadeInUp { 0% { opacity:0; transform:translateY(24px); } 100% { opacity:1; transform:translateY(0); } }
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity .6s ease-out, transform .6s ease-out; }
+    .reveal.visible { opacity:1; transform:none; }
+
+    /* ========================================
+       NAVIGATION
+       ======================================== */
+    .navbar { position:fixed; top:0; left:0; right:0; z-index:50; transition:background .4s, border-color .4s; border-bottom:1px solid transparent; }
+    .navbar--scrolled, .navbar--open { background:rgba(8,8,10,.88); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); border-bottom-color:rgba(28,28,33,.7); }
+    .navbar__inner { display:flex; align-items:center; justify-content:space-between; height:4rem; }
+    @media(min-width:640px) { .navbar__inner { height:5rem; } }
+    .navbar__brand { display:flex; align-items:center; gap:.75rem; min-width:0; }
+    .navbar__logo { display:flex; align-items:center; gap:.75rem; }
+    .navbar__logo-img { width:2rem; height:2rem; object-fit:contain; opacity:.75; transition:opacity .3s; aspect-ratio:1/1; }
+    .navbar__logo:hover .navbar__logo-img { opacity:1; }
+    .navbar__logo-text { font-size:.875rem; font-weight:600; letter-spacing:.25em; color:var(--noir-100); }
+    @media(max-width:379px) { .navbar__logo-text { display:none; } }
+    .navbar__sep { width:1px; height:1.25rem; background:var(--noir-700); transform:rotate(18deg); }
+    .navbar__app { font-family:'Orbitron',sans-serif; font-weight:800; font-size:.875rem; letter-spacing:.12em; text-transform:uppercase; white-space:nowrap; color:var(--neon-cyan); transition:color .3s, text-shadow .3s; }
+    .navbar__app:hover { color:#fff; text-shadow:0 0 18px rgba(0,229,255,.55); }
+    .navbar__links { display:none; align-items:center; gap:2rem; }
+    @media(min-width:768px) { .navbar__links { display:flex; } }
+    .nav-link { position:relative; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--noir-300); transition:color .3s; }
+    .nav-link:hover { color:var(--noir-100); }
+    .nav-link::after { content:''; position:absolute; left:0; bottom:-6px; width:0; height:1px; background:var(--neon-cyan); transition:width .3s; }
+    .nav-link:hover::after { width:100%; }
+    .nav-link--cta { display:inline-flex; align-items:center; gap:.4rem; padding:.55rem 1.1rem; border:1px solid rgba(0,229,255,.4); border-radius:999px; color:var(--neon-cyan); transition:all .3s; }
+    .nav-link--cta::after { display:none; }
+    .nav-link--cta:hover { color:#fff; background:rgba(0,229,255,.12); border-color:rgba(0,229,255,.75); box-shadow:0 0 24px -6px rgba(0,229,255,.5); }
+    .navbar__toggle { display:block; padding:.5rem; margin-right:-.5rem; color:var(--noir-300); }
+    .navbar__toggle svg { width:1.25rem; height:1.25rem; }
+    @media(min-width:768px) { .navbar__toggle { display:none; } }
+    .mobile-menu { display:none; border-top:1px solid rgba(28,28,33,.6); }
+    .mobile-menu.open { display:block; }
+    @media(min-width:768px) { .mobile-menu { display:none !important; } }
+    .mobile-menu__inner { padding:1.25rem 1.5rem 1.75rem; display:flex; flex-direction:column; gap:1.1rem; }
+    .mobile-menu__inner a { font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--noir-300); }
+    .mobile-menu__inner a:hover { color:var(--neon-cyan); }
+    .mobile-menu__divider { height:1px; background:rgba(28,28,33,.8); margin:.25rem 0; }
+    .mobile-menu__inner a.mobile-menu__muted { color:var(--noir-500); }
+
+    /* ========================================
+       HERO
+       ======================================== */
+    .hero { position:relative; min-height:92vh; display:flex; align-items:center; justify-content:center; padding:7.5rem 0 5rem; overflow:hidden; }
+    .hero__glow { position:absolute; top:5%; left:50%; width:68rem; height:38rem; transform:translateX(-50%); background:radial-gradient(ellipse at center,rgba(0,229,255,.11),rgba(0,255,136,.04) 45%,transparent 70%); pointer-events:none; }
+    .hero__content { position:relative; z-index:2; text-align:center; max-width:54rem; margin:0 auto; }
+
+    .hero__logo-wrap { width:11rem; height:11rem; margin:0 auto 1.75rem; border-radius:2rem; padding:.35rem; background:linear-gradient(135deg,rgba(0,229,255,.35),rgba(0,255,136,.15),rgba(28,28,33,.6)); box-shadow:0 20px 60px -15px rgba(0,229,255,.28); animation:fadeInUp .7s ease-out both; }
+    @media(min-width:640px) { .hero__logo-wrap { width:13rem; height:13rem; } }
+    .hero__logo-wrap img { width:100%; height:100%; border-radius:1.7rem; object-fit:cover; background:var(--noir-950); }
+
+    .hero__eyebrow { display:inline-flex; align-items:center; gap:.6rem; padding:.35rem .9rem; border-radius:999px; border:1px solid rgba(0,229,255,.25); background:rgba(0,229,255,.06); font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:var(--neon-cyan); margin-bottom:1.25rem; animation:fadeInUp .7s .08s ease-out both; }
+    .hero__eyebrow-dot { width:6px; height:6px; border-radius:50%; background:var(--neon-green); box-shadow:0 0 10px var(--neon-green); }
+
+    .hero__title { font-family:'Orbitron',sans-serif; font-size:2.5rem; font-weight:800; letter-spacing:.04em; line-height:1.05; color:var(--noir-50); animation:fadeInUp .7s .15s ease-out both; }
+    @media(min-width:640px) { .hero__title { font-size:3.75rem; } }
+    @media(min-width:1024px) { .hero__title { font-size:4.5rem; } }
+
+    .hero__sub { margin:1.25rem auto 0; font-size:1rem; color:var(--noir-300); line-height:1.7; max-width:40rem; animation:fadeInUp .7s .22s ease-out both; }
+    @media(min-width:640px) { .hero__sub { font-size:1.125rem; } }
+
+    /* STORE BUTTONS */
+    .store-row { margin-top:2.25rem; display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:1rem; animation:fadeInUp .8s .3s ease-out both; }
+    .store-btn { display:inline-flex; align-items:center; gap:.875rem; padding:.85rem 1.5rem; border-radius:.75rem; background:linear-gradient(165deg,rgba(28,28,33,.85) 0%,rgba(14,14,17,.95) 100%); border:1px solid rgba(0,229,255,.28); min-width:13.5rem; text-align:left; transition:all .3s; }
+    .store-btn:hover { border-color:rgba(0,229,255,.65); transform:translateY(-3px); box-shadow:0 16px 40px -12px rgba(0,229,255,.25); }
+    .store-btn svg { width:1.75rem; height:1.75rem; color:var(--noir-100); flex-shrink:0; }
+    .store-btn__meta { display:flex; flex-direction:column; }
+    .store-btn__kicker { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:var(--neon-cyan); }
+    .store-btn__name { font-size:1rem; font-weight:700; color:var(--noir-50); letter-spacing:-.01em; margin-top:1px; }
+
+    .hero__stats { margin:3rem auto 0; max-width:42rem; display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; padding-top:2rem; border-top:1px solid rgba(200,200,208,.08); animation:fadeInUp .8s .38s ease-out both; }
+    .stat__val { font-family:'Orbitron',sans-serif; font-size:1.5rem; font-weight:800; color:var(--noir-50); }
+    @media(min-width:640px) { .stat__val { font-size:2rem; } }
+    .stat__label { margin-top:.25rem; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.22em; text-transform:uppercase; color:var(--noir-400); }
+
+    /* ========================================
+       SECTIONS
+       ======================================== */
+    .section { padding:5.5rem 0; position:relative; }
+    @media(min-width:640px) { .section { padding:7rem 0; } }
+    .section__header { max-width:42rem; margin-bottom:3.5rem; }
+    .section__eyebrow { display:flex; align-items:center; gap:.75rem; margin-bottom:.875rem; }
+    .marker-dot { width:6px; height:6px; border-radius:50%; background:var(--neon-cyan); box-shadow:0 0 10px var(--neon-cyan); }
+    .section__label { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.35em; text-transform:uppercase; color:var(--noir-400); }
+    .section__title { font-size:1.875rem; font-weight:700; letter-spacing:-.025em; color:var(--noir-50); line-height:1.18; }
+    @media(min-width:640px) { .section__title { font-size:2.5rem; } }
+    .section__desc { margin-top:1rem; color:var(--noir-400); font-size:.9375rem; line-height:1.7; }
+
+    /* ========================================
+       TRAINING PILLARS (4 MODES)
+       ======================================== */
+    .pillars-grid { display:grid; grid-template-columns:1fr; gap:1.25rem; }
+    @media(min-width:640px) { .pillars-grid { grid-template-columns:repeat(2,1fr); gap:1.5rem; } }
+    .pillar { padding:1.75rem; border-radius:.875rem; background:linear-gradient(165deg,rgba(28,28,33,.55) 0%,rgba(14,14,17,.8) 100%); border:1px solid rgba(200,200,208,.08); transition:border-color .3s, transform .3s; }
+    .pillar:hover { border-color:rgba(0,229,255,.3); transform:translateY(-3px); }
+    .pillar__tag { display:inline-block; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.2em; text-transform:uppercase; padding:.2rem .6rem; border-radius:4px; color:var(--neon-cyan); border:1px solid rgba(0,229,255,.25); background:rgba(0,229,255,.06); margin-bottom:1rem; }
+    .pillar__title { font-size:1.2rem; font-weight:700; color:var(--noir-50); margin-bottom:.5rem; }
+    .pillar__text { font-size:.875rem; color:var(--noir-400); line-height:1.68; }
+
+    /* ========================================
+       8 GAMES CATALOG GRID
+       ======================================== */
+    .games-grid { display:grid; grid-template-columns:1fr; gap:1.25rem; }
+    @media(min-width:640px) { .games-grid { grid-template-columns:repeat(2,1fr); } }
+    @media(min-width:1024px) { .games-grid { grid-template-columns:repeat(4,1fr); } }
+
+    .game-card { position:relative; display:flex; flex-direction:column; padding:1.5rem; border-radius:.75rem; background:linear-gradient(165deg,rgba(22,22,27,.85) 0%,rgba(10,10,13,.95) 100%); border:1px solid var(--card-border,rgba(200,200,208,.12)); overflow:hidden; transition:transform .3s, box-shadow .3s, border-color .3s; }
+    .game-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--card-neon,#00e5ff); opacity:.85; }
+    .game-card:hover { transform:translateY(-4px); box-shadow:0 18px 44px -14px var(--card-glow,rgba(0,229,255,.22)); }
+    .game-card__top { display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem; }
+    .game-card__suit { font-size:1.75rem; line-height:1; color:var(--card-neon); }
+    .game-card__count { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:var(--noir-400); padding:.2rem .55rem; border-radius:999px; border:1px solid rgba(200,200,208,.1); }
+    .game-card__title { font-family:'Orbitron',sans-serif; font-size:1rem; font-weight:800; letter-spacing:.08em; color:var(--card-neon); margin-bottom:.625rem; }
+    .game-card__desc { font-size:.8125rem; color:var(--noir-300); line-height:1.6; flex:1; }
+    .game-card__pills { margin-top:1.1rem; padding-top:.875rem; border-top:1px solid rgba(200,200,208,.06); display:flex; flex-wrap:wrap; gap:.35rem; }
+    .game-pill { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.08em; text-transform:uppercase; padding:.15rem .45rem; border-radius:3px; background:rgba(255,255,255,.03); color:var(--noir-400); border:1px solid rgba(255,255,255,.06); }
+
+    /* ========================================
+       PRIVACY & ARCHITECTURE CALLOUT
+       ======================================== */
+    .arch-box { display:grid; grid-template-columns:1fr; gap:2rem; padding:2.25rem; border-radius:1rem; background:linear-gradient(165deg,rgba(0,229,255,.06) 0%,rgba(14,14,17,.9) 65%); border:1px solid rgba(0,229,255,.2); }
+    @media(min-width:768px) { .arch-box { grid-template-columns:repeat(3,1fr); padding:2.75rem; } }
+    .arch-item__kicker { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.25em; text-transform:uppercase; color:var(--neon-cyan); margin-bottom:.5rem; }
+    .arch-item__title { font-size:1.1rem; font-weight:700; color:var(--noir-50); margin-bottom:.4rem; }
+    .arch-item__text { font-size:.875rem; color:var(--noir-400); line-height:1.65; }
+
+    /* ========================================
+       FOOTER
+       ======================================== */
+    .footer { padding:3.5rem 0 4rem; border-top:1px solid rgba(28,28,33,.6); }
+    .footer__inner { display:flex; flex-direction:column; align-items:center; justify-content:space-between; gap:1.25rem; }
+    @media(min-width:640px) { .footer__inner { flex-direction:row; } }
+    .footer__copy { color:var(--noir-500); font-size:.75rem; letter-spacing:.05em; }
+    .footer__links { display:flex; flex-wrap:wrap; align-items:center; gap:1.5rem; }
+    .footer__links a { color:var(--noir-400); font-size:.75rem; transition:color .3s; }
+    .footer__links a:hover { color:var(--neon-cyan); }
+  </style>
+</head>
+
+<body>
+
+  <!-- ======================== NAVIGATION ======================== -->
+  <nav id="navbar" class="navbar" aria-label="Main">
+    <div class="container">
+      <div class="navbar__inner">
+        <div class="navbar__brand">
+          <a href="index.html" class="navbar__logo" aria-label="ENTROPY LLC Home">
+            <picture><source srcset="logos/banner_entropy_transparent_back.webp" type="image/webp"><img src="logos/banner_entropy_transparent_back.png" alt="Entropy" class="navbar__logo-img" /></picture>
+            <span class="navbar__logo-text">ENTROPY</span>
+          </a>
+          <span class="navbar__sep" aria-hidden="true"></span>
+          <a href="felt-runner.html" class="navbar__app" aria-current="page">Felt Runner</a>
+        </div>
+
+        <div class="navbar__links">
+          <a href="#modes" class="nav-link">Training Modes</a>
+          <a href="#games" class="nav-link">8 Games</a>
+          <a href="support.html#felt-runner-support" class="nav-link">Support</a>
+          <a href="#download" class="nav-link nav-link--cta">Get the App</a>
+        </div>
+
+        <button id="mobile-toggle" class="navbar__toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" d="M4 8h16M4 16h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="mobile-menu">
+      <div class="mobile-menu__inner">
+        <a href="#modes">Training Modes</a>
+        <a href="#games">8 Casino Games</a>
+        <a href="support.html#felt-runner-support">App Support</a>
+        <a href="#download">Download</a>
+        <div class="mobile-menu__divider" aria-hidden="true"></div>
+        <a href="index.html#projects" class="mobile-menu__muted">← All ENTROPY Projects</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ======================== HERO ======================== -->
+    <section class="hero dot-grid">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="container hero__content">
+
+        <div class="hero__logo-wrap">
+          <picture>
+            <source srcset="logos/FR_icon_1024_1024.webp" type="image/webp" />
+            <img src="logos/FR_icon_1024_1024.png" alt="Felt Runner App Icon" width="208" height="208" />
+          </picture>
+        </div>
+
+        <div class="hero__eyebrow">
+          <span class="hero__eyebrow-dot"></span>
+          <span>iOS &amp; Android Casino Games Lab</span>
+        </div>
+
+        <h1 class="hero__title">
+          FELT <span class="text-cyan-gradient">RUNNER</span>
+        </h1>
+
+        <p class="hero__sub">
+          The professional casino dealer training simulator and table-games lab. Master rules, payout speed math, House Way hand setting, side-pot arithmetic, basic strategy, and full table procedures across 8 casino games.
+        </p>
+
+        <!-- Store Buttons (update hrefs with live App Store / Google Play URLs when published) -->
+        <div id="download" class="store-row">
+          <a href="#download" class="store-btn" id="apple-store-link" aria-label="Felt Runner on the Apple App Store">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.96 6.33c.67-.81 1.12-1.94 1.01-3.08-.97.04-2.14.65-2.83 1.46-.61.7-.115 1.85-1.01 2.97 1.09.08 2.16-.54 2.83-1.35z" />
+            </svg>
+            <div class="store-btn__meta">
+              <span class="store-btn__kicker">App Store · iOS &amp; iPadOS</span>
+              <span class="store-btn__name">Releasing Soon</span>
+            </div>
+          </a>
+
+          <a href="#download" class="store-btn" id="google-play-link" aria-label="Felt Runner on Google Play">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M3.609 1.814L13.792 12 3.61 22.186a1.77 1.77 0 01-.61-1.344V3.158c0-.517.224-.998.609-1.344zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1.47 1.47 0 010 2.53l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.802 8.99l-2.303 2.303-8.635-8.635z" />
+            </svg>
+            <div class="store-btn__meta">
+              <span class="store-btn__kicker">Google Play · Android</span>
+              <span class="store-btn__name">Releasing Soon</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="hero__stats">
+          <div>
+            <div class="stat__val">8</div>
+            <div class="stat__label">Casino Table Games</div>
+          </div>
+          <div>
+            <div class="stat__val">30+</div>
+            <div class="stat__label">Interactive Modules</div>
+          </div>
+          <div>
+            <div class="stat__val">100%</div>
+            <div class="stat__label">Offline Ready</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="rule-glow" aria-hidden="true" />
+
+    <!-- ======================== TRAINING MODES ======================== -->
+    <section id="modes" class="section">
+      <div class="container">
+        <div class="section__header reveal">
+          <div class="section__eyebrow">
+            <div class="marker-dot"></div>
+            <span class="section__label">01 — Training Architecture</span>
+          </div>
+          <h2 class="section__title">Built for table audition speed and floor precision.</h2>
+          <p class="section__desc">
+            Whether you're preparing for a casino dealer school audition, sharpening your table math between shifts, or learning optimal player strategy, Felt Runner drills every phase of live table play.
+          </p>
+        </div>
+
+        <div class="pillars-grid">
+          <div class="pillar reveal">
+            <span class="pillar__tag">Dealer Simulators</span>
+            <h3 class="pillar__title">Run Full Multi-Seat Tables</h3>
+            <p class="pillar__text">
+              Step behind the box across Blackjack, Spanish 21, NL Hold'em Poker, Punto Banco Baccarat, Pai Gow Poker, and Three Card Poker. Call naturals, check dealer qualifiers, manage burn cards, calculate 5% commissions, and settle every seat in order.
+            </p>
+          </div>
+
+          <div class="pillar reveal">
+            <span class="pillar__tag">Speed Math &amp; Payouts</span>
+            <h3 class="pillar__title">Instant Felt Arithmetic</h3>
+            <p class="pillar__text">
+              Build automatic reflexes on Roulette picture bets and full-table chip payouts, Pot-Limit Omaha pot-sized raises, multi-way all-in Side Pots (Main, Side 1 &amp; Side 2), and rapid 2-to-6 card hand-total speed drills.
+            </p>
+          </div>
+
+          <div class="pillar reveal">
+            <span class="pillar__tag">House Way &amp; Strategy</span>
+            <h3 class="pillar__title">Zero-Hesitation Decision Making</h3>
+            <p class="pillar__text">
+              Practice splitting 7-card Pai Gow hands into 2-card Low and 5-card High with live House Way feedback and foul detection, or drill every Blackjack and Spanish 21 basic strategy spot against any dealer upcard.
+            </p>
+          </div>
+
+          <div class="pillar reveal">
+            <span class="pillar__tag">Play 1v1 &amp; Rulebooks</span>
+            <h3 class="pillar__title">Learn From Both Sides of the Felt</h3>
+            <p class="pillar__text">
+              Each game includes a concise Rules &amp; Essentials reference plus a 1v1 playable table ($5–$1,000 virtual bankroll) with real shoe physics, side bets, and optional real-time strategy hints.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule-glow" aria-hidden="true" />
+
+    <!-- ======================== 8 GAMES SHOWCASE ======================== -->
+    <section id="games" class="section">
+      <div class="container">
+        <div class="section__header reveal">
+          <div class="section__eyebrow">
+            <div class="marker-dot"></div>
+            <span class="section__label">02 — Complete Curriculum</span>
+          </div>
+          <h2 class="section__title">Eight casino games. One training lab.</h2>
+          <p class="section__desc">
+            Every game in Felt Runner is engineered around authentic pit procedures, true shoe compositions, and exact casino paytables.
+          </p>
+        </div>
+
+        <div class="games-grid">
+
+          <!-- 1. Blackjack -->
+          <div class="game-card reveal" style="--card-neon:var(--neon-cyan); --card-border:rgba(0,229,255,.25); --card-glow:rgba(0,229,255,.2);">
+            <div class="game-card__top">
+              <span class="game-card__suit">♠</span>
+              <span class="game-card__count">6 Modules</span>
+            </div>
+            <h3 class="game-card__title">BLACKJACK</h3>
+            <p class="game-card__desc">
+              Complete 6-deck shoe training: hard/soft/pair strategy charts, timed strategy quizzes, flashing card-total speed math, 1v1 practice, and full multi-seat Dealer Simulator.
+            </p>
+            <div class="game-card__pills">
+              <span class="game-pill">Rules</span>
+              <span class="game-pill">Strategy Chart</span>
+              <span class="game-pill">Speed Math</span>
+              <span class="game-pill">Dealer Sim</span>
+            </div>
+          </div>
+
+          <!-- 2. Spanish 21 -->
+          <div class="game-card reveal" style="--card-neon:var(--neon-green); --card-border:rgba(0,255,136,.25); --card-glow:rgba(0,255,136,.2);">
+            <div class="game-card__top">
+              <span class="game-card__suit">♣</span>
+              <span class="game-card__count">6 Modules</span>
+            </div>
+            <h3 class="game-card__title">SPANISH 21</h3>
+            <p class="game-card__desc">
+              48-card Spanish deck (no 10s) with H17 &amp; S17 charts, Double Down Rescue, Redouble, 5/6/7-card 21 bonus payouts, Match the Dealer math, and full S21 Dealer Simulator.
+            </p>
+            <div class="game-card__pills">
+              <span class="game-pill">H17 / S17 Charts</span>
+              <span class="game-pill">Bonus Math</span>
+              <span class="game-pill">Play 1v1</span>
+              <span class="game-pill">Dealer Sim</span>
+            </div>
+          </div>
+
+          <!-- 3. Roulette -->
+          <div class="game-card reveal" style="--card-neon:var(--neon-amber); --card-border:rgba(255,149,0,.25); --card-glow:rgba(255,149,0,.2);">
+            <div class="game-card__top">
+              <span class="game-card__suit">◎</span>
+              <span class="game-card__count">2 Modules</span>
+            </div>
+            <h3 class="game-card__title">ROULETTE</h3>
+            <p class="game-card__desc">
+              Master inside bets, complex multi-chip picture bets, and rapid payout calculation when multiple stacks hit around a winning number on the layout.
+            </p>
+            <div class="game-card__pills">
+              <span class="game-pill">Picture Bets Guide</span>
+              <span class="game-pill">Table Payout Drill</span>
+            </div>
+          </div>
+
+          <!-- 4. Poker -->
+          <div class="game-card reveal" style="--card-neon:var(--neon-pink); --card-border:rgba(255,0,102,.25); --card-glow:rgba(255,0,102,.2);">
+            <div class="game-card__top">
+              <span class="game-card__suit">♦</span>
+              <span class="game-card__count">7 Modules</span>
+            </div>
+            <h3 class="game-card__title">POKER</h3>
+            <p class="game-card__desc">
+              Texas Hold'em &amp; Pot-Limit Omaha dealer training: 2-to-9 player board reading, PLO pot-sized raise math, 3-to-6 player all-in Side Pot breakdowns, rules quiz, and 1/2 NL Dealer Simulator.
+            </p>
+            <div class="game-card__pills">
+              <span class="game-pill">Showdowns</span>
+              <span class="game-pill">PLO Pot Math</span>
+              <span class="game-pill">Side Pots</span>
+              <span class="game-pill">Dealer Sim</span>
+            </div>
+          </div>
+
+          <!-- 5. Baccarat -->
+          <div class="game-card reveal" style="--card-neon:var(--neon-yellow); --card-border:rgba(255,234,0,.25); --card-glow:rgba(255,234,0,.2);">
+            <div class="game-card__top">
+              <span class="game-card__suit">❖</span>
+              <span class="game-card__count">3 Modules</span>
+            </div>
+            <h3 class="game-card__title">BACCARAT</h3>
+            <p class="game-card__desc">
+              Lock in the Punto Banco third-card tableau. Drill rapid coup-by-coup draw/stand calls, natural 8 &amp; 9 recognition, 5% Banker commission math, and full table settlement.
+            </p>
+            <div class="game-card__pills">
+              <span class="game-pill">Tableau Rules</span>
+              <span class="game-pill">3rd-Card Drill</span>
+              <span class="game-pill">Dealer Sim</span>
+            </div>
+          </div>
+
+          <!-- 6. Pai Gow Poker -->
+          <div class="game-card reveal" style="--card-neon:var(--neon-violet); --card-border:rgba(168,85,247,.32); --card-glow:rgba(168,85,247,.22);">
+            <div class="game-card__top">
+              <span class="game-card__suit">✦</span>
+              <span class="game-card__count">4 Modules</span>
+            </div>
+            <h3 class="game-card__title">PAI GOW POKER</h3>
+            <p class="game-card__desc">
+              53-card Joker deck training: interactive 7-card House Way hand setting with foul prevention, dice cup seat counting, copy resolution, 5% commission, and 1v1 play.
+            </p>
+            <div class="game-card__pills">
+              <span class="game-pill">House Way Drill</span>
+              <span class="game-pill">Play 1v1</span>
+              <span class="game-pill">Dealer Sim</span>
+            </div>
+          </div>
+
+          <!-- 7. Three Card Poker -->
+          <div class="game-card reveal" style="--card-neon:var(--neon-red); --card-border:rgba(255,42,85,.28); --card-glow:rgba(255,42,85,.2);">
+            <div class="game-card__top">
+              <span class="game-card__suit">◈</span>
+              <span class="game-card__count">3 Modules</span>
+            </div>
+            <h3 class="game-card__title">3 CARD POKER</h3>
+            <p class="game-card__desc">
+              Train Queen-high dealer qualifying, 3-card hand hierarchy (Straight beats Flush), Ante Bonus vs Pair Plus paytables, optimal Q-6-4 strategy, and full table dealing.
+            </p>
+            <div class="game-card__pills">
+              <span class="game-pill">Paytables</span>
+              <span class="game-pill">Play 1v1</span>
+              <span class="game-pill">Dealer Sim</span>
+            </div>
+          </div>
+
+          <!-- 8. Burn It -->
+          <div class="game-card reveal" style="--card-neon:var(--neon-flame); --card-border:rgba(255,94,58,.32); --card-glow:rgba(255,94,58,.22);">
+            <div class="game-card__top">
+              <span class="game-card__suit">🔥</span>
+              <span class="game-card__count">2 Modules</span>
+            </div>
+            <h3 class="game-card__title">BURN IT™</h3>
+            <p class="game-card__desc">
+              Learn and play ENTROPY LLC's original multi-phase high-card shoe game — featuring Royal Instant Win on Ace, the 50% Strike fee, Free Burn, 2X Outburn, and Match the Dealer.
+            </p>
+            <div class="game-card__pills">
+              <span class="game-pill">Official Rules</span>
+              <span class="game-pill">Play 1v1</span>
+              <span class="game-pill"><a href="burn-it.html" style="color:var(--neon-flame);">Game Hub →</a></span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule-glow" aria-hidden="true" />
+
+    <!-- ======================== PRIVACY & ARCHITECTURE ======================== -->
+    <section class="section">
+      <div class="container">
+        <div class="arch-box reveal">
+          <div>
+            <div class="arch-item__kicker">Zero Friction</div>
+            <h3 class="arch-item__title">No Account Required</h3>
+            <p class="arch-item__text">
+              Open the app and start drilling immediately. Felt Runner requires no sign-up, no email address, and no cloud login.
+            </p>
+          </div>
+          <div>
+            <div class="arch-item__kicker">Privacy First</div>
+            <h3 class="arch-item__title">100% On-Device Storage</h3>
+            <p class="arch-item__text">
+              Your drill streaks, accuracy stats, and preferences stay strictly on your phone or tablet. No personal data is ever collected or sold.
+            </p>
+          </div>
+          <div>
+            <div class="arch-item__kicker">Flexible Access</div>
+            <h3 class="arch-item__title">Unlock Per Game or All 8</h3>
+            <p class="arch-item__text">
+              Explore core rules and modules for free, unlock individual games one-time, or unlock all 8 games with a Monthly Pass or Lifetime access.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__copy">&copy; 2026 ENTROPY LLC. All rights reserved. Educational training simulator — no real-money gambling.</p>
+      <div class="footer__links">
+        <a href="index.html">ENTROPY Home</a>
+        <a href="burn-it.html">Burn It™</a>
+        <a href="privacy.html#felt-runner">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="support.html#felt-runner-support">App Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    const onScroll = () => navbar.classList.toggle('navbar--scrolled', window.scrollY > 40);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    const toggle = document.getElementById('mobile-toggle');
+    const menu = document.getElementById('mobile-menu');
+    const setMenu = (open) => {
+      menu.classList.toggle('open', open);
+      navbar.classList.toggle('navbar--open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    };
+    toggle.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+
+</html>
+
