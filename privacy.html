@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — ShiftRunner &amp; Felt Runner | ENTROPY LLC</title>
+  <meta name="description"
+    content="Official Privacy Policy for ENTROPY LLC, covering the Felt Runner mobile app, ShiftRunner: Tip Tracker mobile and web apps, and entropyconcepts.com." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.entropyconcepts.com/privacy" />
+
+  <style>
+    @font-face { font-family:'Inter'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/inter-400.woff2') format('woff2'); }
+    @font-face { font-family:'Inter'; font-style:normal; font-weight:700; font-display:swap; src:url('fonts/inter-700.woff2') format('woff2'); }
+    @font-face { font-family:'JetBrains Mono'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/jetbrains-400.woff2') format('woff2'); }
+
+    :root {
+      --noir-50: #f7f7f8; --noir-100: #ededf0; --noir-200: #d4d4d9; --noir-300: #a8a8b3;
+      --noir-400: #71717f; --noir-500: #53535f; --noir-600: #3f3f47; --noir-700: #2c2c32;
+      --noir-800: #1c1c21; --noir-900: #0e0e11; --noir-950: #08080a;
+      --accent: #c8c8d0;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { font-family:'Inter',system-ui,-apple-system,sans-serif; scroll-behavior:smooth; }
+    body { background:var(--noir-950); color:var(--noir-200); line-height:1.7; -webkit-font-smoothing:antialiased; }
+    a { color:var(--noir-100); text-decoration:underline; text-underline-offset:3px; transition:color .2s; }
+    a:hover { color:#fff; }
+
+    .navbar { position:sticky; top:0; z-index:50; background:rgba(8,8,10,.88); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:1px solid rgba(200,200,208,.08); }
+    .navbar__inner { max-width:56rem; margin:0 auto; padding:0 1.5rem; height:4rem; display:flex; align-items:center; justify-content:space-between; }
+    .navbar__logo { display:flex; align-items:center; gap:.75rem; text-decoration:none; }
+    .navbar__logo img { width:1.75rem; height:1.75rem; object-fit:contain; opacity:.8; }
+    .navbar__logo span { font-size:.8125rem; font-weight:700; letter-spacing:.25em; color:var(--noir-100); }
+    .navbar__links { display:flex; align-items:center; gap:1.25rem; }
+    .navbar__links a { font-size:.75rem; letter-spacing:.15em; text-transform:uppercase; color:var(--noir-400); text-decoration:none; }
+    .navbar__links a:hover, .navbar__links a[aria-current="page"] { color:var(--noir-100); }
+
+    main { max-width:56rem; margin:0 auto; padding:3.5rem 1.5rem 6rem; }
+    .eyebrow { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.35em; text-transform:uppercase; color:var(--noir-500); margin-bottom:.75rem; }
+    h1 { font-size:2.25rem; font-weight:700; color:var(--noir-50); letter-spacing:-.025em; line-height:1.15; }
+    .meta { margin-top:.5rem; font-size:.875rem; color:var(--noir-400); }
+
+    .jump-nav { margin:2rem 0 2.5rem; display:flex; flex-wrap:wrap; gap:.625rem; }
+    .jump-nav a { text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:.7rem; letter-spacing:.15em; text-transform:uppercase; padding:.5rem .9rem; border-radius:999px; border:1px solid var(--noir-700); background:var(--noir-900); color:var(--noir-300); }
+    .jump-nav a:hover { border-color:var(--noir-400); color:var(--noir-50); }
+
+    .section-card { margin-top:2.5rem; padding:2rem; border-radius:.75rem; background:linear-gradient(165deg,rgba(28,28,33,.5) 0%,rgba(14,14,17,.8) 100%); border:1px solid rgba(200,200,208,.08); }
+    .app-badge { display:inline-block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.2em; text-transform:uppercase; padding:.2rem .6rem; border-radius:999px; background:var(--noir-800); color:var(--noir-300); border:1px solid var(--noir-700); margin-bottom:.75rem; }
+    h2 { font-size:1.35rem; font-weight:700; color:var(--noir-50); margin-bottom:.75rem; letter-spacing:-.01em; }
+    h3 { font-size:1rem; font-weight:700; color:var(--noir-100); margin-top:1.5rem; margin-bottom:.5rem; }
+    p { margin-bottom:.875rem; color:var(--noir-300); font-size:.9375rem; }
+    ul { margin:0 0 1rem 1.25rem; color:var(--noir-300); font-size:.9375rem; }
+    li { margin-bottom:.4rem; }
+    strong { color:var(--noir-100); }
+
+    .footer { border-top:1px solid rgba(200,200,208,.08); padding:2rem 1.5rem; text-align:center; font-size:.8125rem; color:var(--noir-500); }
+    .footer__links { margin-top:.5rem; display:flex; justify-content:center; gap:1.5rem; }
+    .footer__links a { color:var(--noir-400); text-decoration:none; }
+    .footer__links a:hover { color:var(--noir-100); }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar" aria-label="Legal navigation">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo">
+        <picture><source srcset="logos/banner_entropy_transparent_back.webp" type="image/webp"><img src="logos/banner_entropy_transparent_back.png" alt="Entropy" /></picture>
+        <span>ENTROPY</span>
+      </a>
+      <div class="navbar__links">
+        <a href="privacy.html" aria-current="page">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="support.html">Support</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="eyebrow">ENTROPY LLC — Legal</div>
+    <h1>Privacy Policy</h1>
+    <p class="meta">Effective &amp; Last Updated: November 6, 2026</p>
+
+    <p style="margin-top:1.25rem;">
+      This Privacy Policy explains how <strong>ENTROPY LLC</strong> ("Entropy", "we", "us", or "our"), headquartered at 221 Main St Ste R, Nashua, NH 03060, USA, handles information across our mobile applications and websites, including <strong>Felt Runner</strong> (iOS and Android), <strong>ShiftRunner: Tip Tracker</strong> (iOS, Android, and web at shiftrunner.pro), and <strong>entropyconcepts.com</strong>.
+    </p>
+
+    <div class="jump-nav" aria-label="Quick section links">
+      <a href="#felt-runner">Felt Runner App</a>
+      <a href="#shiftrunner">ShiftRunner: Tip Tracker App</a>
+      <a href="#delete-account">Account &amp; Data Deletion</a>
+      <a href="#general">General Rights &amp; Contact</a>
+    </div>
+
+    <!-- ======================== FELT RUNNER ======================== -->
+    <section id="felt-runner" class="section-card">
+      <span class="app-badge">iOS &amp; Android App · com.feltrunner.app</span>
+      <h2>1. Felt Runner — Privacy Policy</h2>
+      <p>
+        <strong>Felt Runner does not collect, store on external servers, or share any personal data.</strong> There is no user registration, no login, and no cloud user database in Felt Runner.
+      </p>
+
+      <h3>Information Stored Locally on Your Device</h3>
+      <ul>
+        <li><strong>Local Training Data:</strong> Your drill progress, high scores, accuracy statistics, and app settings (such as audio preferences) are stored strictly locally on your device using on-device storage. This data never leaves your device.</li>
+        <li><strong>Deleting Local Data:</strong> Uninstalling Felt Runner or clearing the app's storage in your device settings immediately and permanently removes all local progress and preferences.</li>
+      </ul>
+
+      <h3>In-App Purchases</h3>
+      <ul>
+        <li>Felt Runner offers optional in-app purchases (individual game unlocks, an auto-renewing All-Games Monthly subscription, and a one-time All-Games Lifetime unlock).</li>
+        <li>All transactions are processed directly by <strong>Apple (App Store)</strong> or <strong>Google (Google Play)</strong>. ENTROPY LLC never receives, views, or stores your name, billing address, or payment card details.</li>
+      </ul>
+
+      <h3>No Tracking or Third-Party Advertising</h3>
+      <p>
+        Felt Runner does not use advertising identifiers (IDFA/AAID), third-party ad networks, or cross-app tracking technologies.
+      </p>
+    </section>
+
+    <!-- ======================== SHIFTRUNNER ======================== -->
+    <section id="shiftrunner" class="section-card">
+      <span class="app-badge">iOS, Android &amp; Web · com.shiftrunner.app</span>
+      <h2>2. ShiftRunner: Tip Tracker — Privacy Policy</h2>
+      <p>
+        <strong>ShiftRunner: Tip Tracker</strong> ("Shift Runner") helps service-industry workers track shift earnings, tips, hours, and paychecks across devices. Because ShiftRunner syncs your data to your personal account, we collect only the minimum information required to provide the service.
+      </p>
+
+      <h3>Data We Collect in ShiftRunner</h3>
+      <ul>
+        <li><strong>Account Data:</strong> Your email address and password. Passwords are stored exclusively as a one-way cryptographic hash (Argon2id); we never see or store your plaintext password.</li>
+        <li><strong>Biometric Unlock (On-Device Only):</strong> If you enable Face ID / biometric unlock, authentication is handled entirely by your device's operating system (`LocalAuthentication` / `SecureStore`). ENTROPY LLC never accesses or receives biometric data.</li>
+        <li><strong>Shift &amp; Financial Entries You Enter:</strong> Shift entries (date, amount, shift type, notes, hours worked, optional mood rating), paycheck entries, transfer statuses, and app preferences (such as industry preset, currency symbol, and week start day).</li>
+        <li><strong>Purchase &amp; Subscription Status:</strong> Whether your account has Shift Runner Pro, your plan type (subscription, free trial, or lifetime), and renewal/expiration dates. Payments are processed by <strong>Apple (App Store)</strong> or <strong>Google (Google Play)</strong>; we never receive your credit card or billing details. Purchase entitlements are verified via <strong>RevenueCat</strong>, which receives an internal ShiftRunner user ID (not your email) and store transaction receipts.</li>
+        <li><strong>Minimal Usage Metrics:</strong> An internal daily active account count (your internal account ID is logged for up to 30 days solely to count unique active users). We do not use advertising identifiers or track you across third-party apps or websites.</li>
+      </ul>
+
+      <h3>How We Use ShiftRunner Data</h3>
+      <ul>
+        <li>To store, back up, and sync your shifts and analytics across your logged-in devices.</li>
+        <li>To authenticate your account, send password reset or verification codes, and protect against unauthorized access (such as rate-limiting failed login attempts).</li>
+        <li>To verify and restore your Shift Runner Pro subscription or lifetime unlock.</li>
+        <li>To send essential transactional emails (account verification and password reset). We do <strong>not</strong> send third-party marketing emails, and we do <strong>not</strong> sell or rent your data to anyone.</li>
+      </ul>
+
+      <h3>Service Providers Used by ShiftRunner</h3>
+      <p>We use trusted infrastructure providers that process data solely on our behalf:</p>
+      <ul>
+        <li><strong>Vercel</strong> (application hosting) and <strong>Upstash / Redis</strong> (encrypted cloud database hosted in the United States).</li>
+        <li><strong>Resend</strong> (transactional email delivery for verification and password resets).</li>
+        <li><strong>Apple</strong>, <strong>Google</strong>, and <strong>RevenueCat</strong> (in-app purchase processing and entitlement verification).</li>
+      </ul>
+    </section>
+
+    <!-- ======================== DATA DELETION ======================== -->
+    <section id="delete-account" class="section-card">
+      <span class="app-badge">User Control &amp; Data Retention</span>
+      <h2>3. Data Retention &amp; How to Delete Your Account</h2>
+      <p>
+        For <strong>ShiftRunner: Tip Tracker</strong>, we retain your account and shift data for as long as your account remains active. You can permanently delete your account and all associated data at any time:
+      </p>
+      <ul>
+        <li><strong>In the ShiftRunner Mobile App (iOS &amp; Android):</strong> Open <em>Settings → Account → Delete Account</em> and confirm deletion.</li>
+        <li><strong>On the ShiftRunner Website:</strong> Log in at <em>shiftrunner.pro</em> and go to <em>Settings → Account → Delete Account</em>.</li>
+        <li><strong>By Email Request:</strong> Send an email from your registered account email address to <a href="mailto:contact@entropyconcepts.com">contact@entropyconcepts.com</a> or <a href="mailto:support@shiftrunner.pro">support@shiftrunner.pro</a> requesting account deletion.</li>
+      </ul>
+      <p>
+        When you delete your account, your profile, email address, shift entries, paycheck records, and active sessions are removed from our live database immediately. Residual copies in encrypted disaster-recovery backups are automatically overwritten within 30 days.
+      </p>
+      <p>
+        For <strong>Felt Runner</strong>, no account or server-side data exists; uninstalling the app removes all local data from your device.
+      </p>
+    </section>
+
+    <!-- ======================== GENERAL ======================== -->
+    <section id="general" class="section-card">
+      <span class="app-badge">General Terms</span>
+      <h2>4. Security, Privacy Rights &amp; Contact</h2>
+
+      <h3>Security</h3>
+      <p>
+        All network communication between our apps and servers is encrypted via HTTPS/TLS. Passwords in ShiftRunner are hashed using Argon2id, tokens are stored in hardware-backed device secure storage where available, and login endpoints are rate-limited.
+      </p>
+
+      <h3>Your Privacy Rights (GDPR, CCPA &amp; Global)</h3>
+      <p>
+        Depending on your jurisdiction, you have the right to access, correct, export, or delete your personal data, and to object to or restrict certain processing. You may exercise these rights directly inside the app or by contacting us below. We respond to all verified requests within 30 days. We do not sell personal information as defined under the California Consumer Privacy Act (CCPA/CPRA).
+      </p>
+
+      <h3>Children's Privacy</h3>
+      <p>
+        Our applications and websites are not directed to children under the age of 13 (or under 16 in the European Economic Area), and we do not knowingly collect personal information from children. Notably, Felt Runner is an educational training tool for casino table game dealers and contains simulated table-game dealing mechanics with no real-money wagering.
+      </p>
+
+      <h3>Changes to This Policy</h3>
+      <p>
+        If we make material updates to this Privacy Policy, we will update the "Effective &amp; Last Updated" date at the top of this page and, where applicable, notify users in the relevant application.
+      </p>
+
+      <h3>Contact Us</h3>
+      <p>
+        If you have any questions about this Privacy Policy or our data practices, please contact:<br />
+        <strong>ENTROPY LLC</strong><br />
+        221 Main St Ste R, Nashua, NH 03060, USA<br />
+        Email: <a href="mailto:contact@entropyconcepts.com">contact@entropyconcepts.com</a> · <a href="mailto:info@entropyconcepts.com">info@entropyconcepts.com</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 ENTROPY LLC. All rights reserved.</p>
+    <div class="footer__links">
+      <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="support.html">App Support</a>
+    </div>
+  </footer>
+
+</body>
+
+</html>
+
